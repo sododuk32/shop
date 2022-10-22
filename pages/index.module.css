@@ -1,0 +1,6 @@
+.bodyContainer {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 100px;
+  padding-top: 30px;
+}

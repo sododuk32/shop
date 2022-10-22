@@ -1,0 +1,25 @@
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  width: 90%;
+  height: 50px;
+  background-color: cadetblue;
+  margin-left: 85px;
+}
+.navListContainer1 {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  width: 50%;
+}
+.navListContainer2 {
+  display: flex;
+  justify-content: space-around;
+  padding-right: 30px;
+  list-style: none;
+}
+
+.navListbag {
+  padding-left: 10px;
+}
