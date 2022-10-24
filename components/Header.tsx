@@ -4,35 +4,27 @@
 import { style } from '@mui/system';
 import React from 'react';
 import styles from './Header.module.css';
+import Image from 'next/image';
 function header() {
   return (
     <div>
       <div id="navContainer" className={styles.navContainer}>
-        <ul id="navListContainer1" className={styles.navListContainer1}>
-          <li id="navList" className={styles.navList}>
-            logo
-          </li>
-          <li id="navList" className={styles.navList}>
-            category2
-          </li>
-          <li id="navList" className={styles.navList}>
-            category3
-          </li>
-          <li id="navList" className={styles.navList}>
-            category4
-          </li>
-          <li id="navList" className={styles.navList}>
-            category5
-          </li>
-        </ul>
-        <ul id="navListContainer2" className={styles.navListContainer2}>
-          <li id="navList" className={styles.navList}>
-            user
-          </li>
-          <li id="navList" className={styles.navListbag}>
-            bags
-          </li>
-        </ul>
+        <div>
+          <Image src="/mainlogo.png" width={116} height={36} />
+        </div>
+        <div>
+          <div id="navBar" className={styles.navBar}>
+            <button>제품</button>
+            <button>스토리</button>
+            <button>비즈니스</button>
+            <button>지원</button>
+          </div>
+        </div>
+
+        <div id="toolBar" className={styles.toolBar}>
+          <button>○</button>
+          <button>○</button>
+        </div>
       </div>
     </div>
   );

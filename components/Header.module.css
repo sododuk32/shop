@@ -1,25 +1,37 @@
 .navContainer {
-  display: flex;
-  justify-content: space-between;
-  list-style: none;
-  width: 90%;
-  height: 50px;
-  background-color: cadetblue;
-  margin-left: 85px;
+  width: 80rem;
+  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0);
+  display: grid;
+  align-items: center;
+  margin-left: 19rem;
+  grid-template-columns: 1fr 4.2fr 1fr;
+  position: absolute;
+  z-index: 3;
 }
-.navListContainer1 {
+.navBar {
   display: flex;
-  justify-content: space-between;
-  list-style: none;
-  width: 50%;
+  justify-content: center;
+  z-index: 3;
 }
-.navListContainer2 {
+.navBar button {
+  height: 90px;
   display: flex;
-  justify-content: space-around;
-  padding-right: 30px;
-  list-style: none;
+  align-items: center;
+  min-width: 4rem;
+  font-weight: bold;
+  font-size: 1rem;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
 }
 
-.navListbag {
-  padding-left: 10px;
+.toolBar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.toolBar button {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-right: 1rem;
 }
