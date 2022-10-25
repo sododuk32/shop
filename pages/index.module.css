@@ -1,79 +1,54 @@
 .setLanguage {
-  height: 60px;
+  height: 48px;
   width: 100%;
   background-color: white;
   display: grid;
   grid-template-columns: auto 355px auto;
-  align-items: center;
   margin-left: 22rem;
   z-index: 5;
+  position: sticky;
 }
 
 .dropbtn {
-  background-color: #4caf50;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
+  background-color: white;
+  padding-top: 1rem;
+  font-size: 0.8rem;
   border: none;
   cursor: pointer;
   z-index: 5;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-  display: inline-block;
+  width: 5rem;
+  height: fit-content;
 }
 
 /* Dropdown Content (Hidden by Default) */
-.dropdowncontent {
-  display: none;
+
+.linkBox {
+  list-style: none;
+
+  flex-direction: column;
+  visibility: hidden;
   background-color: #f9f9f9;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 10;
-  max-width: fit-content;
+  width: 300px;
 }
-
-/* Links inside the dropdown */
-.dropdowncontent a {
+.link {
   color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
   width: 75px;
   height: 2rem;
   padding-bottom: 10px;
   min-height: 40px;
-  z-index: 4;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-  background-color: #f1f1f1;
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdowncontent {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-  background-color: #3e8e41;
-}
-
-.dropdowncontent1 {
-  width: 10px;
+  z-index: 100;
 }
 
 .bannerImgs {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.75fr 1fr;
   height: 45rem;
   top: 3.7rem;
   left: -9rem;
 
-  z-index: -1;
+  z-index: 1;
   min-width: 100%;
 }
 
@@ -82,23 +57,74 @@
 }
 
 .spanContainer {
-  background-color: yellow;
+  display: table;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 22rem;
+  top: 14rem;
+  width: 25rem;
+  height: auto;
+}
+.panneldiv1 {
+  font-size: 5rem;
+  font-weight: 900;
+  color: white;
+  margin-left: 4rem;
+}
+.panneldiv2 {
+  font-size: 5rem;
+  font-weight: 900;
+  color: yellow;
+  top: 3px;
+  margin-left: 1rem;
+}
+.panneldivsmall {
+  font-size: larger;
+  font-weight: 400;
+  color: white;
+  margin-left: 3.1rem;
+  margin-bottom: 1rem;
 }
 
-.pannelBtn {
-  height: 90px;
+.btnBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 4rem;
+}
+.overBtn {
   display: flex;
   align-items: center;
   width: 10rem;
-  height: 10rem;
+  height: 3.75rem;
+  display: inline-block;
 
-  height: fit-content;
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 0.95rem;
   z-index: 10;
   text-align: center;
+  margin-left: 3rem;
+}
+.underBtn {
+  display: flex;
+  align-items: center;
+  width: 12rem;
+  height: 3.75rem;
+  display: block;
+  margin-top: 0.7rem;
+
+  font-weight: bold;
+  font-size: 0.95rem;
+  z-index: 10;
+  text-align: center;
+  margin-left: 3rem;
 }
 
-.pannelBtn:hover {
+.underBtn:hover {
+  background-color: #836aa4;
+}
+
+.overBtn:hover {
   background-color: #836aa4;
 }

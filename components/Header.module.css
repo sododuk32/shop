@@ -7,7 +7,8 @@
   margin-left: 19rem;
   grid-template-columns: 1fr 4.2fr 1fr;
   position: absolute;
-  z-index: 3;
+  z-index: 1;
+  position: fixed;
 }
 .navBar {
   display: flex;
@@ -34,4 +35,8 @@
   font-weight: bold;
   font-size: 1rem;
   margin-right: 1rem;
+}
+
+.imgdiv {
+  z-index: 1;
 }

@@ -9,21 +9,40 @@ import CardRows from 'components/CardRows';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Image from 'next/image';
-import { relative } from 'path';
-import { Button } from '@mui/material';
+import Drop from '../components/Drop';
+import GridPhoto from 'components/GridPhoto';
 const Home: NextPage = () => {
   const dataArray: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+
   return (
     <div>
       <div className={styles.setLanguage}>
-        <div className={styles.dropdown}>
-          <button className={styles.dropbtn}>우리 브랜드</button>
-          <div className={styles.dropdowncontent}>
-            <a href="#">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
+        {/* <div className={styles.dropdown}>
+          <button id="Brand" onClick={Brandcliked} className={styles.dropbtn}>
+            우리 브랜드
+          </button>
+          <div id="LinkBox" className={styles.LinkBox}>
+            <div className={styles.link} id="Link" href="#">
+              Link 1
+            </div>
+            <div className={styles.link} id="Link" href="#">
+              Link 2
+            </div>
+            <div className={styles.link} id="Link" href="#">
+              Link 3
+            </div>
+            <div className={styles.link} id="Link" href="#">
+              Link 4
+            </div>
+            <div className={styles.link} id="Link" href="#">
+              Link 5
+            </div>
+            <div className={styles.link} id="Link" href="#">
+              Link 6
+            </div>
           </div>
-        </div>
+        </div> */}
+        <Drop />
         <div></div>
         <div className={styles.chLanguage}>KO</div>
       </div>
@@ -31,25 +50,20 @@ const Home: NextPage = () => {
       <div id="banners">
         <div id="bannerImgs" className={styles.bannerImgs}>
           <div className={styles.colorPannel}>
-            <div id={styles.spanContainer}>
-              <span>나만의</span>
-              <span>컬러 찾기</span>
-              <span>K380 키보드 및 Pebble 마우스</span>
-              <button className={styles.pannelBtn}>K380 키보드</button>
-              <button className={styles.pannelBtn}>PEBBLE 알아보기</button>
+            <div className={styles.spanContainer}>
+              <div className={styles.panneldiv1}>나만의</div>
+              <div className={styles.panneldiv2}>컬러 찾기</div>
+              <div className={styles.panneldivsmall}>K380 키보드 및 Pebble 마우스</div>
+              <div className={styles.btnBox}>
+                <button className={styles.overBtn}>K380 키보드</button>
+                <button className={styles.underBtn}>PEBBLE 알아보기</button>
+              </div>
             </div>
           </div>
           <Image className={styles.keybored} src="/keybored.jpg" layout="responsive" width={500} height={270} />
         </div>
       </div>
-
-      <Box sx={{ position: 'relative', margin: 5, display: 'flex', justifyContent: 'center' }}>
-        <Grid container sm={'auto'} md={10} spacing={{ md: 3 }} direction="row" justifyContent="center" alignItems="center">
-          {dataArray.map((e) => {
-            return CardRows(e);
-          })}
-        </Grid>
-      </Box>
+      <GridPhoto />
       <Footer />
     </div>
   );

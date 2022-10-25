@@ -1,0 +1,24 @@
+.imgsectionBox {
+  width: 100%;
+}
+.imgsection {
+  display: grid;
+  grid-template-columns: 0.2fr 0.2fr 0.2fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  width: 26rem;
+  margin-left: 26rem;
+  padding-top: 6rem;
+}
+
+.nextimg {
+  position: static;
+}
+.card {
+  width: 24rem;
+}
+.ptas {
+  font-weight: bold;
+  font-size: large;
+  word-wrap: break-word;
+}
