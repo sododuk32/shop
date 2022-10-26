@@ -8,7 +8,6 @@
   grid-template-columns: 1fr 4.2fr 1fr;
   position: absolute;
   z-index: 1;
-  position: fixed;
 }
 .navBar {
   display: flex;
@@ -39,4 +38,8 @@
 
 .imgdiv {
   z-index: 1;
+}
+
+.navContainer::-webkit-scrollbar-track-piece {
+  position: fixed;
 }

@@ -14,10 +14,18 @@
   position: unset;
   bottom: 10%;
   top: auto !important;
+  z-index: 2;
+  right: 30rem;
 }
 
 .nextBtn {
   position: unset;
   bottom: 10%;
   top: auto !important;
+  z-index: 2;
+  left: 30rem;
+}
+
+.spaned {
+  top: 10rem;
 }
