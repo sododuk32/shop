@@ -1,0 +1,23 @@
+.carouselBox {
+  display: flex;
+  font-size: large;
+  overflow: visible;
+}
+
+.carouselContainer {
+  position: absolute;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.prevBtn {
+  position: unset;
+  bottom: 10%;
+  top: auto !important;
+}
+
+.nextBtn {
+  position: unset;
+  bottom: 10%;
+  top: auto !important;
+}
