@@ -2,6 +2,7 @@
   display: flex;
   font-size: large;
   overflow: visible;
+  position: relative;
 }
 
 .carouselContainer {
@@ -11,21 +12,25 @@
 }
 
 .prevBtn {
-  position: unset;
+  position: relative;
   bottom: 10%;
-  top: auto !important;
+  left: 30rem;
+  top: 30rem;
   z-index: 2;
   right: 30rem;
 }
 
 .nextBtn {
-  position: unset;
+  position: relative;
   bottom: 10%;
-  top: auto !important;
+  left: 30rem;
+
   z-index: 2;
   left: 30rem;
 }
 
-.spaned {
+.carouselSpan {
   top: 10rem;
+  font-size: xx-large;
+  position: absolute;
 }

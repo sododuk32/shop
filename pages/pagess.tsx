@@ -1,10 +1,10 @@
 import React from 'react';
-import Carouselnomal from 'components/Carouselnomal';
+import CarouselGrid from 'components/CarouselGrid';
 
 function pagess() {
   return (
     <div>
-      <Carouselnomal />
+      <CarouselGrid />
     </div>
   );
 }

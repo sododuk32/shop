@@ -1,0 +1,9 @@
+.gridContainer {
+  grid-template-areas:
+    'A A D '
+    'A A D '
+    'C B D ';
+  width: 100%;
+  max-width: 1200px;
+  height: 775px;
+}

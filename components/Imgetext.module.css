@@ -1,0 +1,15 @@
+.imgbox1 {
+  position: relative;
+  width: 100%;
+  height: 40rem;
+}
+.imgbox2 {
+  position: relative;
+  width: 100%;
+  height: 40rem;
+}
+
+.imgspan {
+  position: absolute;
+  left: 10rem;
+}

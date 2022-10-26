@@ -1,3 +1,5 @@
+/* eslint-disable prefer-const */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react';
 import styles from './Carouselnomal.module.css';
 import Image from 'next/image';
@@ -5,68 +7,83 @@ import { useState } from 'react';
 function Carouselnomal() {
   const [slide, setslide] = useState(1);
   function prevbtn() {
-    if (slide === 0) {
-      console.log('0일때 시행중');
-      setslide(3);
-      const nowSlide = document.getElementById('box' + slide)!;
+    console.log(slide);
+    if (slide === 1) {
+      console.log('1일때 시행중' + slide);
+      let nowSlide = document.getElementById('box' + (slide + 1).toString())!;
+      nowSlide.style.zIndex = '1';
+      nowSlide = document.getElementById('box' + slide.toString())!;
       nowSlide.style.zIndex = '2';
-      console.log('prev끝날때' + slide);
-      return setslide(slide - 1);
+
+      return setslide(3);
     }
     if (slide > 1) {
       console.log('1보다클때 시행중');
+      let nowSlide = document.getElementById('box' + slide.toString())!;
+      if (slide === 3) {
+        nowSlide = document.getElementById('box1')!;
+        nowSlide.style.zIndex = '1';
+        nowSlide = document.getElementById('box' + slide.toString())!;
+        nowSlide.style.zIndex = '2';
+        return setslide(slide - 1);
+      }
 
-      const nowSlide = document.getElementById('box' + slide)!;
+      nowSlide = document.getElementById('box' + slide.toString())!;
       nowSlide.style.zIndex = '2';
+      nowSlide = document.getElementById('box' + (slide + 1).toString())!;
+      nowSlide.style.zIndex = '1';
       console.log('prev끝날때' + slide);
       return setslide(slide - 1);
     }
-    console.log('prev끝날때' + slide);
   }
 
   function nextbtn() {
     if (slide === 3) {
-      console.log('4일때 시행중');
-      setslide(1);
-      let nowSlide = document.getElementById('box' + slide)!;
-      nowSlide.style.zIndex = '2';
-      nowSlide = document.getElementById('box' + 3)!;
+      let nowSlide = document.getElementById('box' + (slide - 1).toString())!;
       nowSlide.style.zIndex = '1';
-      console.log('prev끝날때' + slide);
-      return setslide(slide + 1);
+      nowSlide = document.getElementById('box' + slide.toString())!;
+      nowSlide.style.zIndex = '2';
+
+      return setslide(1);
     }
     if (slide < 3) {
-      console.log('3보다작을때 시행중');
-      let nowSlide = document.getElementById('box' + slide)!;
+      let nowSlide = document.getElementById('box' + slide.toString())!;
+      if (slide > 1) {
+        nowSlide = document.getElementById('box' + (slide - 1).toString())!;
+        nowSlide.style.zIndex = '1';
+      }
+
+      nowSlide = document.getElementById('box' + slide.toString())!;
       nowSlide.style.zIndex = '2';
-      nowSlide = document.getElementById('box' + slide - 1)!;
-      nowSlide.style.zIndex = '1';
-      console.log('prev끝날때' + slide);
+      if (slide === 1) {
+        nowSlide = document.getElementById('box3')!;
+        nowSlide.style.zIndex = '1';
+      }
+
       return setslide(slide + 1);
     }
-    console.log('next끝날때' + slide);
   }
 
   return (
     <div>
       <div className={styles.carouselBox}>
-        <button className={styles.prevBtn} onClick={prevbtn}>
-          PREV
-        </button>
         <div id="box1" className={styles.carouselContainer}>
           <Image layout="responsive" width={1200} height={450} quality={100} className={styles.carouselImg1} src={'/pcrplastic.jpg'} />
-          <span>1</span>
+          <span className={styles.carouselSpan}>안에 글자입력1</span>
         </div>
         <div id="box2" className={styles.carouselContainer}>
-          <Image layout="responsive" width={1200} height={450} quality={100} className={styles.carouselImg2} src={'/sircuit.jpg'} />
-          <span>2</span>
+          <Image layout="responsive" width={1200} height={450} quality={100} className={styles.carouselImg2} src={'/sircuit.jpg'}></Image>
+          <span className={styles.carouselSpan}>안에 글자입력2</span>
         </div>
         <div id="box3" className={styles.carouselContainer}>
           <Image layout="responsive" width={1200} height={450} quality={100} className={styles.carouselImg3} src={'/logicares.jpg'} />
-          <span>3</span>
+          <span className={styles.carouselSpan}>안에 글자입력3</span>
         </div>
         <button className={styles.nextBtn} onClick={nextbtn}>
           NEXT
+        </button>
+        <button className={styles.prevBtn} onClick={prevbtn}>
+          PREV
         </button>
       </div>
     </div>
