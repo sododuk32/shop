@@ -1,9 +1,56 @@
-.gridContainer {
+.gridsContainer {
+  width: 70rem;
+  height: 50rem;
+  display: flex;
+  overflow: hidden;
+}
+
+.gridbox {
+  display: grid;
+
   grid-template-areas:
-    'A A D '
-    'A A D '
-    'C B D ';
+    'a a b'
+    'a a b'
+    'c d b';
+  grid-auto-columns: 1fr 1fr;
+  grid-auto-rows: 1fr 1fr;
+  height: 100%;
   width: 100%;
-  max-width: 1200px;
-  height: 775px;
+}
+
+.keyboardwhite {
+  grid-area: a;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.headset {
+  grid-area: b;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.laptop {
+  grid-area: c;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.webcam {
+  grid-area: d;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+@media (max-width: 1024px) {
+  .gridbox {
+    grid-template-columns: unset;
+  }
+}
+
+.gridbox > div:hover {
+  transform: scale(1.2);
+  transition: 0.3s;
 }
