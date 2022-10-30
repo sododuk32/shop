@@ -1,13 +1,51 @@
 .gridsContainer {
-  width: 70rem;
-  height: 50rem;
-  display: flex;
-  overflow: hidden;
+  width: 580rem;
+  height: 45rem;
 }
 
-.gridbox {
-  display: grid;
+.boxs {
+  width: 580rem;
+  height: 45rem;
+  display: flex;
+}
 
+.boxs::before {
+  content: '';
+  display: block;
+  width: 28rem;
+  border: 1px solid #f00;
+}
+
+.prevBtn {
+  position: absolute;
+  width: 12rem;
+  height: 45rem;
+  opacity: 0.5;
+  left: 30rem;
+  z-index: 2;
+  /* visibility: hidden; */
+}
+
+.nextBtn {
+  position: absolute;
+  width: 12rem;
+  height: 45rem;
+  opacity: 0.5;
+  right: 0.1rem;
+  z-index: 2;
+}
+
+.nextBtn:hover {
+  opacity: 0.3;
+}
+.prevBtn:hover {
+  opacity: 0.3;
+}
+.gridbox1,
+.gridbox2,
+.gridbox3 {
+  display: grid;
+  margin-left: 3rem;
   grid-template-areas:
     'a a b'
     'a a b'
@@ -15,7 +53,7 @@
   grid-auto-columns: 1fr 1fr;
   grid-auto-rows: 1fr 1fr;
   height: 100%;
-  width: 100%;
+  width: 70rem;
 }
 
 .keyboardwhite {
