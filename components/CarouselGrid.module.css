@@ -1,6 +1,15 @@
+.wholebox {
+  width: 581rem;
+  height: 46rem;
+  overflow: hidden;
+}
+
 .gridsContainer {
   width: 580rem;
   height: 45rem;
+}
+.btnBox {
+  position: absolute;
 }
 
 .boxs {
@@ -21,6 +30,7 @@
   width: 12rem;
   height: 45rem;
   opacity: 0.5;
+  top: -45rem;
   left: 30rem;
   z-index: 2;
   /* visibility: hidden; */
@@ -31,7 +41,9 @@
   width: 12rem;
   height: 45rem;
   opacity: 0.5;
-  right: 0.1rem;
+  top: -45rem;
+
+  right: 30rem;
   z-index: 2;
 }
 
