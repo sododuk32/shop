@@ -4,7 +4,6 @@
 import type { NextPage } from 'next';
 import styles from './index.module.css';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
 import Image from 'next/image';
 import Drop from '../components/Drop';
 import GridPhoto from 'components/GridPhoto';
@@ -66,7 +65,6 @@ const Home: NextPage = () => {
       <GridPhoto />
       <CarouselGrid />
       <Carouselnomal />
-      <Footer />
     </div>
   );
 };

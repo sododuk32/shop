@@ -1,0 +1,10 @@
+.inputcolor {
+  display: flex;
+  flex-direction: column;
+  width: 5vw;
+}
+
+.pcard {
+  width: 20rem;
+  height: 20rem;
+}

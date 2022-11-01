@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
-import { style } from '@mui/system';
 import React from 'react';
 import styles from './Header.module.css';
 import Image from 'next/image';
