@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import styles from './mouse.module.css';
+import useRef from 'react';
 //checking: HTMLInputElement
 // 1.클래스명을 이상하게 받아서 검색해야함.
 // 2.다른 검색방법이 없나? 이거 다른컴퓨터에선 다르게 뜰거같음
