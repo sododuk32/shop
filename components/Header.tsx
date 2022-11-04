@@ -4,7 +4,7 @@
 import React from 'react';
 import styles from './Header.module.css';
 import Image from 'next/image';
-function header() {
+function Header() {
   return (
     <div>
       <div id="navContainer" className={styles.navContainer}>
@@ -29,4 +29,4 @@ function header() {
   );
 }
 
-export default header;
+export default Header;

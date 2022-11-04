@@ -1,0 +1,10 @@
+.setLanguage {
+  height: 48px;
+  width: 100%;
+  background-color: white;
+  display: grid;
+  grid-template-columns: auto 355px auto;
+  margin-left: 22rem;
+  z-index: 5;
+  position: sticky;
+}
