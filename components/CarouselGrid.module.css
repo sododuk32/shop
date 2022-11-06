@@ -1,11 +1,12 @@
 .wholebox {
-  width: 581rem;
+  width: 90vw;
   height: 46rem;
 }
 
 .gridsContainer {
-  width: 580rem;
+  width: 90vw;
   height: 45rem;
+  overflow-x: hidden;
 }
 .btnBox {
   position: absolute;
@@ -21,14 +22,13 @@
   content: '';
   display: block;
   width: 28rem;
-  border: 1px solid #f00;
 }
 
 .prevBtn {
   position: absolute;
   width: 12rem;
   height: 45rem;
-  opacity: 0.5;
+  opacity: 0.1;
   top: -45rem;
   left: 30rem;
   z-index: 2;
@@ -39,18 +39,18 @@
   position: absolute;
   width: 12rem;
   height: 45rem;
-  opacity: 0.5;
+  opacity: 0.1;
   top: -45rem;
+  left: 108rem;
 
-  right: 30rem;
   z-index: 2;
 }
 
 .nextBtn:hover {
-  opacity: 0.3;
+  opacity: 0.5;
 }
 .prevBtn:hover {
-  opacity: 0.3;
+  opacity: 0.5;
 }
 .gridbox1,
 .gridbox2,

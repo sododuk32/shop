@@ -1,8 +1,8 @@
+/* eslint-disable prefer-const */
 import React from 'react';
 import styles from './CarouselGrid.module.css';
 import Image from 'next/image';
 import { useState } from 'react';
-import { ConnectingAirportsOutlined } from '@mui/icons-material';
 function CarouselGrid() {
   //custom attirbute가 있는대 이걸 사용해서
   //css를 변경 가능해 보인다.

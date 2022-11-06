@@ -7,7 +7,7 @@ function Dropbox() {
   return (
     <div>
       <button type="button">우리브랜드</button>
-      <div className={style.link}>
+      {/* {/* <div className={style.link}>
         <Link className="link" href="/2">
           <Image src="/icon-category-cases-protection.png" width={99} height={46} />
         </Link>
@@ -31,8 +31,8 @@ function Dropbox() {
         <Link className="link" href="/6">
           <Image src="/icon-category-cases-protection.png" width={99} height={46} />
         </Link>
-      </div>
-      <div className={style.link}>link2</div>
+      </div> 
+      <div className={style.link}>link2</div> */}
     </div>
   );
 }

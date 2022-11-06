@@ -4,7 +4,7 @@
   background-color: rgba(255, 255, 255, 0);
   display: grid;
   align-items: center;
-  margin-left: 19rem;
+  margin-left: 20rem;
   grid-template-columns: 1fr 4.2fr 1fr;
   position: absolute;
   z-index: 1;
@@ -12,7 +12,13 @@
 .navBar {
   display: flex;
   justify-content: center;
+
   z-index: 3;
+  width: 33vw;
+}
+.navBar > button {
+  padding-left: 1vw;
+  font-weight: bold;
 }
 .navBar button {
   height: 90px;
@@ -42,4 +48,9 @@
 
 .navContainer::-webkit-scrollbar-track-piece {
   position: fixed;
+}
+
+.headerbtn {
+  border: none;
+  outline: none;
 }

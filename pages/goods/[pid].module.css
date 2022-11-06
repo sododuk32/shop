@@ -1,3 +1,63 @@
-.divdiv2 {
-  background-color: yellowgreen;
+.goodsHeader {
+  width: 100vw;
+  height: 9vw;
+}
+
+.goodsBody {
+  display: flex;
+  width: 100vw;
+  margin-top: 2.25vw;
+  justify-content: center;
+}
+
+.gallaryPannel {
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+  width: 30vw;
+  height: 45vw;
+}
+
+.productInfo {
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+  width: 22vw;
+  margin-left: 10vw;
+}
+
+.infoselect {
+  display: flex;
+  flex-direction: column;
+}
+
+.productInfo > h1 {
+  font-size: xx-large;
+  font-weight: bold;
+  margin-top: 0.5vw;
+  margin-bottom: 0.5vw;
+}
+.productInfo > h3 {
+  font-size: medium;
+}
+
+.infoh3 {
+  margin-top: 5vw;
+  margin-bottom: 3vw;
+}
+
+.preciseInfo,
+.systemReq,
+.integrement,
+.support {
+  border-top: 0.5px solid #e1e2e3;
+  font-size: 1.1vw;
+  font-weight: bold;
+  padding-top: 0.5vw;
+  padding-bottom: 0.5vw;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }

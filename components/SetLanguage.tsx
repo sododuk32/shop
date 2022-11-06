@@ -6,11 +6,11 @@ function SetLanguage() {
   return (
     <div>
       <div className={styles.setLanguage}>
-        {/* <div className={styles.dropdown}>
-      <button id="Brand" onClick={Brandcliked} className={styles.dropbtn}>
-        우리 브랜드
-      </button>
-      <div id="LinkBox" className={styles.LinkBox}>
+        <div className={styles.dropdown}>
+          <button id="Brand" className={styles.dropbtn}>
+            우리 브랜드
+          </button>
+          {/* <div id="LinkBox" className={styles.LinkBox}>
         <div className={styles.link} id="Link" href="#">
           Link 1
         </div>
@@ -29,8 +29,8 @@ function SetLanguage() {
         <div className={styles.link} id="Link" href="#">
           Link 6
         </div>
-      </div>
-    </div> */}
+      </div> */}
+        </div>
         {/* <Drop /> */}
         <div></div>
         <div className={styles.chLanguage}>KO</div>

@@ -4,7 +4,7 @@
   background-color: white;
   display: grid;
   grid-template-columns: auto 355px auto;
-  margin-left: 22rem;
+  margin-left: 20rem;
   z-index: 5;
   position: sticky;
 }
