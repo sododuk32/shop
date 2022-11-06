@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { HtmlHTMLAttributes } from 'react';
 import styles from './mouse.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from 'components/Header';
 import SetLanguage from 'components/SetLanguage';
 import Image from 'next/image';
@@ -11,6 +11,7 @@ import Button from 'react-bootstrap/Button';
 import Collapse from 'react-bootstrap/Collapse';
 import Card from 'react-bootstrap/Card';
 import ProductCard from 'components/ProductCard';
+import Link from 'next/link';
 //checking: HTMLInputElement
 // 1.클래스명을 이상하게 받아서 검색해야함.
 // 2.다른 검색방법이 없나? 이거 다른컴퓨터에선 다르게 뜰거같음
@@ -23,8 +24,19 @@ function mouse() {
   const [opencolor, setOpencolor] = useState<boolean>(true);
   const [openhand, setOpenhand] = useState<boolean>(true);
   const [openblue, setOpenblue] = useState<boolean>(true);
+  // const [pids, setpids] = useState<string[]>([]);
 
   let conditionArray: string[] = [];
+  // let pidArray: string[] = [];
+
+  // useEffect(() => {
+  //   const goodsId: object = document.querySelectorAll('#card')!;
+
+  //   goodsId.forEach((element) => {
+  //     setpids(element.dataset.pid);
+  //   });
+  //   console.pids;
+  // }, []);
 
   function getcondition(condition: string) {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -189,68 +201,173 @@ function mouse() {
           <div id="cardPannel" className={styles.cardPannel}>
             <div id="data-artibute-box" className={styles.databox}>
               <section id="cardcoulum" className={styles.cardcoulum}>
-                <div className={styles.pcard} data-bestsellers-rank="1" id="card" data-categories="mouse" data-filter="left-hand wireless red green">
-                  <ProductCard />
+                <div
+                  className={styles.pcard}
+                  data-bestsellers-rank="1"
+                  data-pid="0101864"
+                  id="card"
+                  data-categories="mouse"
+                  data-filter="left-hand wireless red green"
+                >
+                  <Link href="/goods/0101864">
+                    <a>
+                      <ProductCard />
+                    </a>
+                  </Link>
                 </div>
-                <div className={styles.pcard} data-bestsellers-rank="2" id="card" data-categories="mouse" data-filter="green blue powerrgb">
-                  <ProductCard />
+                <div
+                  className={styles.pcard}
+                  data-pid="010121864"
+                  data-bestsellers-rank="2"
+                  id="card"
+                  data-categories="mouse"
+                  data-filter="green blue powerrgb"
+                >
+                  <Link href="/goods/010121864">
+                    <ProductCard />
+                  </Link>
                 </div>
-                <div className={styles.pcard} data-bestsellers-rank="3" id="card" data-categories="mouse" data-filter="right-hand blue gray">
+                <div
+                  className={styles.pcard}
+                  data-pid="11101864"
+                  data-bestsellers-rank="3"
+                  id="card"
+                  data-categories="mouse"
+                  data-filter="right-hand blue gray"
+                >
                   <ProductCard />
                 </div>
               </section>
               <section id="cardcoulum" className={styles.cardcoulum}>
-                <div className={styles.pcard} data-bestsellers-rank="4" id="card" data-categories="mouse" data-filter=" wireless powerrgb black">
-                  <ProductCard />
+                <div
+                  className={styles.pcard}
+                  data-pid="0145601864"
+                  data-bestsellers-rank="4"
+                  id="card"
+                  data-categories="mouse"
+                  data-filter=" wireless powerrgb black"
+                >
+                  <Link href="/goods/0145601864">
+                    <ProductCard />
+                  </Link>
                 </div>
-                <div className={styles.pcard} data-bestsellers-rank="-1" id="card" data-categories="mouse" data-filter="right-hand black yellow">
-                  <ProductCard />
+                <div
+                  className={styles.pcard}
+                  data-pid="7891824"
+                  data-bestsellers-rank="-1"
+                  id="card"
+                  data-categories="mouse"
+                  data-filter="right-hand black yellow"
+                >
+                  <Link href="/goods/7891824">
+                    <ProductCard />
+                  </Link>
                 </div>
 
-                <div className={styles.pcard} data-bestsellers-rank="2" id="card" data-categories="mouse" data-filter="green blue powerrgb">
+                <div className={styles.pcard} data-pid="01495864" data-bestsellers-rank="2" id="card" data-categories="mouse" data-filter="green blue powerrgb">
                   <ProductCard />
                 </div>
               </section>
               <section id="cardcoulum" className={styles.cardcoulum}>
-                <div className={styles.pcard} data-bestsellers-rank="4" id="card" data-categories="mouse" data-filter=" wireless powerrgb black">
-                  <ProductCard />
+                <div
+                  className={styles.pcard}
+                  data-pid="011701864"
+                  data-bestsellers-rank="4"
+                  id="card"
+                  data-categories="mouse"
+                  data-filter=" wireless powerrgb black"
+                >
+                  <Link href="/goods/011701864">
+                    <ProductCard />
+                  </Link>
                 </div>
-                <div className={styles.pcard} data-bestsellers-rank="-1" id="card" data-categories="mouse" data-filter="right-hand black yellow">
-                  <ProductCard />
+                <div
+                  className={styles.pcard}
+                  data-pid="010157886"
+                  data-bestsellers-rank="-1"
+                  id="card"
+                  data-categories="mouse"
+                  data-filter="right-hand black yellow"
+                >
+                  <Link href="/goods/010157886">
+                    <ProductCard />
+                  </Link>
+                </div>
+                <div
+                  className={styles.pcard}
+                  data-pid="6931861"
+                  data-bestsellers-rank="2"
+                  id="card"
+                  data-categories="mouse"
+                  data-filter="green blue red powerrgb"
+                >
+                  <Link href="/goods/6931861">
+                    <ProductCard />
+                  </Link>
+                </div>
+              </section>
+              <section id="cardcoulum" className={styles.cardcoulum}>
+                <div
+                  className={styles.pcard}
+                  data-pid="5612389"
+                  data-bestsellers-rank="4"
+                  id="card"
+                  data-categories="mouse"
+                  data-filter=" wireless blue powerrgb black"
+                >
+                  <Link href="/goods/5612389">
+                    <ProductCard />
+                  </Link>
+                </div>
+                <div
+                  className={styles.pcard}
+                  data-pid="014612"
+                  data-bestsellers-rank="-1"
+                  id="card"
+                  data-categories="mouse"
+                  data-filter="right-hand cable black yellow"
+                >
+                  <Link href="/goods/014612">
+                    <ProductCard />
+                  </Link>
                 </div>
 
-                <div className={styles.pcard} data-bestsellers-rank="2" id="card" data-categories="mouse" data-filter="green blue red powerrgb">
-                  <ProductCard />
+                <div
+                  className={styles.pcard}
+                  data-pid="07896412"
+                  data-bestsellers-rank="2"
+                  id="card"
+                  data-categories="mouse"
+                  data-filter="cable green blue powerrgb"
+                >
+                  <Link href="/goods/07896412">
+                    <ProductCard />
+                  </Link>
                 </div>
               </section>
               <section id="cardcoulum" className={styles.cardcoulum}>
-                <div className={styles.pcard} data-bestsellers-rank="4" id="card" data-categories="mouse" data-filter=" wireless blue powerrgb black">
-                  <ProductCard />
+                <div className={styles.pcard} data-pid="87268" data-bestsellers-rank="4" id="card" data-categories="mouse" data-filter=" wireless res black">
+                  <Link href="/goods/87268">
+                    <ProductCard />
+                  </Link>
                 </div>
-                <div className={styles.pcard} data-bestsellers-rank="-1" id="card" data-categories="mouse" data-filter="right-hand cable black yellow">
-                  <ProductCard />
-                </div>
-
-                <div className={styles.pcard} data-bestsellers-rank="2" id="card" data-categories="mouse" data-filter="cable green blue powerrgb">
-                  <ProductCard />
-                </div>
-              </section>
-              <section id="cardcoulum" className={styles.cardcoulum}>
-                <div className={styles.pcard} data-bestsellers-rank="4" id="card" data-categories="mouse" data-filter=" wireless res black">
-                  <ProductCard />
-                </div>
-                <div className={styles.pcard} data-bestsellers-rank="-1" id="card" data-categories="mouse" data-filter="green blue powerrgb">
-                  <ProductCard />
+                <div className={styles.pcard} data-pid="0571471" data-bestsellers-rank="-1" id="card" data-categories="mouse" data-filter="green blue powerrgb">
+                  <Link href="/goods/0571471">
+                    <ProductCard />
+                  </Link>
                 </div>
 
                 <div
                   className={styles.pcard}
                   data-bestsellers-rank="2"
                   id="card"
+                  data-pid="057111471"
                   data-categories="mouse"
                   data-filter=" right-hand black yellow green blue powerrgb"
                 >
-                  <ProductCard />
+                  <Link href="/goods/057111471">
+                    <ProductCard />
+                  </Link>
                 </div>
               </section>
             </div>
