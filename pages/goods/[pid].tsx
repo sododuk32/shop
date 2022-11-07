@@ -13,7 +13,10 @@ function Goods() {
 
   //pid가지고 서버에서 data가져와서 보여주기
   //오늘할것. pid로 보여줄 페이지 만들기,로그인 페이지만들기
-  const [open, setOpen] = useState(false);
+  const [openpreciseInfo, setpreciseInfo] = useState(false);
+  const [opensystemReq, setopensystemReq] = useState(false);
+  const [openintegrement, setopenintegrement] = useState(false);
+  const [opensupport, setopensupport] = useState(false);
 
   return (
     <div>
@@ -37,48 +40,58 @@ function Goods() {
           </h3>
           <section className={styles.infoselect}>
             <div>
-              <Button className={`${styles.preciseInfo} ${'btn-light'}`} onClick={() => setOpen(!open)} aria-controls="ssss" aria-expanded={open}>
+              <Button
+                className={`${styles.preciseInfo} ${'btn-light'}`}
+                onClick={() => setpreciseInfo(!openpreciseInfo)}
+                aria-controls="ssss"
+                aria-expanded={openpreciseInfo}
+              >
                 <span>사양 세부 정보</span>
-                <span>&#43; &#8722;</span>
+                <span>&#43;</span>
               </Button>
-              <Collapse in={open}>
+              <Collapse in={openpreciseInfo}>
                 <div id="ssss">sfd</div>
               </Collapse>
             </div>
             <div>
               <Button
                 className={`${styles.systemReq} ${'btn-light'}`}
-                onClick={() => setOpen(!open)}
+                onClick={() => setopensystemReq(!opensystemReq)}
                 aria-controls="example-collapse-text"
-                aria-expanded={open}
+                aria-expanded={opensystemReq}
               >
                 <span>시스템 요구 사항</span>
-                <span>&#43; &#8722;</span>
+                <span>&#43;</span>
               </Button>
-              <Collapse in={open}>
+              <Collapse in={opensystemReq}>
                 <div id="ssss">sfd</div>
               </Collapse>
             </div>
             <div>
               <Button
                 className={`${styles.integrement} ${'btn-light'}`}
-                onClick={() => setOpen(!open)}
+                onClick={() => setopenintegrement(!openintegrement)}
                 aria-controls="example-collapse-text"
-                aria-expanded={open}
+                aria-expanded={openintegrement}
               >
                 <span>구성품</span>
-                <span>&#43; &#8722;</span>
+                <span>&#43;</span>
               </Button>
-              <Collapse in={open}>
+              <Collapse in={openintegrement}>
                 <div id="ssss">sfd</div>
               </Collapse>
             </div>
             <div>
-              <Button className={`${styles.support} ${'btn-light'}`} onClick={() => setOpen(!open)} aria-controls="example-collapse-text" aria-expanded={open}>
+              <Button
+                className={`${styles.systemReq} ${'btn-light'}`}
+                onClick={() => setopensupport(!opensupport)}
+                aria-controls="example-collapse-text"
+                aria-expanded={opensupport}
+              >
                 <span>지원</span>
-                <span>&#43; &#8722;</span>
+                <span>&#43;</span>
               </Button>
-              <Collapse in={open}>
+              <Collapse in={opensystemReq}>
                 <div id="ssss">sfd</div>
               </Collapse>
             </div>
