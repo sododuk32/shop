@@ -1,18 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-unused-vars */
-import React from 'react';
-import { DOMAttributes } from 'react';
-import { ComponentProps } from 'react';
-
+import { React, useEffect } from 'react';
+import styles from './login.module.css';
+import Header from 'components/Header';
+import SetLanguage from 'components/SetLanguage';
 function login() {
-  const handleChange: ComponentProps<'button'>['onClick'] = (e) => {
-    e.target.innerText = '222';
-  };
   return (
     <div>
-      {/* <input onScroll={handleChange} /> */}
-      {/* <input onChange={handleChange} /> */}
-      <button onClick={handleChange}>asdfasfd</button>
+      <section className={styles.loginHeader}>
+        <SetLanguage />
+        <Header />
+      </section>
     </div>
   );
 }

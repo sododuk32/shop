@@ -1,15 +1,35 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
-import React from 'react';
+import { React, useEffect, useRef, useState } from 'react';
 import styles from './Header.module.css';
 import Image from 'next/image';
 import { ArrowRight } from 'react-bootstrap-icons';
 
 function Header() {
+  const targetRef = useRef(null);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  const handleScroll = () => {
+    console.log('scrolling');
+    console.log(scrollY);
+    if (window.scrollY < lastScrollY) {
+      targetRef.current.style.position = 'fixed';
+    }
+    if (window.scrollY > lastScrollY) {
+      targetRef.current.style.position = 'absolute';
+    }
+    setLastScrollY(window.scrollY);
+  };
+
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      window.addEventListener('scroll', handleScroll);
+    }
+  }, [lastScrollY]);
   return (
     <div>
-      <div id="navContainer" className={styles.navContainer}>
+      <div id="navContainer" ref={targetRef} className={styles.navContainer}>
         <div>
           <Image src="/mainlogo.jpg" width={116} height={36} />
         </div>

@@ -8,6 +8,7 @@
   grid-template-columns: 1fr 4.2fr 1fr;
   position: absolute;
   z-index: 1;
+  transition: top 0.2s ease-in-out;
 }
 .navBar {
   display: flex;
