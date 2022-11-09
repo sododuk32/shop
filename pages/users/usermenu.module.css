@@ -1,0 +1,46 @@
+.menuspanPannel {
+  position: absolute;
+  left: 40%;
+  top: 15vw;
+  font-weight: bold;
+
+  margin: 0 auto;
+}
+
+.menuspanPannel > h1 {
+  font-size: 2.5vw;
+  text-align: center;
+}
+
+.menuspanPannel > button {
+  margin: 0 auto;
+}
+.btns {
+  height: 70px;
+  width: 20vw;
+  display: flex;
+  justify-content: center;
+}
+.menuBtn1,
+.menuBtn2 {
+  font-weight: bold;
+  font-size: 0.95rem;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 20px;
+  text-align: center;
+}
+.menuBtn1 {
+  background-color: black;
+  color: white;
+}
+.menuBtn1:hover {
+  background-color: white;
+  color: black;
+}
+.menuBtn2:hover {
+  border: solid 3px;
+}
+.menuBtn2 {
+  margin-left: 15px;
+}

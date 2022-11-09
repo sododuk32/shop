@@ -8,3 +8,9 @@
   z-index: 5;
   position: sticky;
 }
+
+.chLanguage {
+  font-weight: bold;
+  font-size: small;
+  padding-top: 15px;
+}

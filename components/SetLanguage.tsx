@@ -33,7 +33,7 @@ function SetLanguage() {
         </div>
         {/* <Drop /> */}
         <div></div>
-        <div className={styles.chLanguage}>KO</div>
+        <div className={styles.chLanguage}>대한민국</div>
       </div>
     </div>
   );
