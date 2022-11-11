@@ -7,35 +7,30 @@ import styles from './Header.module.css';
 import Image from 'next/image';
 import { ArrowRight } from 'react-bootstrap-icons';
 import Link from 'next/link';
+import { useScrollDirection } from 'react-use-scroll-direction';
 
 function Header() {
-  const targetRef = useRef(null);
-  // const [lastScrollY, setLastScrollY] = useState(0);
-  let scrollY = 0;
-  const handleScroll = () => {
-    console.log('scrolling');
-    console.log(scrollY);
-    // if (window.scrollY < lastScrollY) {
-    //   // targetRef.current.style.position = 'fixed';
-    // }
-    // if (window.scrollY > lastScrollY) {
-    //   // targetRef.current.style.position = 'absolute';
-    // }
-    scrollY = window.scrollY;
-    console.log(scrollY);
-    // setLastScrollY(window.scrollY);
-  };
+  const targetRef = useRef<HTMLDivElement>(null);
+  const { isScrollingUp, isScrollingDown } = useScrollDirection();
 
   useEffect(() => {
-    if (typeof window !== undefined) {
-      window.addEventListener('scroll', handleScroll);
-      //언마운트될떄 이벤트 리스너를 remove
+    if (isScrollingUp) {
+      if (targetRef.current) {
+        targetRef.current.style.position = 'fixed';
+        console.log(targetRef.current.style.position);
+      }
+    }
+    if (isScrollingDown) {
+      if (targetRef.current) {
+        targetRef.current.style.position = 'absolute';
+        console.log(targetRef.current.style.position);
+      }
     }
   }, []);
-  /* ref={targetRef} */
+
   return (
     <div>
-      <div id="navContainer" className={styles.navContainer}>
+      <div id="navContainer" ref={targetRef} className={styles.navContainer}>
         <div>
           <Image src="/mainlogo.jpg" width={116} height={36} />
         </div>
