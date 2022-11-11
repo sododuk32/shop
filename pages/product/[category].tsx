@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { HtmlHTMLAttributes } from 'react';
+import React from 'react';
 import styles from './[category].module.css';
 import { useState, useEffect } from 'react';
 import Header from 'components/Header';
@@ -20,25 +20,23 @@ import Link from 'next/link';
 // useref 사용해서 dom에 접근하는게 정상이다.
 // 자기참조로 input 태그의 name을 가져오는건 이상하다
 // nodeList타입은 foreach로 사용하능함.
-function mouse() {
+function Product() {
+  const router = useRouter();
+  const productid = router.query.pid;
   const [open, setOpen] = useState<boolean>(true);
   const [opencolor, setOpencolor] = useState<boolean>(true);
   const [openhand, setOpenhand] = useState<boolean>(true);
   const [openblue, setOpenblue] = useState<boolean>(true);
+  let takeQuery: string | undefined | string[];
 
-  let conditionArray: string[] = [];
-  let pageId;
-  const router = useRouter();
-  const queries = router.query;
   useEffect(() => {
-    if (!router.isReady) {
-      console.log('페이지', queries);
-      console.log(router.isReady);
-    }
-  }, []);
+    console.log(router.query.category);
+    takeQuery = router.query.category;
+  }, [router.query, router.isReady]);
 
   return (
     <div>
+      <div>{takeQuery}</div>
       <header className={styles.headers}>
         <SetLanguage />
         <Header />
@@ -189,4 +187,4 @@ function mouse() {
   );
 }
 
-export default mouse;
+export default Product;

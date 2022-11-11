@@ -1,15 +1,17 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import React from 'react';
 import styles from './[pid].module.css';
 import SetLanguage from 'components/SetLanguage';
 import Header from 'components/Header';
 import Image from 'next/image';
 import { Button, Collapse } from 'react-bootstrap';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
+
 function Goods() {
-  // const router = useRouter();
-  // const productid = router.query.pid;
-  // import { useRouter } from 'next/router';
+  const router = useRouter();
+  const productid = router.query.pid;
 
   //pid가지고 서버에서 data가져와서 보여주기
   //오늘할것. pid로 보여줄 페이지 만들기,로그인 페이지만들기
@@ -21,6 +23,7 @@ function Goods() {
   return (
     <div>
       <section className={styles.goodsHeader}>
+        <div>{productid}</div>
         <SetLanguage />
         <Header />
       </section>
