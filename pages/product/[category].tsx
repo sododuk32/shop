@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable prefer-const */
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
+import React, { ReactHTML } from 'react';
 import styles from './[category].module.css';
 import { useState, useEffect } from 'react';
 import Header from 'components/Header';
@@ -13,13 +14,16 @@ import ProductCard from 'components/ProductCard';
 import { useRouter } from 'next/router';
 import Pagination from 'react-bootstrap/Pagination';
 import Link from 'next/link';
+import axios from 'axios';
 
 //checking: HTMLInputElement
 // 1.클래스명을 이상하게 받아서 검색해야함.
 // 2.다른 검색방법이 없나? 이거 다른컴퓨터에선 다르게 뜰거같음
 // useref 사용해서 dom에 접근하는게 정상이다.
 // 자기참조로 input 태그의 name을 가져오는건 이상하다
-// nodeList타입은 foreach로 사용하능함.
+// nodeList타입은 foreach로 사용하능함0.
+// getinitialprops 를 써보고싶은대 못쓰는대 이유가, dynamic routing은 페이지가 로드 다 되고나서 시작됨.
+// post 해서 쿼리못받던대 url , {} , prams... 형식으로 사용하니까 작동됨
 function Product() {
   const router = useRouter();
   const productid = router.query.pid;
@@ -28,15 +32,49 @@ function Product() {
   const [openhand, setOpenhand] = useState<boolean>(true);
   const [openblue, setOpenblue] = useState<boolean>(true);
   let takeQuery: string | undefined | string[];
+  const serverurl = 'http://localhost:8080';
+
+  interface productInfo {
+    productId: number;
+    productTag: string;
+    productRank: number;
+    productCategory: string;
+  }
+  let originalCard: productInfo[];
+  let cardInfoes: productInfo[];
+  let cardbox: Array<JSX.Element> = [];
+
+  function startFetching(Query: string | undefined | string[]) {
+    axios
+      .post(serverurl + '/productInfo/' + Query, {}, { params: { page: 1 } })
+      .then((res) => {
+        cardInfoes = res.data;
+        originalCard = res.data;
+        console.log(res);
+        cardInfoes.forEach((element) => {
+          cardbox.push(ProductCard(element));
+        });
+        console.log('카드박스에넣음');
+        console.log('cardbox');
+        console.log(cardbox);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   useEffect(() => {
-    console.log(router.query.category);
-    takeQuery = router.query.category;
-  }, [router.query, router.isReady]);
+    if (!(router.query.category === undefined)) {
+      console.log(router.query.category);
+      takeQuery = router.query.category;
+      startFetching(takeQuery);
+    } else {
+      console.log('i cant send it ');
+    }
+  }, [router.query, router.isReady, cardbox]);
 
   return (
     <div>
-      <div>{takeQuery}</div>
       <header className={styles.headers}>
         <SetLanguage />
         <Header />
@@ -151,11 +189,12 @@ function Product() {
           <div id="cardPannel" className={styles.cardPannel}>
             <div id="data-artibute-box" className={styles.databox}>
               <ul id="cardcoulum" className={styles.cardcoulum}>
-                <li className={styles.pcard}>
+                {/* <li className={styles.pcard}>
                   <Link href="/goods/0101864">
                     <ProductCard />
                   </Link>
-                </li>
+                </li> */}
+                {cardbox.map((e) => e)}
               </ul>
             </div>
             <div className={styles.pageNation}>
