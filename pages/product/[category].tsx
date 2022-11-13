@@ -2,7 +2,7 @@
 /* eslint-disable prefer-const */
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { ReactHTML } from 'react';
+import React, { HtmlHTMLAttributes, ReactHTML } from 'react';
 import styles from './[category].module.css';
 import { useState, useEffect } from 'react';
 import Header from 'components/Header';
@@ -15,7 +15,11 @@ import { useRouter } from 'next/router';
 import Pagination from 'react-bootstrap/Pagination';
 import Link from 'next/link';
 import axios from 'axios';
-
+import { render } from 'react-dom';
+import { ListGroupItemProps } from 'react-bootstrap';
+import { HtmlProps } from 'next/dist/shared/lib/html-context';
+//배열을 넘겨주면 productcard를 이용해서 ul전체를 만들어주는 컴포넌트를 만들자
+// 그럼 여기서 map하고 동적 렌더링 하고 안해도된다 ㅇㅇ
 //checking: HTMLInputElement
 // 1.클래스명을 이상하게 받아서 검색해야함.
 // 2.다른 검색방법이 없나? 이거 다른컴퓨터에선 다르게 뜰거같음
@@ -26,14 +30,17 @@ import axios from 'axios';
 // post 해서 쿼리못받던대 url , {} , prams... 형식으로 사용하니까 작동됨
 function Product() {
   const router = useRouter();
+  const serverurl = 'http://localhost:8080';
+
   const productid = router.query.pid;
   const [open, setOpen] = useState<boolean>(true);
   const [opencolor, setOpencolor] = useState<boolean>(true);
   const [openhand, setOpenhand] = useState<boolean>(true);
   const [openblue, setOpenblue] = useState<boolean>(true);
   let takeQuery: string | undefined | string[];
-  const serverurl = 'http://localhost:8080';
+  takeQuery = router.query.category;
 
+  console.log(takeQuery);
   interface productInfo {
     productId: number;
     productTag: string;
@@ -42,36 +49,48 @@ function Product() {
   }
   let originalCard: productInfo[];
   let cardInfoes: productInfo[];
-  let cardbox: Array<JSX.Element> = [];
+  let cardbox: HTMLElement[] = [];
 
-  function startFetching(Query: string | undefined | string[]) {
+  function startFetching() {
     axios
-      .post(serverurl + '/productInfo/' + Query, {}, { params: { page: 1 } })
+      .post(serverurl + '/productInfo/' + takeQuery, {}, { params: { page: 1 } })
       .then((res) => {
         cardInfoes = res.data;
         originalCard = res.data;
         console.log(res);
         cardInfoes.forEach((element) => {
-          cardbox.push(ProductCard(element));
+          if (cardbox.length < 20) {
+            cardbox.push(ProductCard(element));
+          }
         });
         console.log('카드박스에넣음');
         console.log('cardbox');
-        console.log(cardbox);
+        console.log(typeof cardbox);
+        console.log(typeof cardbox[0]);
+        return cardbox;
       })
       .catch((error) => {
         console.log(error);
       });
   }
 
-  useEffect(() => {
-    if (!(router.query.category === undefined)) {
-      console.log(router.query.category);
-      takeQuery = router.query.category;
-      startFetching(takeQuery);
-    } else {
-      console.log('i cant send it ');
-    }
-  }, [router.query, router.isReady, cardbox]);
+  function render() {
+    return startFetching();
+  }
+
+  function notmine() {
+    return <Header />;
+  }
+
+  // useEffect(() => {
+  //   if (!(router.query.category === undefined)) {
+  //     console.log(router.query.category);
+  //     takeQuery = router.query.category;
+  //     startFetching(takeQuery);
+  //   } else {
+  //     console.log('i cant send it ');
+  //   }
+  // }, [router.query, router.isReady, cardbox]);
 
   return (
     <div>
@@ -189,12 +208,7 @@ function Product() {
           <div id="cardPannel" className={styles.cardPannel}>
             <div id="data-artibute-box" className={styles.databox}>
               <ul id="cardcoulum" className={styles.cardcoulum}>
-                {/* <li className={styles.pcard}>
-                  <Link href="/goods/0101864">
-                    <ProductCard />
-                  </Link>
-                </li> */}
-                {cardbox.map((e) => e)}
+                {render()}
               </ul>
             </div>
             <div className={styles.pageNation}>
