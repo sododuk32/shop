@@ -2,7 +2,7 @@
 /* eslint-disable prefer-const */
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { HtmlHTMLAttributes, ReactHTML } from 'react';
+import React from 'react';
 import styles from './[category].module.css';
 import { useState, useEffect } from 'react';
 import Header from 'components/Header';
@@ -32,7 +32,6 @@ function Product() {
   const router = useRouter();
   const serverurl = 'http://localhost:8080';
 
-  const productid = router.query.pid;
   const [open, setOpen] = useState<boolean>(true);
   const [opencolor, setOpencolor] = useState<boolean>(true);
   const [openhand, setOpenhand] = useState<boolean>(true);
@@ -48,8 +47,8 @@ function Product() {
     productCategory: string;
   }
   let originalCard: productInfo[];
-  let cardInfoes: productInfo[];
-  let cardbox: HTMLElement[] = [];
+  let cardInfoes: productInfo[] = [];
+  let cardbox: JSX.Element[] = [];
 
   function startFetching() {
     axios
@@ -58,15 +57,12 @@ function Product() {
         cardInfoes = res.data;
         originalCard = res.data;
         console.log(res);
-        cardInfoes.forEach((element) => {
-          if (cardbox.length < 20) {
-            cardbox.push(ProductCard(element));
-          }
-        });
-        console.log('카드박스에넣음');
-        console.log('cardbox');
-        console.log(typeof cardbox);
-        console.log(typeof cardbox[0]);
+        // cardInfoes.forEach((element) => {
+        //   if (cardbox.length < 20) {
+        //     cardbox.push(ProductCard(element));
+        //   }
+        // });
+
         return cardbox;
       })
       .catch((error) => {
@@ -74,23 +70,11 @@ function Product() {
       });
   }
 
-  function render() {
-    return startFetching();
-  }
-
-  function notmine() {
-    return <Header />;
-  }
-
-  // useEffect(() => {
-  //   if (!(router.query.category === undefined)) {
-  //     console.log(router.query.category);
-  //     takeQuery = router.query.category;
-  //     startFetching(takeQuery);
-  //   } else {
-  //     console.log('i cant send it ');
-  //   }
-  // }, [router.query, router.isReady, cardbox]);
+  useEffect(() => {
+    if (!(router.query.category === undefined)) {
+      startFetching();
+    }
+  }, [cardInfoes]);
 
   return (
     <div>
@@ -208,7 +192,13 @@ function Product() {
           <div id="cardPannel" className={styles.cardPannel}>
             <div id="data-artibute-box" className={styles.databox}>
               <ul id="cardcoulum" className={styles.cardcoulum}>
-                {render()}
+                {!(takeQuery === undefined)
+                  ? cardInfoes?.map((arr) => (
+                      <li className={styles.CardBody} key={arr.productId}>
+                        {ProductCard(arr)}
+                      </li>
+                    ))
+                  : null}
               </ul>
             </div>
             <div className={styles.pageNation}>
