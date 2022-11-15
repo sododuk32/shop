@@ -15,9 +15,9 @@ import { useRouter } from 'next/router';
 import Pagination from 'react-bootstrap/Pagination';
 import Link from 'next/link';
 import axios from 'axios';
-import { render } from 'react-dom';
-import { ListGroupItemProps } from 'react-bootstrap';
-import { HtmlProps } from 'next/dist/shared/lib/html-context';
+import dynamic from 'next/dynamic';
+import Card from 'react-bootstrap/Card';
+import { Suspense } from 'react';
 //배열을 넘겨주면 productcard를 이용해서 ul전체를 만들어주는 컴포넌트를 만들자
 // 그럼 여기서 map하고 동적 렌더링 하고 안해도된다 ㅇㅇ
 //checking: HTMLInputElement
@@ -31,15 +31,17 @@ import { HtmlProps } from 'next/dist/shared/lib/html-context';
 function Product() {
   const router = useRouter();
   const serverurl = 'http://localhost:8080';
-
+  const confirmedUrl = '/mouse?page=';
   const [open, setOpen] = useState<boolean>(true);
   const [opencolor, setOpencolor] = useState<boolean>(true);
   const [openhand, setOpenhand] = useState<boolean>(true);
   const [openblue, setOpenblue] = useState<boolean>(true);
-  let takeQuery: string | undefined | string[];
-  takeQuery = router.query.category;
+  const [cardInfoes, setInfo] = useState<productInfo[]>([]);
 
-  console.log(takeQuery);
+  let takeQuery: string | undefined | string[];
+  let takepage: string | undefined | string[];
+  let cardTag: string | undefined | string[];
+
   interface productInfo {
     productId: number;
     productTag: string;
@@ -47,23 +49,24 @@ function Product() {
     productCategory: string;
   }
   let originalCard: productInfo[];
-  let cardInfoes: productInfo[] = [];
-  let cardbox: JSX.Element[] = [];
+
+  cardInfoes.map((element) => console.log(element.productCategory));
 
   function startFetching() {
+    takeQuery = router.query.category;
+    takepage = router.query.page;
+    if (takepage === undefined || NaN) {
+      return;
+      //여기다가 옳바른 페이지로 재연결 넣고싶음.
+    }
     axios
-      .post(serverurl + '/productInfo/' + takeQuery, {}, { params: { page: 1 } })
+      .post(serverurl + '/productInfo/' + takeQuery, {}, { params: { page: takepage } })
       .then((res) => {
-        cardInfoes = res.data;
         originalCard = res.data;
-        console.log(res);
-        // cardInfoes.forEach((element) => {
-        //   if (cardbox.length < 20) {
-        //     cardbox.push(ProductCard(element));
-        //   }
-        // });
-
-        return cardbox;
+        res.data.map((e: productInfo) => e.productTag);
+        console.log(router.query.page);
+        console.log(res.data);
+        return setInfo(res.data);
       })
       .catch((error) => {
         console.log(error);
@@ -71,10 +74,15 @@ function Product() {
   }
 
   useEffect(() => {
-    if (!(router.query.category === undefined)) {
-      startFetching();
+    if (!router.pathname.indexOf(confirmedUrl)) {
+      router.push('/product/mouse?page=1');
     }
-  }, [cardInfoes]);
+    console.log('렌더링됨');
+    if (router.isReady) {
+      startFetching();
+      console.log(router.isReady);
+    }
+  }, [router.isReady, router.pathname]);
 
   return (
     <div>
@@ -192,13 +200,7 @@ function Product() {
           <div id="cardPannel" className={styles.cardPannel}>
             <div id="data-artibute-box" className={styles.databox}>
               <ul id="cardcoulum" className={styles.cardcoulum}>
-                {!(takeQuery === undefined)
-                  ? cardInfoes?.map((arr) => (
-                      <li className={styles.CardBody} key={arr.productId}>
-                        {ProductCard(arr)}
-                      </li>
-                    ))
-                  : null}
+                {cardInfoes[0]?.productId > 0 && cardInfoes.map((card) => ProductCard(card))}
               </ul>
             </div>
             <div className={styles.pageNation}>

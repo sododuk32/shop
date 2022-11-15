@@ -14,17 +14,22 @@ interface productInfo {
 function ProductCard(info: productInfo) {
   if (info.productId === null) {
     console.log('not loaded');
+    return 'not loaded no armuments';
   }
+  console.log('productcard loded');
+  console.log('productcard loded' + info.productId + '<-this is id');
   return (
-    <Link className={styles.CardBody} href={`${/goods/}+${info.productId}`}>
-      <Card className={styles.pcard}>
-        <Image src="/gallary-1.jpg" layout="responsive" width={350} height={350} />
-        <Card.Body>
-          <Card.Title>{info.productId}</Card.Title>
-          <Card.Text>{info.productCategory}</Card.Text>
-        </Card.Body>
-      </Card>
-    </Link>
+    <li className={styles.CardBody} key={info.productId}>
+      <Link className={styles.pcard} href={`${/goods/}${info.productId}`}>
+        <Card>
+          <Image src="/gallary-1.jpg" layout="responsive" width={350} height={350} />
+          <Card.Body>
+            <Card.Title>{info.productId}</Card.Title>
+            <Card.Text>{info.productCategory}</Card.Text>
+          </Card.Body>
+        </Card>
+      </Link>
+    </li>
   );
 }
 
