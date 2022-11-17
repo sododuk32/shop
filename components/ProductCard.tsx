@@ -5,6 +5,7 @@ import Card from 'react-bootstrap/Card';
 import Image from 'next/image';
 import styles from './ProductCard.module.css';
 import Link from 'next/link';
+import { positions } from '@mui/system';
 interface productInfo {
   productId: number;
   productTag: string;
@@ -12,24 +13,18 @@ interface productInfo {
   productCategory: string;
 }
 function ProductCard(info: productInfo) {
-  if (info.productId === null) {
-    console.log('not loaded');
-    return 'not loaded no armuments';
-  }
   console.log('productcard loded');
   console.log('productcard loded' + info.productId + '<-this is id');
   return (
-    <li className={styles.CardBody} key={info.productId}>
-      <Link className={styles.pcard} href={`${/goods/}${info.productId}`}>
-        <Card>
-          <Image src="/gallary-1.jpg" layout="responsive" width={350} height={350} />
-          <Card.Body>
-            <Card.Title>{info.productId}</Card.Title>
-            <Card.Text>{info.productCategory}</Card.Text>
-          </Card.Body>
-        </Card>
+    <Card className={styles.pcard}>
+      <Link href={`${/goods/}${info.productId}`}>
+        <Image src="/gallary-1.jpg" width={300} height={250} alt="a" />
+        <Card.Body>
+          <Card.Title>{info.productId}</Card.Title>
+          <Card.Text>{info.productCategory}</Card.Text>
+        </Card.Body>
       </Link>
-    </li>
+    </Card>
   );
 }
 

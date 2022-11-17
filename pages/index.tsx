@@ -59,7 +59,7 @@ const Home: NextPage = () => {
               </div>
             </div>
           </div>
-          <Image className={styles.keybored} src="/keybored.jpg" layout="responsive" width={500} height={270} />
+          <Image className={styles.keybored} src="/keybored.jpg" alt="asdf" width={500} height={270} />
         </div>
       </div>
       <GridPhoto />

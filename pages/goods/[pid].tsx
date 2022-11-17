@@ -31,7 +31,7 @@ function Goods() {
         <div className={styles.gallaryPannel}>
           <span>/ 마우스/Mac용 lift</span>
           <div className={styles.gallaryImgPannel}>
-            <Image src="/gallary-1.jpg" layout="responsive" width={500} height={400} />
+            <Image src="/gallary-1.jpg" alt="a" width={500} height={400} />
           </div>
         </div>
         <div className={styles.productInfo}>

@@ -89,3 +89,8 @@
   position: relative;
   font-size: 0.85vw;
 }
+
+.heroPannel {
+  width: 100vw;
+  height: 20vw;
+}

@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import styles from './[category].module.css';
+import styles from './[...category].module.css';
 import { useState, useEffect } from 'react';
 import Header from 'components/Header';
 import SetLanguage from 'components/SetLanguage';
@@ -37,9 +37,9 @@ function Product() {
   const [openhand, setOpenhand] = useState<boolean>(true);
   const [openblue, setOpenblue] = useState<boolean>(true);
   const [cardInfoes, setInfo] = useState<productInfo[]>([]);
-
-  let takeQuery: string | undefined | string[];
-  let takepage: string | undefined | string[];
+  const allowCategory: string[] = ['mouse', 'keyboard', 'mike'];
+  let category: string | undefined | string[];
+  let takepage: number | undefined;
   let cardTag: string | undefined | string[];
 
   interface productInfo {
@@ -50,22 +50,26 @@ function Product() {
   }
   let originalCard: productInfo[];
 
-  cardInfoes.map((element) => console.log(element.productCategory));
-
   function startFetching() {
-    takeQuery = router.query.category;
-    takepage = router.query.page;
-    if (takepage === undefined || NaN) {
-      return;
-      //여기다가 옳바른 페이지로 재연결 넣고싶음.
+    // category = router.query.category[0];
+    // takepage = Number(router.query.category[1]);
+    category = router.query.category[0];
+    takepage = router.query.category[1];
+    const str1 = router.query.category;
+    console.log(!allowCategory.indexOf(category));
+    if (allowCategory.indexOf(category) === -1) {
+      router.push('/product/mouse/10');
     }
+    console.log('페이지 카테고리 ? :' + router.query.category);
+    console.log('카테고리 쿼리의 타입은? 배열로 부를때 :' + typeof str1[1]);
+    console.log('카테고리 쿼리의 타입은? 그냥 부를때 :' + typeof str1);
+
+    console.log('페이지의 페이지번호는? : ' + router.query.category[1]);
+    console.log(takepage);
+
     axios
-      .post(serverurl + '/productInfo/' + takeQuery, {}, { params: { page: takepage } })
+      .post(serverurl + '/productInfo/' + category, {}, { params: { page: takepage } })
       .then((res) => {
-        originalCard = res.data;
-        res.data.map((e: productInfo) => e.productTag);
-        console.log(router.query.page);
-        console.log(res.data);
         return setInfo(res.data);
       })
       .catch((error) => {
@@ -74,23 +78,34 @@ function Product() {
   }
 
   useEffect(() => {
-    if (!router.pathname.indexOf(confirmedUrl)) {
-      router.push('/product/mouse?page=1');
-    }
+    // router.push('/');
     console.log('렌더링됨');
     if (router.isReady) {
       startFetching();
-      console.log(router.isReady);
+      console.log(router.query);
     }
   }, [router.isReady, router.pathname]);
 
+  function makePageN() {
+    for (let i = 0; i < 10; i++) {
+      if (takepage === i) {
+        <Link href={`/product/${category}?page=${i}`}>
+          <Pagination.Item active>{i}</Pagination.Item>;
+        </Link>;
+      } else {
+        <Link href={`/product/${category}?page=${i}`}>
+          <Pagination.Item>{i}</Pagination.Item>;
+        </Link>;
+      }
+    }
+  }
   return (
     <div>
       <header className={styles.headers}>
         <SetLanguage />
         <Header />
         <div className={styles.heroPannel}>
-          <Image className={styles.heroImg} src="/heromouse.jpg" layout="responsive" width={1150} height={300} />
+          <Image className={styles.heroImg} src="/heromouse.jpg" fill alt="a" />
           <span className={styles.catchPh}>
             <label className={styles.bigph}> 마우스</label>
             <label className={styles.smallph}> 나에게 맞는 마우스를 선택해보세요.</label>
@@ -200,7 +215,12 @@ function Product() {
           <div id="cardPannel" className={styles.cardPannel}>
             <div id="data-artibute-box" className={styles.databox}>
               <ul id="cardcoulum" className={styles.cardcoulum}>
-                {cardInfoes[0]?.productId > 0 && cardInfoes.map((card) => ProductCard(card))}
+                {cardInfoes[0]?.productId > 0 &&
+                  cardInfoes.map((card) => (
+                    <li className={styles.CardBody} key={card.productId}>
+                      {ProductCard(card)}
+                    </li>
+                  ))}
               </ul>
             </div>
             <div className={styles.pageNation}>
@@ -217,10 +237,6 @@ function Product() {
                 <Pagination.Item>{8}</Pagination.Item>
                 <Pagination.Item>{9}</Pagination.Item>
                 <Pagination.Item>{10}</Pagination.Item>
-
-                <Pagination.Ellipsis />
-
-                <Pagination.Item>{20}</Pagination.Item>
                 <Pagination.Next />
                 <Pagination.Last />
               </Pagination>

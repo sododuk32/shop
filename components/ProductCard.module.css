@@ -1,12 +1,13 @@
-.CardBody {
-  width: 15vw;
-  height: 21vw;
-  position: relative;
-  font-size: 0.85vw;
-}
 .pcard {
-  width: 15vw;
-  height: 21vw;
+  position: relative;
+  width: 14vw;
+  height: 20vw;
+  float: left;
+  margin: 1.5vw;
+}
+
+.img {
+  position: relative;
   float: left;
   margin: 1.5vw;
 }
