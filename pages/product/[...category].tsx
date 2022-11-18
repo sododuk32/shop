@@ -40,8 +40,8 @@ function Product() {
   const allowCategory: string[] = ['mouse', 'keyboard', 'mike'];
   let category: string | undefined | string[];
   let takepage: number | undefined;
+  let totalpage: number;
   let cardTag: string | undefined | string[];
-
   interface productInfo {
     productId: number;
     productTag: string;
@@ -51,8 +51,6 @@ function Product() {
   let originalCard: productInfo[];
 
   function startFetching() {
-    // category = router.query.category[0];
-    // takepage = Number(router.query.category[1]);
     category = router.query.category[0];
     takepage = router.query.category[1];
     const str1 = router.query.category;
@@ -70,6 +68,7 @@ function Product() {
     axios
       .post(serverurl + '/productInfo/' + category, {}, { params: { page: takepage } })
       .then((res) => {
+        console.log(res.headers);
         return setInfo(res.data);
       })
       .catch((error) => {
@@ -85,9 +84,9 @@ function Product() {
       console.log(router.query);
     }
   }, [router.isReady, router.pathname]);
-
-  function makePageN() {
-    for (let i = 0; i < 10; i++) {
+  const pagenumbers = 20;
+  function makePageN(numbers: number) {
+    for (let i = 0; i < numbers; i++) {
       if (takepage === i) {
         <Link href={`/product/${category}?page=${i}`}>
           <Pagination.Item active>{i}</Pagination.Item>;
