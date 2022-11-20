@@ -14,7 +14,7 @@ interface productInfo {
 }
 function ProductCard(info: productInfo) {
   console.log('productcard loded');
-  console.log('productcard loded' + info.productId + '<-this is id');
+
   return (
     <Card className={styles.pcard}>
       <Link href={`${/goods/}${info.productId}`}>

@@ -6,43 +6,43 @@
 import React from 'react';
 import { Pagination } from 'react-bootstrap';
 
-
 function ProductPagenation(
-  totalContentsNumber: number,
+  totalpage: number,
   currentPage: number,
   category: string | string[] | undefined,
   setcurrentPage: React.Dispatch<React.SetStateAction<number>>,
+  numberList: number[],
 ) {
-  let totalPageNumber = Math.ceil(totalContentsNumber / 20);
-  //총 페이지 갯수.
-  let currentPagenation: number[] = [];
+  let totalPageNumber = Math.ceil(totalpage / 20);
+  console.log('pagination totalPageNumber:' + totalpage);
 
-  if (currentPage > 0 && currentPage < 11) {
-    for (let i = 0; i++; i < 10) {
-      currentPagenation.push(i);
-    }
-  } else {
-    for (let i = Math.floor(currentPage / 10) * 10; i++; i + 10) {
-      currentPagenation.push(i);
+  //총 페이지 갯수.
+  let pageList: JSX.Element[] = [];
+  //위 과정을 거치면 currentPagenation에는 현재숫자를 반내림한 정수의 0부터 10번째까지가 들어감.
+
+  for (let i = 0; i < 10; i++) {
+    if (numberList[i] === currentPage) {
+      pageList[i] = (
+        <Pagination.Item key={i} active>
+          {numberList[i]}
+        </Pagination.Item>
+      );
+    } else {
+      pageList[i] = (
+        <Pagination.Item key={i} onClick={() => setcurrentPage(numberList[i])}>
+          {numberList[i]}
+        </Pagination.Item>
+      );
     }
   }
-
-  // 받아온 currentpage를 정수 반내림한 값에서 부터 10번 반복하고  배열에 넣어줌
-
   return (
     <Pagination size="lg">
       <>
         <Pagination.First />
         <Pagination.Prev />
-        {currentPagenation.map((n) => {
-          if (n === currentPage) {
-            <Pagination.Item active>{n}</Pagination.Item>;
-          } else {
-            <Pagination.Item onClick={() => setcurrentPage(n)}>{n}</Pagination.Item>;
-          }
-        })}
-        <Pagination.Next />
-        <Pagination.Last />
+        {pageList}
+        <Pagination.Next onClick={() => setcurrentPage(numberList[9] + 1)} />
+        <Pagination.Last onClick={() => setcurrentPage(totalPageNumber)} />
       </>
     </Pagination>
   );

@@ -36,11 +36,35 @@ function Product() {
   const [openblue, setOpenblue] = useState<boolean>(true);
   const [cardInfoes, setInfo] = useState<productInfo[]>([]);
   const [currentPage, setcurrentPage] = useState<number>(1);
+  const [pageList, setpageList] = useState<number[]>([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  //현재 문제 pageList 업데이트와 totalpage의 초기값을 api로 받아와야하는대 못받아온다.
+  // totalpage는 useMemo로 기억해놓는다.
+  // pageList가 문제다.
   const allowCategory: string[] = ['mouse', 'keyboard', 'mike'];
   let category: string | undefined | string[];
   let takepage: number | undefined;
-  let totalpage = 1;
+  let totalpage: number;
   let cardTag: string | undefined | string[];
+  let currentPagenation: number[] = [];
+  function setPaging() {
+    if (currentPage > 0 && currentPage < 11) {
+      for (let i = 0; i++; i < 10) {
+        console.log(' 1이상 10 이하currentPagenation:' + currentPagenation);
+        currentPagenation.push(i);
+      }
+    } else {
+      for (let i = Math.floor(currentPage / 10) * 10; i++; i + 10) {
+        console.log(' 그외 currentPagenation:' + currentPagenation);
+
+        currentPagenation.push(i);
+      }
+    }
+    return setpageList(currentPagenation);
+  }
+
+  console.log('currentPagenation:' + currentPagenation);
+  console.log('currentPage:' + currentPage);
+
   interface productInfo {
     productId: number;
     productTag: string;
@@ -48,13 +72,10 @@ function Product() {
     productCategory: string;
   }
   let originalCard: productInfo[];
-  const currentPagenation = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   function startFetching() {
     category = router.query.category[0];
-    const str1 = router.query.category;
-    console.log(!allowCategory.indexOf(category));
     if (allowCategory.indexOf(category) === -1) {
-      router.push('/product/mouse/10');
+      router.push('/product/mouse/1');
     }
 
     axios
@@ -63,7 +84,7 @@ function Product() {
         let tempjson = res.data.sqltemp;
         tempjson = JSON.parse(tempjson);
         totalpage = Number(res.data.message);
-        console.log('현제 컨텐츠의 총갯수:' + totalpage);
+        console.log('[category]현제 컨텐츠의 총갯수:' + totalpage);
 
         return setInfo(tempjson);
       })
@@ -80,22 +101,11 @@ function Product() {
     console.log('렌더링됨');
     if (router.isReady) {
       startFetching();
+
       console.log(router.query);
     }
-  }, [router.isReady, router.pathname]);
-  const IterationSample = () => {
-    const names = ['눈사람', '얼음', '눈', '바람'];
-    const nameList = names.map((name) => <Pagination.Item active>{name}</Pagination.Item>);
-    return <Pagination size="lg">{nameList}</Pagination>;
-  };
+  }, [router.isReady, router.pathname, currentPage]);
 
-  function asdf() {
-    for (let i = 0; i < 10; i++) {
-      <Pagination.Item key={i} active>
-        {i}
-      </Pagination.Item>;
-    }
-  }
   return (
     <div>
       <header className={styles.headers}>
@@ -220,19 +230,7 @@ function Product() {
                   ))}
               </ul>
             </div>
-            <div className={styles.pageNation}>
-              <Pagination size="lg">
-                <>
-                  <Pagination.First />
-                  <Pagination.Prev />
-
-                  {/* {ProductPagenation(totalpage, currentPage, category, setcurrentPage)} */}
-                  {IterationSample()}
-                  <Pagination.Next />
-                  <Pagination.Last />
-                </>
-              </Pagination>
-            </div>
+            <div className={styles.pageNation}>{ProductPagenation(totalpage, currentPage, category, setcurrentPage, pageList)}</div>
           </div>
         </section>
       </section>
