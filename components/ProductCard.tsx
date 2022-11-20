@@ -18,7 +18,7 @@ function ProductCard(info: productInfo) {
   return (
     <Card className={styles.pcard}>
       <Link href={`${/goods/}${info.productId}`}>
-        <Image src="/gallary-1.jpg" width={300} height={250} alt="a" />
+        <Image src="/gallary-1.jpg" width={250} height={250} alt="a" />
         <Card.Body>
           <Card.Title>{info.productId}</Card.Title>
           <Card.Text>{info.productCategory}</Card.Text>

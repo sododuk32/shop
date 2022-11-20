@@ -15,9 +15,7 @@ import { useRouter } from 'next/router';
 import Pagination from 'react-bootstrap/Pagination';
 import Link from 'next/link';
 import axios from 'axios';
-import dynamic from 'next/dynamic';
-import Card from 'react-bootstrap/Card';
-import { Suspense } from 'react';
+import ProductPagenation from '../../components/ProductPagenation';
 //배열을 넘겨주면 productcard를 이용해서 ul전체를 만들어주는 컴포넌트를 만들자
 // 그럼 여기서 map하고 동적 렌더링 하고 안해도된다 ㅇㅇ
 //checking: HTMLInputElement
@@ -37,10 +35,11 @@ function Product() {
   const [openhand, setOpenhand] = useState<boolean>(true);
   const [openblue, setOpenblue] = useState<boolean>(true);
   const [cardInfoes, setInfo] = useState<productInfo[]>([]);
+  const [currentPage, setcurrentPage] = useState<number>(1);
   const allowCategory: string[] = ['mouse', 'keyboard', 'mike'];
   let category: string | undefined | string[];
   let takepage: number | undefined;
-  let totalpage: number;
+  let totalpage = 1;
   let cardTag: string | undefined | string[];
   interface productInfo {
     productId: number;
@@ -49,33 +48,33 @@ function Product() {
     productCategory: string;
   }
   let originalCard: productInfo[];
-
+  const currentPagenation = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   function startFetching() {
     category = router.query.category[0];
-    takepage = router.query.category[1];
     const str1 = router.query.category;
     console.log(!allowCategory.indexOf(category));
     if (allowCategory.indexOf(category) === -1) {
       router.push('/product/mouse/10');
     }
-    console.log('페이지 카테고리 ? :' + router.query.category);
-    console.log('카테고리 쿼리의 타입은? 배열로 부를때 :' + typeof str1[1]);
-    console.log('카테고리 쿼리의 타입은? 그냥 부를때 :' + typeof str1);
-
-    console.log('페이지의 페이지번호는? : ' + router.query.category[1]);
-    console.log(takepage);
 
     axios
-      .post(serverurl + '/productInfo/' + category, {}, { params: { page: takepage } })
+      .post(serverurl + '/productInfo/' + category + '/' + currentPage, {})
       .then((res) => {
-        console.log(res.headers);
-        return setInfo(res.data);
+        let tempjson = res.data.sqltemp;
+        tempjson = JSON.parse(tempjson);
+        totalpage = Number(res.data.message);
+        console.log('현제 컨텐츠의 총갯수:' + totalpage);
+
+        return setInfo(tempjson);
       })
       .catch((error) => {
         console.log(error);
       });
   }
-
+  // 체크박스 클릭할때마다 fetch날리기.
+  // 이때 날리는건 백엔드에서 조건문에 넣을 값만 넣어서 날리기.
+  // fetch받으면 setcardInfors에 넣어서 재렌더링
+  // 즉 체크박스는 조건문이 들어갈 배열을 조작하는것 외엔 하는게 없음.
   useEffect(() => {
     // router.push('/');
     console.log('렌더링됨');
@@ -84,18 +83,17 @@ function Product() {
       console.log(router.query);
     }
   }, [router.isReady, router.pathname]);
-  const pagenumbers = 20;
-  function makePageN(numbers: number) {
-    for (let i = 0; i < numbers; i++) {
-      if (takepage === i) {
-        <Link href={`/product/${category}?page=${i}`}>
-          <Pagination.Item active>{i}</Pagination.Item>;
-        </Link>;
-      } else {
-        <Link href={`/product/${category}?page=${i}`}>
-          <Pagination.Item>{i}</Pagination.Item>;
-        </Link>;
-      }
+  const IterationSample = () => {
+    const names = ['눈사람', '얼음', '눈', '바람'];
+    const nameList = names.map((name) => <Pagination.Item active>{name}</Pagination.Item>);
+    return <Pagination size="lg">{nameList}</Pagination>;
+  };
+
+  function asdf() {
+    for (let i = 0; i < 10; i++) {
+      <Pagination.Item key={i} active>
+        {i}
+      </Pagination.Item>;
     }
   }
   return (
@@ -224,20 +222,15 @@ function Product() {
             </div>
             <div className={styles.pageNation}>
               <Pagination size="lg">
-                <Pagination.First />
-                <Pagination.Prev />
-                <Pagination.Item>{1}</Pagination.Item>
-                <Pagination.Item>{2}</Pagination.Item>
-                <Pagination.Item>{3}</Pagination.Item>
-                <Pagination.Item>{4}</Pagination.Item>
-                <Pagination.Item>{5}</Pagination.Item>
-                <Pagination.Item>{6}</Pagination.Item>
-                <Pagination.Item>{7}</Pagination.Item>
-                <Pagination.Item>{8}</Pagination.Item>
-                <Pagination.Item>{9}</Pagination.Item>
-                <Pagination.Item>{10}</Pagination.Item>
-                <Pagination.Next />
-                <Pagination.Last />
+                <>
+                  <Pagination.First />
+                  <Pagination.Prev />
+
+                  {/* {ProductPagenation(totalpage, currentPage, category, setcurrentPage)} */}
+                  {IterationSample()}
+                  <Pagination.Next />
+                  <Pagination.Last />
+                </>
               </Pagination>
             </div>
           </div>
