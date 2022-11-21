@@ -4,7 +4,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import styles from './[...category].module.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Header from 'components/Header';
 import SetLanguage from 'components/SetLanguage';
 import Image from 'next/image';
@@ -26,6 +26,7 @@ import ProductPagenation from '../../components/ProductPagenation';
 // nodeList타입은 foreach로 사용하능함0.
 // getinitialprops 를 써보고싶은대 못쓰는대 이유가, dynamic routing은 페이지가 로드 다 되고나서 시작됨.
 // post 해서 쿼리못받던대 url , {} , prams... 형식으로 사용하니까 작동됨
+// 마지막페이지, 페이지네이션 생성에 들어갈 값이 들어간 배열, 현제 페이지를 한꺼번에 묶어서 객체로 관리하니까 코드가 깔끔해짐
 function Product() {
   const router = useRouter();
   const serverurl = 'http://localhost:8080';
@@ -34,42 +35,28 @@ function Product() {
   const [opencolor, setOpencolor] = useState<boolean>(true);
   const [openhand, setOpenhand] = useState<boolean>(true);
   const [openblue, setOpenblue] = useState<boolean>(true);
-  const [cardInfoes, setInfo] = useState<productInfo[]>([]);
+  const [cardInfoes, setInfo] = useState<controlPagenation>({
+    card: [],
+    totalP: 0,
+    currentPagenation: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  });
   const [currentPage, setcurrentPage] = useState<number>(1);
   const [pageList, setpageList] = useState<number[]>([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-  //현재 문제 pageList 업데이트와 totalpage의 초기값을 api로 받아와야하는대 못받아온다.
-  // totalpage는 useMemo로 기억해놓는다.
-  // pageList가 문제다.
   const allowCategory: string[] = ['mouse', 'keyboard', 'mike'];
   let category: string | undefined | string[];
-  let takepage: number | undefined;
   let totalpage: number;
-  let cardTag: string | undefined | string[];
-  let currentPagenation: number[] = [];
-  function setPaging() {
-    if (currentPage > 0 && currentPage < 11) {
-      for (let i = 0; i++; i < 10) {
-        console.log(' 1이상 10 이하currentPagenation:' + currentPagenation);
-        currentPagenation.push(i);
-      }
-    } else {
-      for (let i = Math.floor(currentPage / 10) * 10; i++; i + 10) {
-        console.log(' 그외 currentPagenation:' + currentPagenation);
-
-        currentPagenation.push(i);
-      }
-    }
-    return setpageList(currentPagenation);
-  }
-
-  console.log('currentPagenation:' + currentPagenation);
-  console.log('currentPage:' + currentPage);
+  let setpagenateList: number[] = [];
 
   interface productInfo {
     productId: number;
     productTag: string;
     productRank: number;
     productCategory: string;
+  }
+  interface controlPagenation {
+    card: productInfo[];
+    totalP: number;
+    currentPagenation: number[];
   }
   let originalCard: productInfo[];
   function startFetching() {
@@ -83,10 +70,19 @@ function Product() {
       .then((res) => {
         let tempjson = res.data.sqltemp;
         tempjson = JSON.parse(tempjson);
-        totalpage = Number(res.data.message);
-        console.log('[category]현제 컨텐츠의 총갯수:' + totalpage);
+        totalpage = Math.floor(Number(res.data.message) / 10) * 10;
 
-        return setInfo(tempjson);
+        if (currentPage > 0 && currentPage < 11) {
+          for (let i = 0; i < 10; i++) {
+            setpagenateList[i];
+          }
+        } else {
+          for (let i = 0; i < 10; i++) {
+            setpagenateList[i] = Math.floor(currentPage / 10) * 10 + i;
+          }
+        }
+        console.log('totalpage:' + totalpage + '　　　' + 'setpagenateList:' + setpagenateList);
+        return setInfo({ card: tempjson, totalP: totalpage, currentPagenation: setpagenateList });
       })
       .catch((error) => {
         console.log(error);
@@ -222,15 +218,15 @@ function Product() {
           <div id="cardPannel" className={styles.cardPannel}>
             <div id="data-artibute-box" className={styles.databox}>
               <ul id="cardcoulum" className={styles.cardcoulum}>
-                {cardInfoes[0]?.productId > 0 &&
-                  cardInfoes.map((card) => (
+                {cardInfoes.card[0]?.productId > 0 &&
+                  cardInfoes.card.map((card) => (
                     <li className={styles.CardBody} key={card.productId}>
                       {ProductCard(card)}
                     </li>
                   ))}
               </ul>
             </div>
-            <div className={styles.pageNation}>{ProductPagenation(totalpage, currentPage, category, setcurrentPage, pageList)}</div>
+            <div className={styles.pageNation}>{ProductPagenation(cardInfoes.totalP, currentPage, category, setcurrentPage, pageList)}</div>
           </div>
         </section>
       </section>

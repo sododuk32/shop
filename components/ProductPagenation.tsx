@@ -43,6 +43,9 @@ function ProductPagenation(
         {pageList}
         <Pagination.Next onClick={() => setcurrentPage(numberList[9] + 1)} />
         <Pagination.Last onClick={() => setcurrentPage(totalPageNumber)} />
+        <Pagination.Item key={totalpage} onClick={() => setcurrentPage(totalpage)}>
+          {totalpage}
+        </Pagination.Item>
       </>
     </Pagination>
   );
