@@ -13,14 +13,14 @@ function ProductPagenation(
   setcurrentPage: React.Dispatch<React.SetStateAction<number>>,
   numberList: number[],
 ) {
-  let totalPageNumber = Math.ceil(totalpage / 20);
+  let totalPageNumber = totalpage;
   console.log('pagination totalPageNumber:' + totalpage);
 
   //총 페이지 갯수.
   let pageList: JSX.Element[] = [];
   //위 과정을 거치면 currentPagenation에는 현재숫자를 반내림한 정수의 0부터 10번째까지가 들어감.
-
-  for (let i = 0; i < 10; i++) {
+  console.log(currentPage);
+  for (let i = 0; i < numberList.length; i++) {
     if (numberList[i] === currentPage) {
       pageList[i] = (
         <Pagination.Item key={i} active>
@@ -38,11 +38,14 @@ function ProductPagenation(
   return (
     <Pagination size="lg">
       <>
-        <Pagination.First />
-        <Pagination.Prev />
+        <Pagination.Item key={146546465456} onClick={() => setcurrentPage(1)}>
+          {1}
+        </Pagination.Item>
+        <Pagination.First onClick={() => setcurrentPage(numberList[9] - 10)} />
+        <Pagination.Prev onClick={() => setcurrentPage(numberList[9] - 1)} />
         {pageList}
         <Pagination.Next onClick={() => setcurrentPage(numberList[9] + 1)} />
-        <Pagination.Last onClick={() => setcurrentPage(totalPageNumber)} />
+        <Pagination.Last onClick={() => setcurrentPage(numberList[9] + 10)} />
         <Pagination.Item key={totalpage} onClick={() => setcurrentPage(totalpage)}>
           {totalpage}
         </Pagination.Item>

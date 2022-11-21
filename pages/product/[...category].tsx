@@ -16,17 +16,7 @@ import Pagination from 'react-bootstrap/Pagination';
 import Link from 'next/link';
 import axios from 'axios';
 import ProductPagenation from '../../components/ProductPagenation';
-//배열을 넘겨주면 productcard를 이용해서 ul전체를 만들어주는 컴포넌트를 만들자
-// 그럼 여기서 map하고 동적 렌더링 하고 안해도된다 ㅇㅇ
-//checking: HTMLInputElement
-// 1.클래스명을 이상하게 받아서 검색해야함.
-// 2.다른 검색방법이 없나? 이거 다른컴퓨터에선 다르게 뜰거같음
-// useref 사용해서 dom에 접근하는게 정상이다.
-// 자기참조로 input 태그의 name을 가져오는건 이상하다
-// nodeList타입은 foreach로 사용하능함0.
-// getinitialprops 를 써보고싶은대 못쓰는대 이유가, dynamic routing은 페이지가 로드 다 되고나서 시작됨.
-// post 해서 쿼리못받던대 url , {} , prams... 형식으로 사용하니까 작동됨
-// 마지막페이지, 페이지네이션 생성에 들어갈 값이 들어간 배열, 현제 페이지를 한꺼번에 묶어서 객체로 관리하니까 코드가 깔끔해짐
+
 function Product() {
   const router = useRouter();
   const serverurl = 'http://localhost:8080';
@@ -41,7 +31,6 @@ function Product() {
     currentPagenation: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
   });
   const [currentPage, setcurrentPage] = useState<number>(1);
-  const [pageList, setpageList] = useState<number[]>([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
   const allowCategory: string[] = ['mouse', 'keyboard', 'mike'];
   let category: string | undefined | string[];
   let totalpage: number;
@@ -70,30 +59,31 @@ function Product() {
       .then((res) => {
         let tempjson = res.data.sqltemp;
         tempjson = JSON.parse(tempjson);
-        totalpage = Math.floor(Number(res.data.message) / 10) * 10;
+        totalpage = Math.floor(Number(res.data.message) / 20) + 1;
 
         if (currentPage > 0 && currentPage < 11) {
           for (let i = 0; i < 10; i++) {
-            setpagenateList[i];
+            console.log('1번for문 러닝' + i);
+
+            setpagenateList[i] = i + 1;
           }
         } else {
           for (let i = 0; i < 10; i++) {
-            setpagenateList[i] = Math.floor(currentPage / 10) * 10 + i;
+            console.log('2번for문 러닝' + i);
+            setpagenateList[i] = Math.floor(currentPage / 10) * 10 + i + 1;
+            if (setpagenateList[i] === cardInfoes.totalP) {
+              break;
+            }
           }
         }
-        console.log('totalpage:' + totalpage + '　　　' + 'setpagenateList:' + setpagenateList);
         return setInfo({ card: tempjson, totalP: totalpage, currentPagenation: setpagenateList });
       })
       .catch((error) => {
         console.log(error);
       });
   }
-  // 체크박스 클릭할때마다 fetch날리기.
-  // 이때 날리는건 백엔드에서 조건문에 넣을 값만 넣어서 날리기.
-  // fetch받으면 setcardInfors에 넣어서 재렌더링
-  // 즉 체크박스는 조건문이 들어갈 배열을 조작하는것 외엔 하는게 없음.
+
   useEffect(() => {
-    // router.push('/');
     console.log('렌더링됨');
     if (router.isReady) {
       startFetching();
@@ -226,7 +216,7 @@ function Product() {
                   ))}
               </ul>
             </div>
-            <div className={styles.pageNation}>{ProductPagenation(cardInfoes.totalP, currentPage, category, setcurrentPage, pageList)}</div>
+            <div className={styles.pageNation}>{ProductPagenation(cardInfoes.totalP, currentPage, category, setcurrentPage, cardInfoes.currentPagenation)}</div>
           </div>
         </section>
       </section>
