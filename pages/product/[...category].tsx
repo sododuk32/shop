@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable prefer-const */
 /* eslint-disable no-unused-vars */
@@ -20,7 +21,6 @@ import ProductPagenation from '../../components/ProductPagenation';
 function Product() {
   const router = useRouter();
   const serverurl = 'http://localhost:8080';
-  const confirmedUrl = '/mouse?page=';
   const [open, setOpen] = useState<boolean>(true);
   const [opencolor, setOpencolor] = useState<boolean>(true);
   const [openhand, setOpenhand] = useState<boolean>(true);
@@ -32,7 +32,7 @@ function Product() {
   });
   const [currentPage, setcurrentPage] = useState<number>(1);
   const allowCategory: string[] = ['mouse', 'keyboard', 'mike'];
-  let category: string | undefined | string[];
+  let category: string | undefined;
   let totalpage: number;
   let setpagenateList: number[] = [];
 
@@ -47,11 +47,10 @@ function Product() {
     totalP: number;
     currentPagenation: number[];
   }
-  let originalCard: productInfo[];
-  function startFetching() {
-    category = router.query.category[0];
+  function startFetching(category: string, currentPage: number) {
     if (allowCategory.indexOf(category) === -1) {
-      router.push('/product/mouse/1');
+      router.push('/product/mouse');
+      return;
     }
 
     axios
@@ -59,7 +58,7 @@ function Product() {
       .then((res) => {
         let tempjson = res.data.sqltemp;
         tempjson = JSON.parse(tempjson);
-        totalpage = Math.floor(Number(res.data.message) / 20) + 1;
+        totalpage = Math.floor(Number(res.data.total) / 20) + 1;
 
         if (currentPage > 0 && currentPage < 11) {
           for (let i = 0; i < 10; i++) {
@@ -86,11 +85,12 @@ function Product() {
   useEffect(() => {
     console.log('렌더링됨');
     if (router.isReady) {
-      startFetching();
+      category = router?.query?.category[0];
+      startFetching(category, 1);
 
       console.log(router.query);
     }
-  }, [router.isReady, router.pathname, currentPage]);
+  }, []);
 
   return (
     <div>

@@ -9,7 +9,7 @@ import { Pagination } from 'react-bootstrap';
 function ProductPagenation(
   totalpage: number,
   currentPage: number,
-  category: string | string[] | undefined,
+  category: string | undefined,
   setcurrentPage: React.Dispatch<React.SetStateAction<number>>,
   numberList: number[],
 ) {
