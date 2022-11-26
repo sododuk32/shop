@@ -28,7 +28,6 @@ function Product() {
   const [cardInfoes, setInfo] = useState<controlPagenation>({
     card: [],
     totalP: 0,
-    currentPagenation: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
   });
   const [currentPage, setcurrentPage] = useState<number>(1);
   const allowCategory: string[] = ['mouse', 'keyboard', 'mike'];
@@ -45,37 +44,21 @@ function Product() {
   interface controlPagenation {
     card: productInfo[];
     totalP: number;
-    currentPagenation: number[];
   }
-  function startFetching(category: string, currentPage: number) {
+  function startFetching(category: string) {
     if (allowCategory.indexOf(category) === -1) {
       router.push('/product/mouse');
       return;
     }
-
+    console.log('api통신 시작');
     axios
       .post(serverurl + '/productInfo/' + category + '/' + currentPage, {})
       .then((res) => {
+        console.log(serverurl + '/productInfo/' + category + '/' + currentPage);
         let tempjson = res.data.sqltemp;
         tempjson = JSON.parse(tempjson);
         totalpage = Math.floor(Number(res.data.total) / 20) + 1;
-
-        if (currentPage > 0 && currentPage < 11) {
-          for (let i = 0; i < 10; i++) {
-            console.log('1번for문 러닝' + i);
-
-            setpagenateList[i] = i + 1;
-          }
-        } else {
-          for (let i = 0; i < 10; i++) {
-            console.log('2번for문 러닝' + i);
-            setpagenateList[i] = Math.floor(currentPage / 10) * 10 + i + 1;
-            if (setpagenateList[i] === cardInfoes.totalP) {
-              break;
-            }
-          }
-        }
-        return setInfo({ card: tempjson, totalP: totalpage, currentPagenation: setpagenateList });
+        return setInfo({ card: tempjson, totalP: totalpage });
       })
       .catch((error) => {
         console.log(error);
@@ -84,13 +67,15 @@ function Product() {
 
   useEffect(() => {
     console.log('렌더링됨');
-    if (router.isReady) {
-      category = router?.query?.category[0];
-      startFetching(category, 1);
+    console.log('라우터.이즈레디' + router.isReady);
 
-      console.log(router.query);
+    if (router.isReady) {
+      category = router.query.category[0];
+      startFetching(category);
+
+      console.log('라우터 쿼리' + router.query.category[0]);
     }
-  }, []);
+  }, [router.isReady]);
 
   return (
     <div>
@@ -216,7 +201,7 @@ function Product() {
                   ))}
               </ul>
             </div>
-            <div className={styles.pageNation}>{ProductPagenation(cardInfoes.totalP, currentPage, category, setcurrentPage, cardInfoes.currentPagenation)}</div>
+            <div className={styles.pageNation}>{ProductPagenation(cardInfoes.totalP, currentPage, category, setcurrentPage)}</div>
           </div>
         </section>
       </section>
