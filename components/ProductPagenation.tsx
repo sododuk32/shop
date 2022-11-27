@@ -20,7 +20,11 @@ function ProductPagenation(totalpage: number, currentPage: number, category: str
     if (currentPage < 5) {
       numberList[i] = i + 1;
     } else {
-      numberList[i] = currentPage - (4 - i);
+      if (currentPage - (4 - i) > totalpage) {
+        break;
+      } else {
+        numberList[i] = currentPage - (4 - i);
+      }
     }
   }
 

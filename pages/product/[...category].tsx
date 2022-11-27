@@ -75,7 +75,7 @@ function Product() {
 
       console.log('라우터 쿼리' + router.query.category[0]);
     }
-  }, [router.isReady]);
+  }, [router.isReady, currentPage]);
 
   return (
     <div>
