@@ -1,9 +1,10 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable prefer-const */
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
+import React, { HtmlHTMLAttributes, InputHTMLAttributes } from 'react';
 import styles from './[...category].module.css';
 import { useState, useEffect, useMemo } from 'react';
 import Header from 'components/Header';
@@ -17,24 +18,9 @@ import Pagination from 'react-bootstrap/Pagination';
 import Link from 'next/link';
 import axios from 'axios';
 import ProductPagenation from '../../components/ProductPagenation';
+import { CheckboxProps } from '@mui/material';
 
 function Product() {
-  const router = useRouter();
-  const serverurl = 'http://localhost:8080';
-  const [open, setOpen] = useState<boolean>(true);
-  const [opencolor, setOpencolor] = useState<boolean>(true);
-  const [openhand, setOpenhand] = useState<boolean>(true);
-  const [openblue, setOpenblue] = useState<boolean>(true);
-  const [cardInfoes, setInfo] = useState<controlPagenation>({
-    card: [],
-    totalP: 0,
-  });
-  const [currentPage, setcurrentPage] = useState<number>(1);
-  const allowCategory: string[] = ['mouse', 'keyboard', 'mike'];
-  let category: string | undefined;
-  let totalpage: number;
-  let setpagenateList: number[] = [];
-
   interface productInfo {
     productId: number;
     productTag: string;
@@ -45,6 +31,51 @@ function Product() {
     card: productInfo[];
     totalP: number;
   }
+  const router = useRouter();
+  const serverurl = 'http://localhost:8080';
+  let category: string | undefined;
+  let totalpage: number;
+  const allowCategory: string[] = ['mouse', 'keyboard', 'mike'];
+  const [open, setOpen] = useState<boolean>(true);
+  const [opencolor, setOpencolor] = useState<boolean>(true);
+  const [openhand, setOpenhand] = useState<boolean>(true);
+  const [openblue, setOpenblue] = useState<boolean>(true);
+  const [cardInfoes, setInfo] = useState<controlPagenation>({
+    card: [],
+    totalP: 0,
+  });
+  const [currentPage, setcurrentPage] = useState<number>(1);
+  const [tags, setTags] = useState<string[]>([]);
+
+  useEffect(() => {
+    console.log('렌더링됨');
+    console.log(tags);
+    if (router.isReady) {
+      category = router.query.category[0];
+      startFetching(category);
+
+      // console.log('라우터 쿼리' + router.query.category[0]);
+    }
+  }, [router.isReady, currentPage, tags]);
+
+  const handleOnChange = (
+    event: React.MouseEvent<HTMLInputElement, MouseEvent> & {
+      target: HTMLInputElement;
+    },
+  ) => {
+    if (event?.target?.checked) {
+      console.log('더하기실행');
+      return setTags((tags) => [...tags, event?.target?.id]);
+    } else {
+      const targetId: number = tags.indexOf(event?.target?.id);
+      console.log('빼기실행');
+      let temp = tags;
+      temp.splice(targetId, 1);
+      return setTags(temp);
+      // 재렌더링 안됨.
+    }
+  };
+
   function startFetching(category: string) {
     if (allowCategory.indexOf(category) === -1) {
       router.push('/product/mouse');
@@ -52,7 +83,7 @@ function Product() {
     }
     console.log('api통신 시작');
     axios
-      .post(serverurl + '/productInfo/' + category + '/' + currentPage, {})
+      .post(serverurl + '/productInfo/' + category + '/' + currentPage, { tags })
       .then((res) => {
         console.log(serverurl + '/productInfo/' + category + '/' + currentPage);
         let tempjson = res.data.sqltemp;
@@ -64,18 +95,6 @@ function Product() {
         console.log(error);
       });
   }
-
-  useEffect(() => {
-    console.log('렌더링됨');
-    console.log('라우터.이즈레디' + router.isReady);
-
-    if (router.isReady) {
-      category = router.query.category[0];
-      startFetching(category);
-
-      console.log('라우터 쿼리' + router.query.category[0]);
-    }
-  }, [router.isReady, currentPage]);
 
   return (
     <div>
@@ -115,23 +134,24 @@ function Product() {
                 <Collapse in={opencolor}>
                   <div id="colorchoice" className={styles.inputcolor}>
                     <div>
-                      <input id="blue" type="checkbox" value="blue" />
+                      <input id="blue" type="checkbox" onClick={handleOnChange} value="blue" />
                       <label>파랑</label>
+                      <span>{tags}</span>
                     </div>
                     <div>
-                      <input id="red" type="checkbox" value="red" />
+                      <input id="red" type="checkbox" onClick={handleOnChange} value="red" />
                       <label>빨강</label>
                     </div>
                     <div>
-                      <input id="green" type="checkbox" value="green" />
+                      <input id="green" type="checkbox" onClick={handleOnChange} value="green" />
                       <label>초록</label>
                     </div>
                     <div>
-                      <input id="yello" type="checkbox" value="yello" />
+                      <input id="yello" type="checkbox" onClick={handleOnChange} value="yello" />
                       <label>노랑</label>
                     </div>
                     <div>
-                      <input id="powerrgb" type="checkbox" value="powerrgb" />
+                      <input id="powerrgb" type="checkbox" onClick={handleOnChange} value="powerrgb" />
                       <label>RGB효과</label>
                     </div>
                   </div>
@@ -152,11 +172,11 @@ function Product() {
                 <Collapse in={openhand}>
                   <div id="handchoice" className={styles.inputcolor}>
                     <div>
-                      <input id="left-hand" type="checkbox" value="left-hand" />
+                      <input id="left-hand" type="checkbox" onClick={handleOnChange} value="left-hand" />
                       <label>왼손잡이</label>
                     </div>
                     <div>
-                      <input id="right-hand" type="checkbox" name="right-hand" />
+                      <input id="right-hand" type="checkbox" onClick={handleOnChange} name="right-hand" />
                       <label>오른손잡이</label>
                     </div>
                   </div>
@@ -178,11 +198,11 @@ function Product() {
                 <Collapse in={openblue}>
                   <div id="bluethooth" className={styles.inputcolor}>
                     <div>
-                      <input id="wireless" type="checkbox" name="wireless" />
+                      <input id="wireless" type="checkbox" onClick={handleOnChange} name="wireless" />
                       <label>WIRELESS</label>
                     </div>
                     <div>
-                      <input id="cable" type="checkbox" name="cable" />
+                      <input id="cable" type="checkbox" onClick={handleOnChange} name="cable" />
                       <label>유선</label>
                     </div>
                   </div>

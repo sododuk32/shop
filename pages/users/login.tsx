@@ -10,7 +10,7 @@ function login() {
     <div>
       <section className={styles.loginBody}>
         <div className={styles.loginimg}>
-          <Image layout="fixed" src={'/mainlogo.jpg'} width={140} height={50} />
+          <Image src={'/mainlogo.jpg'} fill alt="a" />
         </div>
         <section id="inputAria" className={styles.inputAria}>
           <div id="inputid" className={styles.emailAria}>
