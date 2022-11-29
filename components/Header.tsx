@@ -38,7 +38,7 @@ function Header() {
         </div>
         <div>
           <div id="navBar" className={styles.navBar}>
-            <Link href="/product/mouse?page=1">
+            <Link href="/product/mouse">
               <button>제품</button>
             </Link>
 
