@@ -23,32 +23,30 @@ function login() {
   const [jwtk, setjwtk] = useState('');
   const [cookies, setCookie] = useCookies(['jwt']);
 
-  let sendjson: infoes = { usersid: '', userspw: '' };
+  let sendJson: infoes = { usersid: '', userspw: '' };
 
-  const onChangeId = (
-    e: React.ChangeEventHandler<FormControlProps> & {
-      target: HTMLInputElement;
-    },
-  ) => {
+  const onChangeId = (e: any) => {
     setEmail(e.target.value);
   };
-  const onChangePassword = (
-    e: React.FormEvent<FormControlProps> & {
-      target: HTMLInputElement;
-    },
-  ) => {
+  const onChangePassword = (e: any) => {
     setPassword(e.target.value);
   };
+
+  /*
+  e: React.FormEvent<FormControlProps> & {
+      target: HTMLInputElement;
+    },
+  */
   let mytoken = '';
 
   function sendingInfo() {
-    let sendjson: infoes = {
+    let sendJson: infoes = {
       usersid: Email,
       userspw: userPassword,
     };
 
     axios
-      .post('http://localhost:8080/login', JSON.stringify(sendjson), {
+      .post('http://localhost:8080/login', JSON.stringify(sendJson), {
         headers: { 'Content-Type': `application/json` },
       })
       .then((res) => {

@@ -51,7 +51,7 @@ function Product() {
     console.log('렌더링됨');
     console.log(tags);
     if (router.isReady) {
-      category = router.query.category[0];
+      category = router?.query?.category[0];
       startFetching(category);
 
       // console.log('라우터 쿼리' + router.query.category[0]);
@@ -64,13 +64,13 @@ function Product() {
     },
   ) => {
     if (event?.target?.checked) {
-      console.log('더하기실행');
       return setTags((tags) => [...tags, event?.target?.id]);
     } else {
-      const targetId: number = tags.indexOf(event?.target?.id);
-      console.log('빼기실행');
+      console.log(event?.target?.id);
+      let targetId: number = tags.indexOf(event?.target?.id);
+      console.log('빼기실행' + targetId);
       let temp = tags;
-      temp.splice(targetId, 1);
+      temp = temp.splice(targetId, 1);
       return setTags(temp);
       // 재렌더링 안됨.
     }
