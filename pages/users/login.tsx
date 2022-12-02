@@ -1,3 +1,5 @@
+/* eslint-disable no-cond-assign */
+/* eslint-disable no-constant-condition */
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-const */
@@ -49,10 +51,16 @@ function login() {
       .post('http://localhost:8080/login', JSON.stringify(sendJson), {
         headers: { 'Content-Type': `application/json` },
       })
+
       .then((res) => {
         console.log(res.data.jwtToken);
         mytoken = res.data.jwtToken;
         setCookie('jwt', mytoken, { path: '/' });
+      })
+      .catch(function (error) {
+        if (error.response) {
+          alert('아이디 비밀번호 중 하나가 틀렸습니다');
+        }
       });
   }
 

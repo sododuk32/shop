@@ -15,7 +15,6 @@ import Collapse from 'react-bootstrap/Collapse';
 import ProductCard from 'components/ProductCard';
 import { useRouter } from 'next/router';
 import Pagination from 'react-bootstrap/Pagination';
-import Link from 'next/link';
 import axios from 'axios';
 import ProductPagenation from '../../components/ProductPagenation';
 import { CheckboxProps } from '@mui/material';
