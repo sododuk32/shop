@@ -11,36 +11,9 @@ import Carouselnomal from 'components/Carouselnomal';
 import CarouselGrid from 'components/CarouselGrid';
 
 const Home: NextPage = () => {
-  const dataArray: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-
   return (
     <div>
       <div className={styles.setLanguage}>
-        {/* <div className={styles.dropdown}>
-          <button id="Brand" onClick={Brandcliked} className={styles.dropbtn}>
-            우리 브랜드
-          </button>
-          <div id="LinkBox" className={styles.LinkBox}>
-            <div className={styles.link} id="Link" href="#">
-              Link 1
-            </div>
-            <div className={styles.link} id="Link" href="#">
-              Link 2
-            </div>
-            <div className={styles.link} id="Link" href="#">
-              Link 3
-            </div>
-            <div className={styles.link} id="Link" href="#">
-              Link 4
-            </div>
-            <div className={styles.link} id="Link" href="#">
-              Link 5
-            </div>
-            <div className={styles.link} id="Link" href="#">
-              Link 6
-            </div>
-          </div>
-        </div> */}
         <Drop />
         <div></div>
         <div className={styles.chLanguage}>KO</div>

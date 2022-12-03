@@ -14,23 +14,22 @@
 .prevBtn {
   position: relative;
   bottom: 10%;
-  left: 30rem;
-  top: 30rem;
+  left: 2vw;
+  top: 20vw;
   z-index: 2;
   right: 30rem;
 }
 
 .nextBtn {
   position: relative;
-  bottom: 10%;
-  left: 30rem;
-
   z-index: 2;
-  left: 30rem;
+  left: 95vw;
+  top: 20vw;
 }
 
 .carouselSpan {
   top: 10rem;
   font-size: xx-large;
   position: absolute;
+  left: 20vw;
 }

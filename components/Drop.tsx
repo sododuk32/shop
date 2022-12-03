@@ -6,7 +6,7 @@ import React from 'react';
 function Dropbox() {
   return (
     <div>
-      <button type="button">우리브랜드</button>
+      <button type="button">brand</button>
       {/* {/* <div className={style.link}>
         <Link className="link" href="/2">
           <Image src="/icon-category-cases-protection.png" width={99} height={46} />
