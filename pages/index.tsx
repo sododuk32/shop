@@ -9,15 +9,11 @@ import Drop from '../components/Drop';
 import GridPhoto from 'components/GridPhoto';
 import Carouselnomal from 'components/Carouselnomal';
 import CarouselGrid from 'components/CarouselGrid';
-
+import SetLanguage from 'components/SetLanguage';
 const Home: NextPage = () => {
   return (
     <div>
-      <div className={styles.setLanguage}>
-        <Drop />
-        <div></div>
-        <div className={styles.chLanguage}>KO</div>
-      </div>
+      <SetLanguage />
       <Header />
       <div id="banners">
         <div id="bannerImgs" className={styles.bannerImgs}>
@@ -32,7 +28,7 @@ const Home: NextPage = () => {
               </div>
             </div>
           </div>
-          <Image className={styles.keybored} src="/keybored.jpg" alt="asdf" width={500} height={270} />
+          <Image alt="indexKeybored" src="/keybored.jpg" width={800} height={730} />
         </div>
       </div>
       <GridPhoto />

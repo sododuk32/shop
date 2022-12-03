@@ -9,11 +9,11 @@ function GridPhoto() {
         <div className={styles.imgsection}>
           <section className={styles.card}>
             <div className={styles.nextimg}>
-              <Image layout="fixed" src={'/gridp1.jpg'} width={386} height={386} />
+              <Image alt="gridp1" src={'/gridp1.jpg'} width={386} height={386} />
             </div>
             <Link className={styles.h22} href="/1">
               <div>
-                <h3>MAC에 딱.</h3>
+                <h3>MAC에</h3>
                 <h4>나에게 딱</h4>
               </div>
             </Link>
@@ -24,7 +24,7 @@ function GridPhoto() {
           </section>
           <section className={styles.card}>
             <div className={styles.nextimg}>
-              <Image layout="fixed" src={'/gridp2.jpg'} width={386} height={386} />
+              <Image alt="gridp2" src={'/gridp2.jpg'} width={386} height={386} />
             </div>
             <Link className={styles.h22} href="/1">
               <div>
@@ -41,7 +41,7 @@ function GridPhoto() {
           </section>
           <section className={styles.card}>
             <div className={styles.nextimg}>
-              <Image layout="fixed" src={'/gridp3.jpg'} width={386} height={386} />
+              <Image alt="gridp3" src={'/gridp3.jpg'} width={386} height={386} />
             </div>
             <Link className={styles.h22} href="/1">
               <div>
