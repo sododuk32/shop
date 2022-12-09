@@ -1,4 +1,4 @@
-.menuspanPannel {
+.menuspanNoid {
   position: absolute;
   left: 40%;
   top: 15vw;
@@ -7,33 +7,42 @@
   margin: 0 auto;
 }
 
-.menuspanPannel > h1 {
+.menuspanNoid > h1 {
   font-size: 2.5vw;
   text-align: center;
 }
 
-.menuspanPannel > button {
+.menuspanNoid > button {
   margin: 0 auto;
 }
+
 .btns {
   height: 70px;
   width: 20vw;
   display: flex;
   justify-content: center;
 }
-.menuBtn1,
-.menuBtn2 {
+.menuBtn1 {
+  height: 2.6vw;
   font-weight: bold;
-  font-size: 0.95rem;
+  font-size: 0.8vw;
   padding-left: 30px;
   padding-right: 30px;
   margin-top: 20px;
   text-align: center;
-}
-.menuBtn1 {
   background-color: black;
   color: white;
 }
+.menuBtn2 {
+  font-weight: bold;
+  font-size: 0.8vw;
+  padding-left: 1.2vw;
+  padding-right: 1.2vw;
+  margin-top: 20px;
+  text-align: center;
+  margin-left: 15px;
+}
+
 .menuBtn1:hover {
   background-color: white;
   color: black;
@@ -41,6 +50,23 @@
 .menuBtn2:hover {
   border: solid 3px;
 }
-.menuBtn2 {
-  margin-left: 15px;
+
+.menuspanYesid {
+  position: absolute;
+  left: 40%;
+  top: 15vw;
+  font-weight: bold;
+
+  margin: 0 auto;
+}
+
+.yesbtns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.yesbtns > h2 {
+  font: bolder;
+  font-size: 900;
+  font-weight: 1000;
 }

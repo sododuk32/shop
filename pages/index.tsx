@@ -10,6 +10,8 @@ import GridPhoto from 'components/GridPhoto';
 import Carouselnomal from 'components/Carouselnomal';
 import CarouselGrid from 'components/CarouselGrid';
 import SetLanguage from 'components/SetLanguage';
+import { useCookies } from 'react-cookie';
+
 const Home: NextPage = () => {
   return (
     <div>

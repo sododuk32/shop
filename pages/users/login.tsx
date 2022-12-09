@@ -14,6 +14,8 @@ import { Button, FormControl, FormControlProps } from 'react-bootstrap';
 import Image from 'next/image';
 import { useState } from 'react';
 import { useCookies } from 'react-cookie';
+import { useRouter } from 'next/router';
+import { useQuery } from 'react-query';
 
 function login() {
   interface infoes {
@@ -24,7 +26,11 @@ function login() {
   const [userPassword, setPassword] = useState('');
   const [jwtk, setjwtk] = useState('');
   const [cookies, setCookie] = useCookies(['jwt']);
-
+  const router = useRouter();
+  const { data, isError, error, isLoading } = useQuery({
+    queryKey: ['UID'],
+    queryFn: () => Promise.resolve(5),
+  });
   let sendJson: infoes = { usersid: '', userspw: '' };
 
   const onChangeId = (e: any) => {
@@ -53,9 +59,15 @@ function login() {
       })
 
       .then((res) => {
+        if (res.data.message === true) {
+          return alert('아이디 비밀번호 중 하나가 틀렸습니다');
+        }
         console.log(res.data.jwtToken);
         mytoken = res.data.jwtToken;
+        console.log('asdf');
+
         setCookie('jwt', mytoken, { path: '/' });
+        router.push('/');
       })
       .catch(function (error) {
         if (error.response) {
@@ -66,6 +78,8 @@ function login() {
 
   return (
     <div>
+      <div>{data}</div>
+
       <section className={styles.loginBody}>
         <div className={styles.loginimg}>
           <Image src={'/mainlogo.jpg'} fill alt="a" />
