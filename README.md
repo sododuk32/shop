@@ -1,34 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+ testing
 
-## Getting Started
+![grab-landing-page](https://raw.githubusercontent.com/sododuk32/shop/bc93cf0785c6d8de29adabfa0bec5308be14e1a9/pages/brr.gif)
 
-First, run the development server:
+now im working on adapt react-query on my shop repo 
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fsododuk32%2Fsododuk32&count_bg=%236655D9&title_bg=%23C5D540&icon=reverbnation.svg&icon_color=%23E7E7E7&title=VISIT&edge_flat=false)
+<div id="pannel">
+ <H2> what i can do ▽
+ 
+ ![ts](https://img.shields.io/badge/Typescript-13.0.3-black)
+ ![ts](https://img.shields.io/badge/Next.js-13.0.3-black)
+ ![ts](https://img.shields.io/badge/React-18.2.0-purple)
+ ![ts](https://img.shields.io/badge/ReactQuery-3.39.2-purple)
+  
+ ![ts](https://img.shields.io/badge/bootstrap-5.2.2-purple)
+ ![ts](https://img.shields.io/badge/axios-1.2.0-blue)
+ ![ts](https://img.shields.io/badge/npm-5.74.0-red)
+ ![ts](https://img.shields.io/badge/express-4.18-black)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+</div>
+<p align="center">
+  <a href="https://nextjs.org">
+    <h1 align="center"></h1>
+  </a>
+</p>
+ 
+ 사진 및 기능 업로드 할곳 
+<!-- https://stackoverflow.com/questions/34341808/is-there-a-way-to-add-a-gif-to-a-markdown-file
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+ -->
