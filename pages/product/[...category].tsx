@@ -71,7 +71,6 @@ function Product() {
       let temp = tags;
       temp = temp.filter((element) => element !== event?.target?.id);
       return setTags(temp);
-      // 재렌더링 안됨.
     }
   };
 
