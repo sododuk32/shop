@@ -1,13 +1,15 @@
-<div>
- <h2>
- 프로젝트 소개 
- </h2>
- 로지텍 웹페이지의 ui, 기능들을 보기만 한 다음 따라해보는 프로젝트입니다
- https://www.logitech.com/
-</div>
+ testing
 
-<div id="pannel">
- <H2>사용기술 ▽
+![grab-landing-page](https://raw.githubusercontent.com/sododuk32/shop/bc93cf0785c6d8de29adabfa0bec5308be14e1a9/pages/brr.gif)
+
+  <p align="center">
+  <header>
+ <h1>프로젝트 소개</h1>  
+ 로지텍 홈페이지의 디자인과 기능을보고 따라해보는 프로젝트로서 
+ 여러가지 컴포넌트와 기술들을 사용 및 재현 해보았습니다.
+ https://www.logitech.com/
+  
+ <H2> 사용 기술 ▽</h2>
  
  ![ts](https://img.shields.io/badge/Typescript-13.0.3-black)
  ![ts](https://img.shields.io/badge/Next.js-13.0.3-black)
@@ -19,18 +21,12 @@
  ![ts](https://img.shields.io/badge/npm-5.74.0-red)
  ![ts](https://img.shields.io/badge/express-4.18-black)
 
-</div>
-<div>
- <h2>
-  주요 기능 및 페이지 소개  
- </h2>
-
-index페이지 | 제품페이지
---------------------------------------------------- | --------------------------------------------------- 
-![index](https://user-images.githubusercontent.com/37325163/207046416-d5ca180c-f0c5-42b7-8d72-d4f341549a1e.gif) |![checkbox](https://user-images.githubusercontent.com/37325163/207048950-1b018c1f-f713-40f5-9415-67748f6f2633.gif)
-기능 | 기능
-로지텍웹의 index | 원하는 물품 검색 기능
-grid기능을 사용해표현한 케러셀  |  api요청을 통한 컨텐츠의 동적 렌더링 , 받아온 api정보를 통한 페이지 네이션,제품 
-
+</div>   
+    </header>
  
- </div>
+<body>
+ <h2>주요 기능 및 페이지 소개 </h2>
+  <div>
+  <h3>index페이지 </h3>
+  </div>
+</body>
