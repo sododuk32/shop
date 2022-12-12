@@ -69,7 +69,7 @@ function Product() {
       let targetId: number = tags.indexOf(event?.target?.id);
       console.log('빼기실행' + targetId);
       let temp = tags;
-      temp = temp.splice(targetId, 1);
+      temp = temp.filter((element) => element !== event?.target?.id);
       return setTags(temp);
       // 재렌더링 안됨.
     }

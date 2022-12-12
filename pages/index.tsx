@@ -15,27 +15,31 @@ import { useCookies } from 'react-cookie';
 const Home: NextPage = () => {
   return (
     <div>
-      <SetLanguage />
-      <Header />
-      <div id="banners">
-        <div id="bannerImgs" className={styles.bannerImgs}>
-          <div className={styles.colorPannel}>
-            <div className={styles.spanContainer}>
-              <div className={styles.panneldiv1}>나만의</div>
-              <div className={styles.panneldiv2}>컬러 찾기</div>
-              <div className={styles.panneldivsmall}>K380 키보드 및 Pebble 마우스</div>
-              <div className={styles.btnBox}>
-                <button className={styles.overBtn}>K380 키보드</button>
-                <button className={styles.underBtn}>PEBBLE 알아보기</button>
+      <header>
+        <SetLanguage />
+        <Header />
+      </header>
+      <section>
+        <div id="banners">
+          <div id="bannerImgs" className={styles.bannerImgs}>
+            <div className={styles.colorPannel}>
+              <div className={styles.spanContainer}>
+                <div className={styles.panneldiv1}>나만의</div>
+                <div className={styles.panneldiv2}>컬러 찾기</div>
+                <div className={styles.panneldivsmall}>K380 키보드 및 Pebble 마우스</div>
+                <div className={styles.btnBox}>
+                  <button className={styles.overBtn}>K380 키보드</button>
+                  <button className={styles.underBtn}>PEBBLE 알아보기</button>
+                </div>
               </div>
             </div>
+            <Image alt="indexKeybored" src="/keybored.jpg" width={800} height={730} />
           </div>
-          <Image alt="indexKeybored" src="/keybored.jpg" width={800} height={730} />
         </div>
-      </div>
-      <GridPhoto />
-      <CarouselGrid />
-      <Carouselnomal />
+        <GridPhoto />
+        <CarouselGrid />
+        <Carouselnomal />
+      </section>
     </div>
   );
 };

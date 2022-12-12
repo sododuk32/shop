@@ -62,9 +62,9 @@ function login() {
         if (res.data.message === true) {
           return alert('아이디 비밀번호 중 하나가 틀렸습니다');
         }
-        console.log(res.data.jwtToken);
+        console.log(res);
         mytoken = res.data.jwtToken;
-        console.log('asdf');
+        console.log(mytoken);
 
         setCookie('jwt', mytoken, { path: '/' });
         router.push('/');

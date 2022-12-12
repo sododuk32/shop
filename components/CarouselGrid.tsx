@@ -16,7 +16,6 @@ function CarouselGrid() {
 
     if (nowslide === 1) {
       ctns.style.transform = 'translate3d(-133.6rem, 0px, 0px)';
-      console.log((document.getElementById('slide2').ariaHidden = 'false'));
       setslide('3');
     }
 
@@ -59,47 +58,47 @@ function CarouselGrid() {
           <div id="boxs" className={styles.boxs}>
             <div id="slide1" data-slide-index="1" aria-hidden="true" className={styles.gridbox1}>
               <div className={styles.keyboardwhite}>
-                <Image src={'/keyboardwhite.jpg'} layout="fill" objectFit="scale-down" />
+                <Image src={'/keyboardwhite.jpg'} alt="1" fill />
                 <span>1</span>
               </div>
               <div className={styles.headset}>
-                <Image src={'/headset.jpg'} layout="fill" objectFit="scale-down" />
+                <Image src={'/headset.jpg'} alt="1" fill />
               </div>
               <div className={styles.laptop}>
-                <Image src={'/laptop.jpg'} layout="fill" objectFit="scale-down" />
+                <Image src={'/laptop.jpg'} alt="1" fill />
               </div>
               <div className={styles.webcam}>
-                <Image src={'/webcam.jpg'} layout="fill" objectFit="scale-down" />
+                <Image src={'/webcam.jpg'} alt="1" fill />
               </div>
             </div>
             <div id="slide2" data-slide-index="2" aria-hidden="true" className={styles.gridbox2}>
               <div className={styles.keyboardwhite}>
-                <Image src={'/keyboardwhite.jpg'} layout="fill" objectFit="scale-down" />
+                <Image src={'/keyboardwhite.jpg'} alt="1" fill />
                 <span>2</span>
               </div>
               <div className={styles.headset}>
-                <Image src={'/headset.jpg'} layout="fill" objectFit="scale-down" />
+                <Image src={'/headset.jpg'} alt="1" fill />
               </div>
               <div className={styles.laptop}>
-                <Image src={'/laptop.jpg'} layout="fill" objectFit="scale-down" />
+                <Image src={'/laptop.jpg'} alt="1" fill />
               </div>
               <div className={styles.webcam}>
-                <Image src={'/webcam.jpg'} layout="fill" objectFit="scale-down" />
+                <Image src={'/webcam.jpg'} alt="1" fill />
               </div>
             </div>
             <div id="slide3" data-slide-index="3" aria-hidden="true" className={styles.gridbox3}>
               <div className={styles.keyboardwhite}>
-                <Image src={'/keyboardwhite.jpg'} layout="fill" objectFit="scale-down" />
+                <Image src={'/keyboardwhite.jpg'} alt="1" fill />
                 <span>3</span>
               </div>
               <div className={styles.headset}>
-                <Image src={'/headset.jpg'} layout="fill" objectFit="scale-down" />
+                <Image src={'/headset.jpg'} alt="1" fill />
               </div>
               <div className={styles.laptop}>
-                <Image src={'/laptop.jpg'} layout="fill" objectFit="scale-down" />
+                <Image src={'/laptop.jpg'} alt="1" fill />
               </div>
               <div className={styles.webcam}>
-                <Image src={'/webcam.jpg'} layout="fill" objectFit="scale-down" />
+                <Image src={'/webcam.jpg'} alt="1" fill />
               </div>
             </div>
           </div>

@@ -14,7 +14,7 @@ function Goods() {
   const productid = router.query.pid;
 
   //pid가지고 서버에서 data가져와서 보여주기
-  //오늘할것. pid로 보여줄 페이지 만들기,로그인 페이지만들기
+  //오늘할것. pid로 보여줄 페이지 만들기 ->해야함,로그인 페이지만들기v
   const [openpreciseInfo, setpreciseInfo] = useState(false);
   const [opensystemReq, setopensystemReq] = useState(false);
   const [openintegrement, setopenintegrement] = useState(false);
@@ -95,8 +95,19 @@ function Goods() {
                 <span>&#43;</span>
               </Button>
               <Collapse in={opensystemReq}>
-                <div id="ssss">sfd</div>
+                <div id="ssss">ㅁㄴㅇ</div>
               </Collapse>
+            </div>
+            <div>
+              {/* 여기다 장바구니에 추가하는 함수 넣기. */}
+              <Button
+                className={`${styles.systemReq} ${'btn-light'}`}
+                onClick={() => setopensupport(!opensupport)}
+                aria-controls="example-collapse-text"
+                aria-expanded={opensupport}
+              >
+                <span>구매</span>
+              </Button>
             </div>
           </section>
         </div>
