@@ -43,7 +43,7 @@
 
 ![Cap 2022-12-12 22-36-49-323](https://user-images.githubusercontent.com/37325163/207058393-9ecd4b81-d068-4ea1-9955-d02b82a86b23.png)
 
--<code> pages</code> : next js 라우터 기능을 사용하기 위해 사용합니다.
+- <code> pages</code> : next js 라우터 기능을 사용하기 위해 사용합니다.
 
 - <code>index</code> : 카피코딩 프로젝트의 메인 페이지입니다. -<code> pagess</code> : 여러 모듈을 먼저 시험해보는 개발 전용 페이지 입니다.
 - <code>product 폴더</code>: 상품페이지와 상품상세 페이지를 동적 라우팅한 폴더입니다.
