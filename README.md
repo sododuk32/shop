@@ -1,34 +1,36 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div>
+ <h2>
+ 프로젝트 소개 
+ </h2>
+ 로지텍 웹페이지의 ui, 기능들을 보기만 한 다음 따라해보는 프로젝트입니다
+ https://www.logitech.com/
+</div>
 
-## Getting Started
+<div id="pannel">
+ <H2>사용기술 ▽
+ 
+ ![ts](https://img.shields.io/badge/Typescript-13.0.3-black)
+ ![ts](https://img.shields.io/badge/Next.js-13.0.3-black)
+ ![ts](https://img.shields.io/badge/React-18.2.0-purple)
+ ![ts](https://img.shields.io/badge/ReactQuery-3.39.2-purple)
+  
+ ![ts](https://img.shields.io/badge/bootstrap-5.2.2-purple)
+ ![ts](https://img.shields.io/badge/axios-1.2.0-blue)
+ ![ts](https://img.shields.io/badge/npm-5.74.0-red)
+ ![ts](https://img.shields.io/badge/express-4.18-black)
 
-First, run the development server:
+</div>
+<div>
+ <h2>
+  주요 기능 및 페이지 소개  
+ </h2>
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+index페이지 | 제품페이지
+--------------------------------------------------- | --------------------------------------------------- 
+![index](https://user-images.githubusercontent.com/37325163/207046416-d5ca180c-f0c5-42b7-8d72-d4f341549a1e.gif) |![checkbox](https://user-images.githubusercontent.com/37325163/207048950-1b018c1f-f713-40f5-9415-67748f6f2633.gif)
+기능 | 기능
+로지텍웹의 index | 원하는 물품 검색 기능
+grid기능을 사용해표현한 케러셀  |  api요청을 통한 컨텐츠의 동적 렌더링 , 받아온 api정보를 통한 페이지 네이션,제품 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+ 
+ </div>
