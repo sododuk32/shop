@@ -1,12 +1,13 @@
- testing
+<div>
+ <h2>
+ 프로젝트 소개 
+ </h2>
+ 로지텍 웹페이지의 ui, 기능들을 보기만 한 다음 따라해보는 프로젝트입니다
+ https://www.logitech.com/
+</div>
 
-![grab-landing-page](https://raw.githubusercontent.com/sododuk32/shop/bc93cf0785c6d8de29adabfa0bec5308be14e1a9/pages/brr.gif)
-
-now im working on adapt react-query on my shop repo 
-
-![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fsododuk32%2Fsododuk32&count_bg=%236655D9&title_bg=%23C5D540&icon=reverbnation.svg&icon_color=%23E7E7E7&title=VISIT&edge_flat=false)
 <div id="pannel">
- <H2> what i can do ▽
+ <H2>사용기술 ▽
  
  ![ts](https://img.shields.io/badge/Typescript-13.0.3-black)
  ![ts](https://img.shields.io/badge/Next.js-13.0.3-black)
@@ -19,13 +20,17 @@ now im working on adapt react-query on my shop repo
  ![ts](https://img.shields.io/badge/express-4.18-black)
 
 </div>
-<p align="center">
-  <a href="https://nextjs.org">
-    <h1 align="center"></h1>
-  </a>
-</p>
- 
- 사진 및 기능 업로드 할곳 
-<!-- https://stackoverflow.com/questions/34341808/is-there-a-way-to-add-a-gif-to-a-markdown-file
+<div>
+ <h2>
+  주요 기능 및 페이지 소개  
+ </h2>
 
- -->
+index페이지 | 제품페이지
+--------------------------------------------------- | --------------------------------------------------- 
+![index](https://user-images.githubusercontent.com/37325163/207046416-d5ca180c-f0c5-42b7-8d72-d4f341549a1e.gif) |![checkbox](https://user-images.githubusercontent.com/37325163/207048950-1b018c1f-f713-40f5-9415-67748f6f2633.gif)
+기능 | 기능
+로지텍웹의 index | 원하는 물품 검색 기능
+grid기능을 사용해표현한 케러셀  |  api요청을 통한 컨텐츠의 동적 렌더링 , 받아온 api정보를 통한 페이지 네이션,제품 
+
+ 
+ </div>
