@@ -1,0 +1,42 @@
+.menuspanYesid {
+  position: absolute;
+  left: 40%;
+  top: 15vw;
+  font-weight: bold;
+
+  margin: 0 auto;
+}
+.menuBtn1 {
+  height: 2.6vw;
+  font-weight: bold;
+  font-size: 0.8vw;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 20px;
+  text-align: center;
+  background-color: black;
+  color: white;
+}
+.menuBtn2 {
+  font-weight: bold;
+  font-size: 0.8vw;
+  padding-left: 1.2vw;
+  padding-right: 1.2vw;
+  margin-top: 20px;
+  text-align: center;
+  margin-left: 15px;
+}
+.btns {
+  height: 70px;
+  width: 20vw;
+  display: flex;
+  justify-content: center;
+}
+
+.menuBtn1:hover {
+  background-color: white;
+  color: black;
+}
+.menuBtn2:hover {
+  border: solid 3px;
+}

@@ -1,0 +1,19 @@
+.menuspanNoid {
+  position: absolute;
+  left: 40%;
+  top: 15vw;
+  font-weight: bold;
+
+  margin: 0 auto;
+}
+
+.yesbtns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.yesbtns > h2 {
+  font: bolder;
+  font-size: 900;
+  font-weight: 1000;
+}
