@@ -31,7 +31,6 @@ function login() {
     queryKey: ['UID'],
     queryFn: () => Promise.resolve(5),
   });
-  let sendJson: infoes = { usersid: '', userspw: '' };
 
   const onChangeId = (e: any) => {
     setEmail(e.target.value);
@@ -40,11 +39,6 @@ function login() {
     setPassword(e.target.value);
   };
 
-  /*
-  e: React.FormEvent<FormControlProps> & {
-      target: HTMLInputElement;
-    },
-  */
   let mytoken = '';
 
   function sendingInfo() {

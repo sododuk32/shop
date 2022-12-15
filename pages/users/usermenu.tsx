@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useCallback, useEffect, useState } from 'react';
@@ -10,16 +11,44 @@ import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { useQuery } from 'react-query';
 import logined from 'components/logined';
-import needLogin from 'components/needlogin';
+import { abort } from 'process';
 // 1번.coockies가 존재할때 상태관리로 패칭.->받아온 정보를 오브젝트화 시켜서 여기저기서 쓰고 하면됨->인증여부만 확인하면됨->설계의 문제임
 // 2번.쿠키가 존재한다면 일딴 패칭.->매번 정보 받아와야함->설계의 문제임. ->이쪽이 더 편함
-function usermenu() {
+function usermenu(props: any) {
   const [cookies, setCookie, removeCookie] = useCookies<string>(['jwt']);
+  let mydatang;
   interface loginInfo {
     mytoken: boolean;
     usersIdentity: string;
   }
   const tempc = cookies.jwt;
+  const { isLoading, isError, data, error } = useQuery('myUid', authId);
+
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
+
+  if (isError) {
+    return <span>Error: {isError}</span>;
+  }
+  if (data) {
+    alert(data);
+  }
+
+  function authId() {
+    axios
+      .get('http://localhost:8080/verify', {
+        headers: {
+          'Content-Type': `application/json`,
+          withCredentials: true,
+          Authorization: cookies.jwt,
+        },
+      })
+      .then((res) => {
+        console.log('전송 완료');
+        return (mydatang = res.data);
+      });
+  }
 
   return (
     <div>
@@ -33,6 +62,9 @@ function usermenu() {
           <div id="pannelImg">
             <Image className={styles.heroImg} src="/userMenuimg.png" priority alt="sd" width={1900} height={400} />
           </div>
+          <div>{props.fetchMessage}</div>
+          <div>{props.fetchUid}</div>
+          {/* <div>{data}</div> */}
           {/* <div id="menubox">{tempc ? logined : needLogin}</div> */}
           {/* 둘다 안보이게 한다음 getinitprops로 받아온값이 login이면 logined를 보이게 css변경 아니면 선택창 뜨게하기. 
 이렇게하면 next 서버의 dom과 클라이언트의dom은 다름없지만 단순 css만 변경되는것 처럼 보임. 상태관리 먼저 선행 필요  */}
