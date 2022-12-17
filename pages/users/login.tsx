@@ -27,10 +27,6 @@ function login() {
   const [jwtk, setjwtk] = useState('');
   const [cookies, setCookie] = useCookies(['jwt']);
   const router = useRouter();
-  const { data, isError, error, isLoading } = useQuery({
-    queryKey: ['UID'],
-    queryFn: () => Promise.resolve(5),
-  });
 
   const onChangeId = (e: any) => {
     setEmail(e.target.value);
@@ -46,7 +42,10 @@ function login() {
       usersid: Email,
       userspw: userPassword,
     };
-
+    if (sendJson.usersid.length < 1 || sendJson.userspw.length < 1) {
+      alert('아이디와 비밀번호를 제대로 입력하세요');
+      return null;
+    }
     axios
       .post('http://localhost:8080/login', JSON.stringify(sendJson), {
         headers: { 'Content-Type': `application/json` },
@@ -72,8 +71,6 @@ function login() {
 
   return (
     <div>
-      <div>{data}</div>
-
       <section className={styles.loginBody}>
         <div className={styles.loginimg}>
           <Image src={'/mainlogo.jpg'} fill alt="a" />
