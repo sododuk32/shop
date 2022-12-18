@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
@@ -8,18 +9,46 @@ import Image from 'next/image';
 import { Button, Collapse } from 'react-bootstrap';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-
-function Goods() {
+import axios from 'axios';
+import verifyUser from 'components/verifyUser';
+function Goods(verifyUser: any) {
   const router = useRouter();
   const productid = router.query.pid;
-
-  //pid가지고 서버에서 data가져와서 보여주기
-  //오늘할것. pid로 보여줄 페이지 만들기 ->해야함,로그인 페이지만들기v
+  interface loginInfo {
+    checkLogin: boolean;
+    usersIdentity: string;
+    yourId: string;
+  }
+  const serverurl = 'http://localhost:8080';
+  verifyUser;
   const [openpreciseInfo, setpreciseInfo] = useState(false);
   const [opensystemReq, setopensystemReq] = useState(false);
   const [openintegrement, setopenintegrement] = useState(false);
   const [opensupport, setopensupport] = useState(false);
-
+  const [thisPid, setThispid] = useState<number>(0);
+  const onChangeamount = (e: any) => {
+    const tempPid = Number(e.target.value);
+    return setThispid(tempPid);
+  };
+  function putIncart(e: any) {
+    if (!verifyUser.userInfo.checkLogin) {
+      console.log('로그인필요');
+      return alert('로그인이 필요합니다.');
+    }
+    axios
+      .post(serverurl + '/putIncart/', { uid: verifyUser.usersIdentity, pid: productid, amount: thisPid })
+      .then((res) => {
+        console.log(res);
+        if (res.data?.message === 'complete') {
+          return alert('상품을 담았습니다.');
+        } else throw Error;
+      })
+      .catch((Error) => {
+        alert('에러발생');
+        console.log(Error);
+        return null;
+      });
+  }
   return (
     <div>
       <section className={styles.goodsHeader}>
@@ -46,14 +75,14 @@ function Goods() {
               <Button
                 className={`${styles.preciseInfo} ${'btn-light'}`}
                 onClick={() => setpreciseInfo(!openpreciseInfo)}
-                aria-controls="ssss"
+                aria-controls="detailInfo"
                 aria-expanded={openpreciseInfo}
               >
                 <span>사양 세부 정보</span>
                 <span>&#43;</span>
               </Button>
               <Collapse in={openpreciseInfo}>
-                <div id="ssss">sfd</div>
+                <div id="detailInfo">사양 세부 정보</div>
               </Collapse>
             </div>
             <div>
@@ -67,7 +96,7 @@ function Goods() {
                 <span>&#43;</span>
               </Button>
               <Collapse in={opensystemReq}>
-                <div id="ssss">sfd</div>
+                <div id="detailInfo">시스템 요구 사항 세부정보</div>
               </Collapse>
             </div>
             <div>
@@ -81,7 +110,7 @@ function Goods() {
                 <span>&#43;</span>
               </Button>
               <Collapse in={openintegrement}>
-                <div id="ssss">sfd</div>
+                <div id="detailInfo">구성품세부정보</div>
               </Collapse>
             </div>
             <div>
@@ -90,24 +119,26 @@ function Goods() {
                 onClick={() => setopensupport(!opensupport)}
                 aria-controls="example-collapse-text"
                 aria-expanded={opensupport}
-              >
-                <span>지원</span>
-                <span>&#43;</span>
-              </Button>
+              ></Button>
               <Collapse in={opensystemReq}>
-                <div id="ssss">ㅁㄴㅇ</div>
+                <div id="detailInfo">시스템요구사항...</div>
               </Collapse>
             </div>
             <div>
               {/* 여기다 장바구니에 추가하는 함수 넣기. */}
               <Button
+                id="buyBtn"
                 className={`${styles.systemReq} ${'btn-light'}`}
-                onClick={() => setopensupport(!opensupport)}
+                onClick={putIncart}
                 aria-controls="example-collapse-text"
                 aria-expanded={opensupport}
               >
-                <span>구매</span>
+                <span>{productid}번 상품 구매</span>
               </Button>
+              <div id="amount">
+                <input id="amountText" onChange={onChangeamount} aria-label="0" type="text" />
+                <span>{thisPid}</span>
+              </div>
             </div>
           </section>
         </div>

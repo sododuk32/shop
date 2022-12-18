@@ -20,6 +20,7 @@ function usermenu(props: any) {
   interface loginInfo {
     checkLogin: boolean;
     usersIdentity: string;
+    yourId: string;
   }
   let userInfo: loginInfo;
   const { isLoading, isError, data, error, isSuccess } = useQuery({ queryKey: ['myUid'], queryFn: authId, retry: 1 });
@@ -32,12 +33,14 @@ function usermenu(props: any) {
     userInfo = {
       checkLogin: false,
       usersIdentity: '0',
+      yourId: '',
     };
   }
   if (data) {
     userInfo = {
       checkLogin: data.data.message,
       usersIdentity: data.data.userid,
+      yourId: data.data.yourId,
     };
   }
 
@@ -77,11 +80,11 @@ function usermenu(props: any) {
           <div>{props.fetchMessage}</div>
           <div>{props.fetchUid}</div>
           {/* <div>{data}</div> */}
-          <div id="menubox">{userInfo?.checkLogin ? logined(userInfo?.usersIdentity, removeCookie) : needLogin()}</div>
+          <div id="menubox">{userInfo?.checkLogin ? logined(userInfo?.yourId, removeCookie) : needLogin()}</div>
           {/* 둘다 안보이게 한다음 getinitprops로 받아온값이 login이면 logined를 보이게 css변경 아니면 선택창 뜨게하기. 
 이렇게하면 next 서버의 dom과 클라이언트의dom은 다름없지만 단순 css만 변경되는것 처럼 보임. 상태관리 먼저 선행 필요  */}
-          <button>1</button>
-          <button>2</button>
+          <button>나의 장바구니</button>
+          <button>주문 정보 및 현황</button>
         </div>
       </section>
 
