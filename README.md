@@ -42,7 +42,8 @@
 
 - <code> pages</code> : next js 라우터 기능을 사용하기 위해 사용합니다.
 
-- <code>index</code> : 카피코딩 프로젝트의 메인 페이지입니다. -<code> pagess</code> : 여러 모듈을 먼저 시험해보는 개발 전용 페이지 입니다.
+- <code>index</code> : 카피코딩 프로젝트의 메인 페이지입니다.
+- <code> pagess</code> : 여러 모듈을 먼저 시험해보는 개발 전용 페이지 입니다.
 - <code>product 폴더</code>: 상품페이지와 상품상세 페이지를 동적 라우팅한 폴더입니다.
 - <code>goods 폴더</code>: 상품팡세 페이지를 동적라우팅 기능을 사용하기위해 만든 폴더입니다
 - <code>[...category]</code> : 쿼리스트링에서 처럼 입력받은category를 바탕으로 제품정보api통신으로 받아서 렌더링 해주는 다이나믹 라우팅 페이지 입니다.
