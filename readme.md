@@ -47,9 +47,10 @@
 - <code>product 폴더</code>: 상품페이지와 상품상세 페이지를 동적 라우팅한 폴더입니다.
 - <code>goods 폴더</code>: 상품팡세 페이지를 동적라우팅 기능을 사용하기위해 만든 폴더입니다
 - <code>[...category]</code> : 쿼리스트링에서 처럼 입력받은category를 바탕으로 제품정보api통신으로 받아서 렌더링 해주는 다이나믹 라우팅 페이지 입니다.
-- <code>[pid]</code> : 쿼리스트링에서 제품번호를 받아 해당 제품 상세정보를api통신으로 받아 표현해주는 다이나믹 라우팅 페이지 입니다.
+- <code>[pid]</code> : 쿼리스트링에서 제품번호를 받아 해당 제품 상세정보를api통신으로 받아 표현해주는 다이나믹 라우팅 페이지 입니다. 장바구니 추가 기능 또한 포함이 되어있습니다.
 - <code>users</code>: 로그인 및 사용자 정보를 위한 페이지들이 모인 폴더입니다
 - <code>login</code> : login을 위해만든 페이지입니다. id pw를 서버로보내 확인하고 jwt를 발급받습니다
 - <code>usermenu</code> : 로그인 후 쿠키에 담긴 jwt를 사용해 유저의 정보를 인증하고 해당 유저의 정보를 받아서 표현해주는 페이지입니다.
+- <code>components</code> : 페이지나 컴포넌트에 삽입할 컴포넌트가 담긴 폴더입니다.
 
 ![Footer](https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=footer)
