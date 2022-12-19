@@ -6,7 +6,7 @@ export function middleware(req: NextRequest) {
   const pathnames = req.nextUrl;
 
   if (!pathnames.pathname.indexOf('?page=')) {
-    return NextResponse.redirect(new URL('/product/mouse?page=1', req.url));
+    return NextResponse.redirect(new URL('/product/mouse', req.url));
   }
 }
 

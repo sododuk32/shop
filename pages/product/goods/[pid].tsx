@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -10,8 +11,9 @@ import { Button, Collapse } from 'react-bootstrap';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import verifyUser from 'components/verifyUser';
-function Goods(verifyUser: any) {
+import { getCookies } from 'cookies-next';
+
+function Goods(info: any) {
   const router = useRouter();
   const productid = router.query.pid;
   interface loginInfo {
@@ -19,8 +21,10 @@ function Goods(verifyUser: any) {
     usersIdentity: string;
     yourId: string;
   }
+
   const serverurl = 'http://localhost:8080';
-  verifyUser;
+  const verifyUser: loginInfo = info;
+
   const [openpreciseInfo, setpreciseInfo] = useState(false);
   const [opensystemReq, setopensystemReq] = useState(false);
   const [openintegrement, setopenintegrement] = useState(false);
@@ -31,7 +35,7 @@ function Goods(verifyUser: any) {
     return setThispid(tempPid);
   };
   function putIncart(e: any) {
-    if (!verifyUser.userInfo.checkLogin) {
+    if (!verifyUser.checkLogin) {
       console.log('로그인필요');
       return alert('로그인이 필요합니다.');
     }
@@ -148,3 +152,4 @@ function Goods(verifyUser: any) {
 }
 
 export default Goods;
+
