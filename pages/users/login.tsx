@@ -15,8 +15,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/router';
-import { useQuery } from 'react-query';
-
+import { QueryClient, QueryClientProvider } from 'react-query';
 function login() {
   interface infoes {
     usersid: string;
@@ -27,6 +26,7 @@ function login() {
   const [jwtk, setjwtk] = useState('');
   const [cookies, setCookie] = useCookies(['jwt']);
   const router = useRouter();
+  const queryClient = new QueryClient();
 
   const onChangeId = (e: any) => {
     setEmail(e.target.value);
@@ -37,7 +37,17 @@ function login() {
 
   let mytoken = '';
 
-  function sendingInfo() {
+  function updater() {
+    return axios.post('http://localhost:8080/verify', {
+      headers: {
+        'Content-Type': `application/json`,
+        withCredentials: true,
+        Authorization: mytoken,
+      },
+    });
+  }
+
+  async function sendingInfo() {
     let sendJson: infoes = {
       usersid: Email,
       userspw: userPassword,
@@ -46,7 +56,7 @@ function login() {
       alert('아이디와 비밀번호를 제대로 입력하세요');
       return null;
     }
-    axios
+    await axios
       .post('http://localhost:8080/login', JSON.stringify(sendJson), {
         headers: { 'Content-Type': `application/json` },
       })
@@ -57,10 +67,12 @@ function login() {
         }
         console.log(res);
         mytoken = res.data.jwtToken;
-        console.log(mytoken);
-
         setCookie('jwt', mytoken, { path: '/' });
-        router.push('/');
+      })
+      .then(async () => {
+        await queryClient.setQueryData('userInfo', updater);
+        console.log('then setquery 문');
+        return router.push('/');
       })
       .catch(function (error) {
         if (error.response) {
