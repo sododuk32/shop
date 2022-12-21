@@ -11,8 +11,12 @@ import Carouselnomal from 'components/Carouselnomal';
 import CarouselGrid from 'components/CarouselGrid';
 import SetLanguage from 'components/SetLanguage';
 import { useCookies } from 'react-cookie';
+import { QueryClient, useQuery } from 'react-query';
 
 const Home: NextPage = () => {
+  const queryClient = new QueryClient();
+  const data = queryClient.getQueryData('userInfo');
+
   return (
     <div>
       <header>

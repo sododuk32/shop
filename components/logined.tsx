@@ -6,9 +6,13 @@ import { useCookies } from 'react-cookie';
 import Link from 'next/link';
 import styles from './logined.module.css';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 function logined(user: string, removeCookie: Function) {
+  const router = useRouter();
+
   function logout() {
     removeCookie('jwt', { path: '/' });
+    return router.push('/users/usermenu');
   }
   return (
     <div>

@@ -15,7 +15,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/router';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, useQuery } from 'react-query';
 function login() {
   interface infoes {
     usersid: string;
@@ -27,6 +27,13 @@ function login() {
   const [cookies, setCookie] = useCookies(['jwt']);
   const router = useRouter();
   const queryClient = new QueryClient();
+  const { isError, data, refetch, error, isSuccess, status } = useQuery({
+    queryKey: ['userInfo'],
+    queryFn: updater,
+    retry: 1,
+    enabled: false,
+    cacheTime: 60 * 60 * 1000,
+  });
 
   const onChangeId = (e: any) => {
     setEmail(e.target.value);
@@ -38,7 +45,8 @@ function login() {
   let mytoken = '';
 
   function updater() {
-    return axios.post('http://localhost:8080/verify', {
+    console.log('updater실행');
+    return axios.get('http://localhost:8080/verify', {
       headers: {
         'Content-Type': `application/json`,
         withCredentials: true,
@@ -47,7 +55,7 @@ function login() {
     });
   }
 
-  async function sendingInfo() {
+  function sendingInfo() {
     let sendJson: infoes = {
       usersid: Email,
       userspw: userPassword,
@@ -56,28 +64,39 @@ function login() {
       alert('아이디와 비밀번호를 제대로 입력하세요');
       return null;
     }
-    await axios
+
+    axios
       .post('http://localhost:8080/login', JSON.stringify(sendJson), {
         headers: { 'Content-Type': `application/json` },
       })
 
       .then((res) => {
         if (res.data.message === true) {
-          return alert('아이디 비밀번호 중 하나가 틀렸습니다');
+          throw error;
         }
-        console.log(res);
+        console.log('토큰삽입 then문');
         mytoken = res.data.jwtToken;
-        setCookie('jwt', mytoken, { path: '/' });
       })
-      .then(async () => {
-        await queryClient.setQueryData('userInfo', updater);
-        console.log('then setquery 문');
-        return router.push('/');
-      })
-      .catch(function (error) {
-        if (error.response) {
-          alert('아이디 비밀번호 중 하나가 틀렸습니다');
+      .then(() => {
+        console.log('토큰삽입 다음 콜백실행');
+        refetch(); //useQuery 직접실행문
+        if (isError) {
+          console.log('error문실행');
+          throw error;
+          //보낼 쿠키값이 없을때 발생하거나, 서버측에 이상이있을때 발생함.
         }
+        if (isSuccess) {
+          setCookie('jwt', mytoken, { path: '/' });
+          console.log('setquery then문');
+          return router.push('/');
+        }
+
+        // queryClient.setQueryData('userInfo', updater);
+
+        console.log('setQueryData 콜백문 실행');
+      })
+      .catch((error) => {
+        return alert('아이디 비밀번호 중 하나가 틀렸습니다');
       });
   }
 
