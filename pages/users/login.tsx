@@ -71,7 +71,8 @@ function login() {
       })
 
       .then((res) => {
-        if (res.data.message === true) {
+        console.log(res.data.message);
+        if (res.data.message === 'true') {
           throw error;
         }
         console.log('토큰삽입 then문');
@@ -86,6 +87,7 @@ function login() {
           //보낼 쿠키값이 없을때 발생하거나, 서버측에 이상이있을때 발생함.
         }
         if (isSuccess) {
+          queryClient.invalidateQueries({ queryKey: ['userInfo'] });
           setCookie('jwt', mytoken, { path: '/' });
           console.log('setquery then문');
           return router.push('/');
@@ -96,7 +98,8 @@ function login() {
         console.log('setQueryData 콜백문 실행');
       })
       .catch((error) => {
-        return alert('아이디 비밀번호 중 하나가 틀렸습니다');
+        alert('아이디 비밀번호 중 하나가 틀렸습니다');
+        return null;
       });
   }
 
