@@ -54,4 +54,6 @@
 - <code>components</code> : 페이지나 컴포넌트에 삽입할 컴포넌트가 담긴 폴더입니다.
 - <code>404</code> : 잘못된 경로를 입력했을때 진입하게되는 페이지 입니다.
 
-![Footer](https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=footer)
+- <code>fetching</code> : axios로 api통신하는 api호출 함수를 모아둔 파일입니다.
+
+  ![Footer](https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=footer)
