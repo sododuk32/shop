@@ -12,6 +12,7 @@
  ![ts](https://img.shields.io/badge/Typescript-13.0.3-black)
  ![ts](https://img.shields.io/badge/Next.js-13.0.3-black)
  ![ts](https://img.shields.io/badge/React-18.2.0-purple)
+ ![ts](https://img.shields.io/badge/redux-purple)
  ![ts](https://img.shields.io/badge/ReactQuery-3.39.2-purple)
   
  ![ts](https://img.shields.io/badge/bootstrap-5.2.2-purple)
