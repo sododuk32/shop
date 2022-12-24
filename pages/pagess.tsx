@@ -19,6 +19,7 @@ function pagess() {
           <Accordion.Body>2</Accordion.Body>
         </Accordion.Item>
       </Accordion>
+      <div id="temp1"></div>
     </div>
   );
 }
