@@ -4,6 +4,10 @@
  </h2>
  로지텍 웹페이지의 ui, 기능들을 보기만 한 다음 따라해보는 프로젝트입니다
  https://www.logitech.com/
+ 
+ 현제 상태관리 도입중이며 클라이언트 브라우저 쪽은 redux , 서버측은 react-query로 진행할 예정이며
+ 추후 구글 클라우드 플랫폼 을 사용하여 프론트, api 라이브 서버를 만들 예정입니다.
+ 
 </div>
 
 <div id="pannel">
@@ -12,6 +16,7 @@
  ![ts](https://img.shields.io/badge/Typescript-13.0.3-black)
  ![ts](https://img.shields.io/badge/Next.js-13.0.3-black)
  ![ts](https://img.shields.io/badge/React-18.2.0-purple)
+ ![ts](https://img.shields.io/badge/redux-purple)
  ![ts](https://img.shields.io/badge/ReactQuery-3.39.2-purple)
   
  ![ts](https://img.shields.io/badge/bootstrap-5.2.2-purple)
