@@ -1,4 +1,4 @@
-import axios from 'axios';
+import temp from './axios';
 import { useCookies } from 'react-cookie';
 
 const serverurl = 'http://localhost:8080';
@@ -26,7 +26,7 @@ export async function updater() {
     return 'nodata';
   }
   console.log('updater실행');
-  return axios.get(serverurl + '/verify', {
+  return temp.get('/verify', {
     headers: {
       'Content-Type': `application/json`,
       withCredentials: true,

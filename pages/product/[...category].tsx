@@ -16,7 +16,7 @@ import ProductCard from 'components/ProductCard';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import ProductPagenation from '../../components/ProductPagenation';
-import { postProduct } from 'pages/users/ApiCall';
+import { postProduct } from 'lib/ApiCall';
 function Product() {
   interface productInfo {
     productId: number;

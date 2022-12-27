@@ -11,7 +11,7 @@ import { Button, Collapse } from 'react-bootstrap';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import { postInputCart } from 'pages/users/ApiCall';
+import { postInputCart } from 'lib/ApiCall';
 function Goods(info: any) {
   const router = useRouter();
   const productid = router.query.pid;

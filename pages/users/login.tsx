@@ -7,7 +7,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import styles from './login.module.css';
-import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { Button, FormControl, FormControlProps } from 'react-bootstrap';
@@ -16,7 +15,7 @@ import { useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/router';
 import { QueryClient, useQuery } from 'react-query';
-import { postLogin, updater } from './ApiCall';
+import { postLogin, updater } from '../../lib/ApiCall';
 function login() {
   interface infoes {
     usersid: string;

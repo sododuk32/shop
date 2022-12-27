@@ -11,8 +11,9 @@ import { useCookies } from 'react-cookie';
 import { dehydrate, QueryClient, useQuery } from 'react-query';
 import logined from 'components/logined';
 import needLogin from 'components/needLogin';
-import { updater } from './ApiCall';
+import { updater } from '../../lib/ApiCall';
 import Link from 'next/link';
+
 export async function getStaticProps() {
   const queryClient = new QueryClient();
 
