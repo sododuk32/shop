@@ -48,7 +48,7 @@ function Product() {
     console.log('렌더링됨');
     console.log(tags);
     if (router.isReady) {
-      category = router?.query?.category[0];
+      category = router.asPath.substring(9);
       startFetching(category);
     }
   }, [router.isReady, currentPage, tags]);

@@ -33,7 +33,7 @@ function Header() {
       <div id="navContainer" className={styles.navContainer}>
         <div>
           <Link href="/" className={styles.linkhome}>
-            <Image src="/mainlogo.jpg" width={116} height={36} />
+            <Image alt="nothing" src="/mainlogo.jpg" width={116} height={36} />
           </Link>
         </div>
         <div>

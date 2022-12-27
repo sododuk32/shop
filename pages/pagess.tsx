@@ -3,8 +3,6 @@
 import React from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import styles from './pagess.module.css';
-import axios from 'axios';
-import { getCookie } from 'cookies-next';
 
 function pagess() {
   return (

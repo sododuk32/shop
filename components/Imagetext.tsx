@@ -5,16 +5,16 @@ function Imagetext() {
   return (
     <div>
       <div className={styles.imgbox}>
-        <Image className={styles.imgself} src={'/sircuit.jpg'} layout="fill" objectFit="fill" />
+        <Image alt="nothing" className={styles.imgself} src={'/sircuit.jpg'} fill />
       </div>
       <div className={styles.imgbox}>
-        <Image className={styles.imgself} src={'/sircuit.jpg'} layout="fill" objectFit="fill" />
+        <Image alt="nothing" className={styles.imgself} src={'/sircuit.jpg'} fill />
       </div>
       <div className={styles.imgbox}>
-        <Image className={styles.imgself} src={'/sircuit.jpg'} layout="fill" objectFit="fill" />
+        <Image alt="nothing" className={styles.imgself} src={'/sircuit.jpg'} fill />
       </div>
       <div className={styles.imgbox}>
-        <Image className={styles.imgself} src={'/sircuit.jpg'} layout="fill" objectFit="fill" />
+        <Image alt="nothing" className={styles.imgself} src={'/sircuit.jpg'} fill />
         <h1 className={styles.imgspan}>안녕</h1>
       </div>
     </div>

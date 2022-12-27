@@ -68,15 +68,15 @@ function Carouselnomal() {
     <div>
       <div className={styles.carouselBox}>
         <div id="box1" className={styles.carouselContainer}>
-          <Image layout="responsive" width={1100} height={450} quality={100} className={styles.carouselImg1} src={'/pcrplastic.jpg'} />
+          <Image alt="nothing" width={1100} height={450} quality={100} className={styles.carouselImg1} src={'/pcrplastic.jpg'} />
           <span className={styles.carouselSpan}>1</span>
         </div>
         <div id="box2" className={styles.carouselContainer}>
-          <Image layout="responsive" width={1050} height={450} quality={100} className={styles.carouselImg2} src={'/sircuit.jpg'}></Image>
+          <Image alt="nothing" width={1050} height={450} quality={100} className={styles.carouselImg2} src={'/sircuit.jpg'}></Image>
           <span className={styles.carouselSpan}>2</span>
         </div>
         <div id="box3" className={styles.carouselContainer}>
-          <Image layout="responsive" width={1050} height={450} quality={100} className={styles.carouselImg3} src={'/logicares.jpg'} />
+          <Image alt="nothing" width={1050} height={450} quality={100} className={styles.carouselImg3} src={'/logicares.jpg'} />
           <span className={styles.carouselSpan}>3</span>
         </div>
         <button className={styles.nextBtn} onClick={nextbtn}>

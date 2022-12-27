@@ -1,4 +1,4 @@
-import temp from './axios';
+import { temp } from './temp';
 import { useCookies } from 'react-cookie';
 
 const serverurl = 'http://localhost:8080';
@@ -49,7 +49,7 @@ export async function updater() {
  */
 export async function postProduct(category: string, currentPage: number, tags: string[]) {
   console.log('postProduct실행');
-  return axios.post(serverurl + '/productInfo/' + category + '/' + currentPage, { tags });
+  return temp.post(serverurl + '/productInfo/' + category + '/' + currentPage, { tags });
 }
 /**
  * 로그인을 위한 post통신
@@ -62,7 +62,7 @@ export async function postProduct(category: string, currentPage: number, tags: s
  */
 export async function postLogin(sendJson: string) {
   console.log('postLogin실행');
-  return axios.post(serverurl + '/login', sendJson, {
+  return temp.post(serverurl + '/login', sendJson, {
     headers: { 'Content-Type': `application/json` },
   });
 }
@@ -83,5 +83,5 @@ export async function postLogin(sendJson: string) {
  */
 export async function postInputCart(uid: string, pid: string | string[] | undefined, amount: number) {
   console.log('postLogin실행');
-  return axios.post(serverurl + '/putIncart/', { uid: uid, pid: pid, amout: amount });
+  return temp.post(serverurl + '/putIncart/', { uid: uid, pid: pid, amout: amount });
 }

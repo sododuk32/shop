@@ -6,7 +6,6 @@ import styles from './usermenu.module.css';
 import SetLanguage from 'components/SetLanguage';
 import Header from 'components/Header';
 import Image from 'next/image';
-import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { dehydrate, QueryClient, useQuery } from 'react-query';
 import logined from 'components/logined';
@@ -37,19 +36,16 @@ function usermenu() {
   const queryClient = new QueryClient();
   let myname: string;
 
-  const { isError, data, refetch, error, isSuccess, status } = useQuery({
-    queryKey: ['userInfo'],
-    queryFn: updater,
-    retry: 1,
-    cacheTime: 60 * 60 * 1000,
-  });
-  if (data) {
-    myname = data.data.usersIdentity;
-  }
+  // const { isError, data, refetch, error, isSuccess, status } = useQuery({
+  //   queryKey: ['userInfo'],
+  //   queryFn: updater,
+  //   retry: 1,
+  //   cacheTime: 60 * 60 * 1000,
+  // });
+  // if (data) {
+  //   myname = data.data?.usersIdentity;
+  // }
 
-  function mybtns(e: any) {
-    console.log(data);
-  }
   // 1. queryfn은 QueryFunctionContext 객체 형식으로 반환되야하는대
   // 2. queryKey: EnsuredQueryKey<TQueryKey>;
   //     signal?: AbortSignal;
@@ -75,7 +71,9 @@ function usermenu() {
             <Image className={styles.heroImg} src="/userMenuimg.png" priority alt="sd" width={1900} height={400} />
           </div>
 
-          <div id="menubox">{myname ? logined(myname, removeCookie) : needLogin()}</div>
+          <div id="menubox">{needLogin()}</div>
+
+          {/* <div id="menubox">{myname ? logined(myname, removeCookie) : needLogin()}</div> */}
           {/* 둘다 안보이게 한다음 getinitprops로 받아온값이 login이면 logined를 보이게 css변경 아니면 선택창 뜨게하기. 
 이렇게하면 next 서버의 dom과 클라이언트의dom은 다름없지만 단순 css만 변경되는것 처럼 보임. 상태관리 먼저 선행 필요  */}
           <section className={styles.usersMenus}>

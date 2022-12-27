@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { CookiesProvider } from 'react-cookie';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import wrapper from '../public/stores/index';
 
 const client = new QueryClient({
   defaultOptions: {
@@ -25,4 +24,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default wrapper.withRedux(MyApp);
+export default MyApp;
