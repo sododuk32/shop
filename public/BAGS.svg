@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="81px" height="81px" viewBox="0 0 81 81" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="My-Account---Logitech" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Phase-2---Landing-(Authenticated)" transform="translate(-488.000000, -713.000000)">
+            <g id="1" transform="translate(342.000000, 713.000000)">
+                <g id="icon" transform="translate(146.000000, 0.000000)">
+                    <g id="Group-2" stroke="#C3C6C8" stroke-width="2.4">
+                        <circle id="Path" cx="40.5" cy="40.5" r="39.3"></circle>
+                    </g>
+                    <g id="cart" transform="translate(19.000000, 33.000000)">
+                        <polyline id="Stroke-1" stroke="#C3C6C8" stroke-width="2.4" points="0 0.0233859684 7.44963219 0 14.4766313 15.6 30.4614259 15.6 36.4 0.0124725165"></polyline>
+                        <path d="M16,23 C16,24.1041137 15.1051295,25 14,25 C12.8958863,25 12,24.1041137 12,23 C12,21.8958863 12.8958863,21 14,21 C15.1051295,21 16,21.8958863 16,23" id="Fill-3" fill="#C3C6C8"></path>
+                        <path d="M32,23 C32,24.1041137 31.1051295,25 30,25 C28.8958863,25 28,24.1041137 28,23 C28,21.8958863 28.8958863,21 30,21 C31.1051295,21 32,21.8958863 32,23" id="Fill-3-Copy" fill="#C3C6C8"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

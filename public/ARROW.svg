@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="81px" height="81px" viewBox="0 0 81 81" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="My-Account---Logitech" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Phase-2---Landing-(Authenticated)" transform="translate(-910.000000, -713.000000)" stroke="#C3C6C8" stroke-width="2.4">
+            <g id="2" transform="translate(816.000000, 713.000000)">
+                <g id="icon" transform="translate(94.000000, 0.000000)">
+                    <g id="Group-2">
+                        <circle id="Path" cx="40.5" cy="40.5" r="39.3"></circle>
+                    </g>
+                    <g id="compass" transform="translate(26.000000, 29.000000)">
+                        <polygon id="Stroke-3" points="26 0 0 11.2301105 9.64876609 16.9955801 15.2049173 27"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -12,6 +12,7 @@ import { dehydrate, QueryClient, useQuery } from 'react-query';
 import logined from 'components/logined';
 import needLogin from 'components/needLogin';
 import { updater } from './fetching';
+import Link from 'next/link';
 export async function getStaticProps() {
   const queryClient = new QueryClient();
 
@@ -79,16 +80,122 @@ function usermenu() {
       <section id="heroPannel">
         <div id="hero">
           <div id="pannelImg">
-            <Image className={styles.heroImg} src="/userMenuimg.png" priority alt="sd" width={1900} height={400} />
+            <Image className={styles.heroImg} src="/userMenuimg.png" priority alt="sd" width={1800} height={400} />
           </div>
 
-          {/* <div>{data}</div> */}
           <div id="menubox">{myname ? logined(myname, removeCookie) : needLogin()}</div>
           {/* 둘다 안보이게 한다음 getinitprops로 받아온값이 login이면 logined를 보이게 css변경 아니면 선택창 뜨게하기. 
 이렇게하면 next 서버의 dom과 클라이언트의dom은 다름없지만 단순 css만 변경되는것 처럼 보임. 상태관리 먼저 선행 필요  */}
-          <button>나의 장바구니</button>
-          <button>주문 정보 및 현황</button>
-          <button onClick={mybtns}></button>
+          <section className={styles.usersMenus}>
+            <div className={styles.usercard}>
+              <span className={styles.userssbtn}>
+                <Image alt="dd" src="/BAGS.svg" width={98} height={98} />
+              </span>
+              <h3>나의정보</h3>
+              <span className={styles.explain}>주문을 추적 또는 수정하고, 주문을 반환하고, 계정을 관리합니다.</span>
+              <div className={styles.links}>
+                <Link className={styles.link} href="/users/profile">
+                  나의정보 &gt;
+                </Link>
+                <Link className={styles.link} href="/users/orders">
+                  주문 정보 &gt;{' '}
+                </Link>
+                <Link className={styles.link} href="/users/bags">
+                  장바구니 &gt;{' '}
+                </Link>
+              </div>
+            </div>
+            <div className={styles.usercard}>
+              <span className={styles.userssbtn}>
+                <Image alt="dd" src="/BAGS.svg" width={98} height={98} />
+              </span>
+              <h3>나의정보</h3>
+              <span className={styles.explain}>주문을 추적 또는 수정하고, 주문을 반환하고, 계정을 관리합니다.</span>
+              <div className={styles.links}>
+                <Link className={styles.link} href="/users/profile">
+                  나의정보 &gt;{' '}
+                </Link>
+                <Link className={styles.link} href="/users/orders">
+                  주문 정보 &gt;{' '}
+                </Link>
+                <Link className={styles.link} href="/users/bags">
+                  장바구니 &gt;{' '}
+                </Link>
+              </div>
+            </div>
+            <div className={styles.usercard}>
+              <span className={styles.userssbtn}>
+                <Image alt="dd" src="/BAGS.svg" width={98} height={98} />
+              </span>
+              <h3>나의정보</h3>
+              <span className={styles.explain}>주문을 추적 또는 수정하고, 주문을 반환하고, 계정을 관리합니다.</span>
+              <div className={styles.links}>
+                <Link className={styles.link} href="/users/profile">
+                  나의정보 &gt;{' '}
+                </Link>
+                <Link className={styles.link} href="/users/orders">
+                  주문 정보 &gt;{' '}
+                </Link>
+                <Link className={styles.link} href="/users/bags">
+                  장바구니 &gt;{' '}
+                </Link>
+              </div>
+            </div>
+            <div className={styles.usercard}>
+              <span className={styles.userssbtn}>
+                <Image alt="dd" src="/BAGS.svg" width={98} height={98} />
+              </span>
+              <h3>나의정보</h3>
+              <span className={styles.explain}>주문을 추적 또는 수정하고, 주문을 반환하고, 계정을 관리합니다.</span>
+              <div className={styles.links}>
+                <Link className={styles.link} href="/users/profile">
+                  나의정보 &gt;{' '}
+                </Link>
+                <Link className={styles.link} href="/users/orders">
+                  주문 정보 &gt;{' '}
+                </Link>
+                <Link className={styles.link} href="/users/bags">
+                  장바구니 &gt;{' '}
+                </Link>
+              </div>
+            </div>
+            <div className={styles.usercard}>
+              <span className={styles.userssbtn}>
+                <Image alt="dd" src="/BAGS.svg" width={98} height={98} />
+              </span>
+              <h3>나의정보</h3>
+              <span className={styles.explain}>주문을 추적 또는 수정하고, 주문을 반환하고, 계정을 관리합니다.</span>
+              <div className={styles.links}>
+                <Link className={styles.link} href="/users/profile">
+                  나의정보 &gt;{' '}
+                </Link>
+                <Link className={styles.link} href="/users/orders">
+                  주문 정보 &gt;{' '}
+                </Link>
+                <Link className={styles.link} href="/users/bags">
+                  장바구니 &gt;{' '}
+                </Link>
+              </div>
+            </div>
+            <div className={styles.usercard}>
+              <span className={styles.userssbtn}>
+                <Image alt="dd" src="/BAGS.svg" width={98} height={98} />
+              </span>
+              <h3>나의정보</h3>
+              <span className={styles.explain}>주문을 추적 또는 수정하고, 주문을 반환하고, 계정을 관리합니다.</span>
+              <div className={styles.links}>
+                <Link className={styles.link} href="/users/profile">
+                  나의정보 &gt;{' '}
+                </Link>
+                <Link className={styles.link} href="/users/orders">
+                  주문 정보 &gt;{' '}
+                </Link>
+                <Link className={styles.link} href="/users/bags">
+                  장바구니 &gt;{' '}
+                </Link>
+              </div>
+            </div>
+          </section>
         </div>
       </section>
 

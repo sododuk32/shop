@@ -15,3 +15,43 @@
 .menuspanNoid > button {
   margin: 0 auto;
 }
+.usersMenus {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 50vw;
+  margin: 0 auto;
+}
+.usersMenus > button {
+  margin-right: 8vw;
+}
+.usercard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 15vw;
+  margin-top: 5vw;
+}
+
+.userssbtn {
+  height: 5vw;
+  width: 5vw;
+  border-radius: 3vw;
+  background-color: #f0f1f1;
+  position: relative;
+}
+
+.explain {
+  width: 70%;
+  color: #6f7678;
+}
+
+.links {
+  text-decoration-line: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.link {
+  text-decoration-line: none;
+}
