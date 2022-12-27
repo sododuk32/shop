@@ -5,13 +5,14 @@ export default function Custom404() {
     history.back();
   };
   const tempStyle = {
-    position: 'relative',
+    width: '100%',
+    height: '100%',
   };
 
   return (
     <>
       <div style={tempStyle}>
-        <Image src="/error.jpg" onClick={handleHistory} alt="a" width={2000} height={1200} />
+        <Image src="/error.jpg" onClick={handleHistory} alt="a" width={1910} height={940} />
       </div>
     </>
   );

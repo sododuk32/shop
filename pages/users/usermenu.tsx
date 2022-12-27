@@ -11,7 +11,7 @@ import { useCookies } from 'react-cookie';
 import { dehydrate, QueryClient, useQuery } from 'react-query';
 import logined from 'components/logined';
 import needLogin from 'components/needLogin';
-import { updater } from './fetching';
+import { updater } from './ApiCall';
 import Link from 'next/link';
 export async function getStaticProps() {
   const queryClient = new QueryClient();
@@ -60,15 +60,6 @@ function usermenu() {
   // 만약 채워지지않고 오류가 나올 경우엔 에러핸들링 문으로 이동한다.
   // Record <Key, Type> 형식은 키가 Key이고 값이 Type인 객체 타입입니다.
   // 결과: 그냥 return axios...하니까 됨
-  function authId() {
-    return axios.get('http://localhost:8080/verify', {
-      headers: {
-        'Content-Type': `application/json`,
-        withCredentials: true,
-        Authorization: cookies.jwt,
-      },
-    });
-  }
 
   return (
     <div>
@@ -80,7 +71,7 @@ function usermenu() {
       <section id="heroPannel">
         <div id="hero">
           <div id="pannelImg">
-            <Image className={styles.heroImg} src="/userMenuimg.png" priority alt="sd" width={1800} height={400} />
+            <Image className={styles.heroImg} src="/userMenuimg.png" priority alt="sd" width={1900} height={400} />
           </div>
 
           <div id="menubox">{myname ? logined(myname, removeCookie) : needLogin()}</div>

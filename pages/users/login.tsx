@@ -16,6 +16,7 @@ import { useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/router';
 import { QueryClient, useQuery } from 'react-query';
+import { postLogin, updater } from './ApiCall';
 function login() {
   interface infoes {
     usersid: string;
@@ -44,58 +45,31 @@ function login() {
 
   let mytoken = '';
 
-  function updater() {
-    console.log('updater실행');
-    return axios.get('http://localhost:8080/verify', {
-      headers: {
-        'Content-Type': `application/json`,
-        withCredentials: true,
-        Authorization: mytoken,
-      },
-    });
-  }
-
   function sendingInfo() {
-    let sendJson: infoes = {
+    let userInput: infoes = {
       usersid: Email,
       userspw: userPassword,
     };
-    if (sendJson.usersid.length < 1 || sendJson.userspw.length < 1) {
+    console.log(userInput);
+    if (userInput.usersid.length < 1 || userInput.userspw.length < 1) {
       alert('아이디와 비밀번호를 제대로 입력하세요');
       return null;
     }
-
-    axios
-      .post('http://localhost:8080/login', JSON.stringify(sendJson), {
-        headers: { 'Content-Type': `application/json` },
-      })
-
+    const sendJson = JSON.stringify(userInput);
+    postLogin(sendJson)
       .then((res) => {
         console.log(res.data.message);
         if (res.data.message === 'true') {
           throw error;
         }
-        console.log('토큰삽입 then문');
         mytoken = res.data.jwtToken;
       })
       .then(() => {
         console.log('토큰삽입 다음 콜백실행');
         refetch(); //useQuery 직접실행문
-        if (isError) {
-          console.log('error문실행');
-          throw error;
-          //보낼 쿠키값이 없을때 발생하거나, 서버측에 이상이있을때 발생함.
-        }
-        if (isSuccess) {
-          queryClient.invalidateQueries({ queryKey: ['userInfo'] });
-          setCookie('jwt', mytoken, { path: '/' });
-          console.log('setquery then문');
-          return router.push('/');
-        }
-
-        // queryClient.setQueryData('userInfo', updater);
-
-        console.log('setQueryData 콜백문 실행');
+        setCookie('jwt', mytoken, { path: '/' });
+        // 로그인 성공시
+        //return router.push('/users/usermenu');
       })
       .catch((error) => {
         alert('아이디 비밀번호 중 하나가 틀렸습니다');

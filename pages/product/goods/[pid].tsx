@@ -11,8 +11,7 @@ import { Button, Collapse } from 'react-bootstrap';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-import { getCookies } from 'cookies-next';
-
+import { postInputCart } from 'pages/users/ApiCall';
 function Goods(info: any) {
   const router = useRouter();
   const productid = router.query.pid;
@@ -39,8 +38,8 @@ function Goods(info: any) {
       console.log('로그인필요');
       return alert('로그인이 필요합니다.');
     }
-    axios
-      .post(serverurl + '/putIncart/', { uid: verifyUser.usersIdentity, pid: productid, amount: thisPid })
+    const yourChoice = { uid: verifyUser.usersIdentity, pid: productid, amount: thisPid };
+    postInputCart(yourChoice.uid, yourChoice.pid, yourChoice.amount)
       .then((res) => {
         console.log(res);
         if (res.data?.message === 'complete') {
@@ -152,4 +151,3 @@ function Goods(info: any) {
 }
 
 export default Goods;
-

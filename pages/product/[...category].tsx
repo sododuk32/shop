@@ -14,11 +14,9 @@ import Button from 'react-bootstrap/Button';
 import Collapse from 'react-bootstrap/Collapse';
 import ProductCard from 'components/ProductCard';
 import { useRouter } from 'next/router';
-import Pagination from 'react-bootstrap/Pagination';
 import axios from 'axios';
 import ProductPagenation from '../../components/ProductPagenation';
-import { CheckboxProps } from '@mui/material';
-
+import { postProduct } from 'pages/users/ApiCall';
 function Product() {
   interface productInfo {
     productId: number;
@@ -52,8 +50,6 @@ function Product() {
     if (router.isReady) {
       category = router?.query?.category[0];
       startFetching(category);
-
-      // console.log('라우터 쿼리' + router.query.category[0]);
     }
   }, [router.isReady, currentPage, tags]);
 
@@ -79,11 +75,8 @@ function Product() {
       router.push('/product/mouse');
       return;
     }
-    console.log('api통신 시작');
-    axios
-      .post(serverurl + '/productInfo/' + category + '/' + currentPage, { tags })
+    postProduct(category, currentPage, tags)
       .then((res) => {
-        console.log(serverurl + '/productInfo/' + category + '/' + currentPage);
         let tempjson = res.data.sqltemp;
         tempjson = JSON.parse(tempjson);
         totalpage = Math.floor(Number(res.data.total) / 20) + 1;
