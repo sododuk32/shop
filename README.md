@@ -5,6 +5,10 @@
  로지텍 웹페이지의 ui, 기능들을 보기만 한 다음 따라해보는 프로젝트입니다
  https://www.logitech.com/
  
+ 배포 주소 : https://shop-front-372501.dt.r.appspot.com/product/mouse
+ 현제 api와 db연결은 하지 않아 주요기능들 사용불가능
+ 
+ 프로젝트 현황:
  현제 상태관리 도입중이며 클라이언트 브라우저 쪽은 redux , 서버측은 react-query로 진행할 예정이며
  추후 구글 클라우드 플랫폼 을 사용하여 프론트, api 라이브 서버를 만들 예정입니다.
  
