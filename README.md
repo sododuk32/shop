@@ -24,7 +24,7 @@
  ![ts](https://img.shields.io/badge/Next.js-13.0.3-black)
  ![ts](https://img.shields.io/badge/React-18.2.0-purple)
  ![ts](https://img.shields.io/badge/redux-purple)
- ![ts](https://img.shields.io/badge/ReactQuery-3.39.2-purple)
+
   
  ![ts](https://img.shields.io/badge/bootstrap-5.2.2-purple)
  ![ts](https://img.shields.io/badge/axios-1.2.0-blue)
@@ -69,3 +69,4 @@
 - <code>fetching</code> : axios로 api통신하는 api호출 함수를 모아둔 파일입니다.
 
   ![Footer](https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=footer)
+  // ![ts](https://img.shields.io/badge/ReactQuery-3.39.2-purple)
