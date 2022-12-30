@@ -2,11 +2,18 @@
  <h2>
  프로젝트 소개 
  </h2>
- 로지텍 웹페이지의 ui, 기능들을 보기만 한 다음 따라해보는 프로젝트입니다
- https://www.logitech.com/
+ 로지텍 웹페이지의 ui, 기능들을 보기만 한 다음 따라해보는 프로젝트입니다<br>
+ https://www.logitech.com/ <br>
  
- 현제 상태관리 도입중이며 클라이언트 브라우저 쪽은 redux , 서버측은 react-query로 진행할 예정이며
- 추후 구글 클라우드 플랫폼 을 사용하여 프론트, api 라이브 서버를 만들 예정입니다.
+ 배포 주소 : https://shop-front-372501.dt.r.appspot.com<br>
+ 현제 api와 db연결은 하지 않아 api요청이 필요한 기능들은 모조리 사용불가능합니다. <br>
+ <br>
+ 프로젝트 현황:<br>
+1순위. gcp 배포[프론트페이지 업로드완료, api서버 업로드완료.  db연결중 ]<br>
+2순위. 프론트 페이지 추가 제작 및 next 13업데이트로 인한 리펙토링. , 클라이언트 전역 상태 관리를 위한 redux도입<br>
+3순위. 쿠키를 사용한 로그인 유지.<br>
+4순위. 가능하다면, 서버상태관리를 위한 react-query 사용.<br>
+
  
 </div>
 
@@ -17,7 +24,7 @@
  ![ts](https://img.shields.io/badge/Next.js-13.0.3-black)
  ![ts](https://img.shields.io/badge/React-18.2.0-purple)
  ![ts](https://img.shields.io/badge/redux-purple)
- ![ts](https://img.shields.io/badge/ReactQuery-3.39.2-purple)
+
   
  ![ts](https://img.shields.io/badge/bootstrap-5.2.2-purple)
  ![ts](https://img.shields.io/badge/axios-1.2.0-blue)
@@ -62,3 +69,4 @@
 - <code>fetching</code> : axios로 api통신하는 api호출 함수를 모아둔 파일입니다.
 
   ![Footer](https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=footer)
+  // ![ts](https://img.shields.io/badge/ReactQuery-3.39.2-purple)
