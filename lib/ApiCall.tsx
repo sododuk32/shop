@@ -1,7 +1,7 @@
 import { temp } from './temp';
 import { useCookies } from 'react-cookie';
 
-const serverurl = 'http://localhost:8080';
+const serverurl = 'https://34.97.28.149/:80';
 /**
  * 엑세스 jwt키 값을 헤더의 auth에 넣는 사용자 인증api
  *

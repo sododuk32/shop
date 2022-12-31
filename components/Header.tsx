@@ -11,23 +11,7 @@ import { useScrollDirection } from 'react-use-scroll-direction';
 
 function Header() {
   // const targetRef = useRef<HTMLDivElement>(null);
-  const { isScrollingUp, isScrollingDown } = useScrollDirection();
 
-  // useEffect(() => {
-  //   if (isScrollingUp) {
-  //     if (targetRef.current) {
-  //       targetRef.current.style.position = 'fixed';
-  //       console.log(targetRef.current.style.position);
-  //     }
-  //   }
-  //   if (isScrollingDown) {
-  //     if (targetRef.current) {
-  //       targetRef.current.style.position = 'absolute';
-  //       console.log(targetRef.current.style.position);
-  //     }
-  //   }
-  // }, []);
-  //ref={targetRef}
   return (
     <div>
       <div id="navContainer" className={styles.navContainer}>

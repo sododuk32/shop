@@ -2,9 +2,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from 'axios';
 import { getCookie } from 'cookies-next';
+const defaulturl = 'https://34.97.28.149/:80';
 
 export const temp = axios.create({
-  baseURL: 'http://localhost:8000/',
+  baseURL: defaulturl,
   headers: {
     'Content-Type': `application/json`,
     withCredentials: true,
