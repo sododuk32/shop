@@ -1,7 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { temp } from './temp';
-import { useCookies } from 'react-cookie';
 
-const serverurl = 'https://34.97.28.149/:80';
+const serverurl = 'http://localhost:8080';
 /**
  * 엑세스 jwt키 값을 헤더의 auth에 넣는 사용자 인증api
  *
@@ -20,17 +20,13 @@ const serverurl = 'https://34.97.28.149/:80';
  *    usersIdentity: STRING, 유저 아이디
  *
  */
-export async function updater() {
-  const [cookies] = useCookies<string>(['jwt']);
-  if (cookies === undefined || null) {
-    return 'nodata';
-  }
+export function updater(getcookie: any) {
   console.log('updater실행');
   return temp.get('/verify', {
     headers: {
       'Content-Type': `application/json`,
       withCredentials: true,
-      Authorization: cookies.get('jwt'),
+      Authorization: getcookie,
     },
   });
 }

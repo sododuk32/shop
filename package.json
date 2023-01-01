@@ -28,6 +28,7 @@
     "formidable": "^2.1.1",
     "fslightbox-react": "^1.6.2-2",
     "next": "^13.0.3",
+    "next-cookie": "^2.8.0",
     "next-redux-wrapper": "^8.0.0",
     "react": "18.2.0",
     "react-bootstrap": "^2.5.0",

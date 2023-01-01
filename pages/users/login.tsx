@@ -27,13 +27,13 @@ function login() {
   const [cookies, setCookie] = useCookies(['jwt']);
   const router = useRouter();
   const queryClient = new QueryClient();
-  const { isError, data, refetch, error, isSuccess, status } = useQuery({
-    queryKey: ['userInfo'],
-    queryFn: updater,
-    retry: 1,
-    enabled: false,
-    cacheTime: 60 * 60 * 1000,
-  });
+  // const { isError, data, refetch, error, isSuccess, status } = useQuery({
+  //   queryKey: ['userInfo'],
+  //   queryFn: updater,
+  //   retry: 1,
+  //   enabled: false,
+  //   cacheTime: 60 * 60 * 1000,
+  // });
 
   const onChangeId = (e: any) => {
     setEmail(e.target.value);
@@ -59,16 +59,16 @@ function login() {
       .then((res) => {
         console.log(res.data.message);
         if (res.data.message === 'true') {
-          throw error;
+          throw Error;
         }
         mytoken = res.data.jwtToken;
       })
       .then(() => {
         console.log('토큰삽입 다음 콜백실행');
-        refetch(); //useQuery 직접실행문
+        // refetch(); //useQuery 직접실행문
         setCookie('jwt', mytoken, { path: '/' });
         // 로그인 성공시
-        //return router.push('/users/usermenu');
+        return router.push('/users/usermenu');
       })
       .catch((error) => {
         alert('아이디 비밀번호 중 하나가 틀렸습니다');

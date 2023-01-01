@@ -29,7 +29,6 @@ function Product() {
     totalP: number;
   }
   const router = useRouter();
-  const serverurl = 'http://localhost:8080';
   let category: string | undefined;
   let totalpage: number;
   const allowCategory: string[] = ['mouse', 'keyboard', 'mike'];
