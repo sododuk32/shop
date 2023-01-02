@@ -7,12 +7,10 @@ import styles from './usermenu.module.css';
 import SetLanguage from 'components/SetLanguage';
 import Header from 'components/Header';
 import Image from 'next/image';
-import { dehydrate, QueryClient, useQuery } from 'react-query';
 import logined from 'components/logined';
 import needLogin from 'components/needLogin';
 import { updater } from '../../lib/ApiCall';
 import Link from 'next/link';
-import { getCookie } from 'cookies-next';
 import { GetServerSidePropsContext, NextPageContext } from 'next';
 import { useCookies } from 'react-cookie';
 // export async function getStaticProps() {
@@ -47,28 +45,40 @@ import { useCookies } from 'react-cookie';
 // }
 //https://coding-heesong.tistory.com/69
 function usermenu() {
-  const [return1, setreturn] = useState<JSON>();
+  const [return1, setreturn] = useState<signedInfo>({ message: '', userid: '', usersIdentity: '' });
   const [cookies] = useCookies(['jwt']);
   const [verifyed, setverify] = useState<boolean>(true);
-
+  interface signedInfo {
+    message: string;
+    userid: string;
+    usersIdentity: string;
+  }
   useEffect(() => {
     if (cookies.jwt) {
       console.log('result 실행');
       result();
     }
-  });
+  }, [return1]);
 
   const result = async () => {
-    console.log(cookies.jwt);
-    const update = await updater(cookies.jwt);
-    console.log('update?' + update);
-    setreturn(update);
     if (verifyed) {
+      if (cookies.jwt === undefined || null) {
+        return null;
+      }
       console.log(return1);
+      console.log('token' + cookies.jwt);
+      console.log('verify Boolean' + verifyed);
+      const update = await updater(cookies.jwt);
+      console.log('update?' + update.data);
+      setreturn({
+        message: update.data.message,
+        userid: update.data.userid,
+        usersIdentity: update.data.usersIdentity,
+      });
       return setverify(false);
     }
   };
-  console.log(return1);
+
   return (
     <div>
       <section id="usermenuHeader">
@@ -82,10 +92,9 @@ function usermenu() {
             <Image className={styles.heroImg} src="/userMenuimg.png" priority alt="sd" width={1900} height={400} />
           </div>
           <div id="menubox">{needLogin()}</div>
-
-          {/* <div id="menubox">{myname ? logined(myname, removeCookie) : needLogin()}</div> */}
+          <div id="menubox">{logined(return1?.usersIdentity, verifyed)}</div>
           {/* 둘다 안보이게 한다음 getinitprops로 받아온값이 login이면 logined를 보이게 css변경 아니면 선택창 뜨게하기. 
-이렇게하면 next 서버의 dom과 클라이언트의dom은 다름없지만 단순 css만 변경되는것 처럼 보임. 상태관리 먼저 선행 필요  */}
+이렇게하면 next 서버의 dom과 클라이언트의dom은 다름없지만 단순 css만 변경되는것 처럼 보임.   */}
           <section className={styles.usersMenus}>
             <div className={styles.usercard}>
               <span className={styles.userssbtn}>

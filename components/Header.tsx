@@ -2,12 +2,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import { useEffect, useRef, useState } from 'react';
 import styles from './Header.module.css';
 import Image from 'next/image';
-import { ArrowRight } from 'react-bootstrap-icons';
 import Link from 'next/link';
-import { useScrollDirection } from 'react-use-scroll-direction';
 
 function Header() {
   // const targetRef = useRef<HTMLDivElement>(null);

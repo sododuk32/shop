@@ -11,6 +11,7 @@ import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { Button, FormControl, FormControlProps } from 'react-bootstrap';
 import Image from 'next/image';
+import axios from 'axios';
 import { useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/router';
@@ -41,7 +42,6 @@ function login() {
   const onChangePassword = (e: any) => {
     setPassword(e.target.value);
   };
-
   let mytoken = '';
 
   function sendingInfo() {

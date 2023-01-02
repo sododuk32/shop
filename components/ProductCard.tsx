@@ -5,7 +5,6 @@ import Card from 'react-bootstrap/Card';
 import Image from 'next/image';
 import styles from './ProductCard.module.css';
 import Link from 'next/link';
-import { positions } from '@mui/system';
 interface productInfo {
   productId: number;
   productTag: string;
