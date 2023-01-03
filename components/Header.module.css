@@ -1,4 +1,4 @@
-.navContainer {
+.navContainershow {
   width: 80rem;
   background-color: #ffffff;
   background-color: rgba(255, 255, 255, 0);
@@ -6,9 +6,24 @@
   align-items: center;
   margin-left: 20rem;
   grid-template-columns: 1fr 4.2fr 1fr;
-  position: absolute;
+  position: fixed;
   z-index: 1;
   transition: top 0.2s ease-in-out;
+  visibility: visible;
+  opacity: 10;
+}
+.navContainerhidden {
+  width: 80rem;
+  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0);
+  display: grid;
+  align-items: center;
+  margin-left: 20rem;
+  grid-template-columns: 1fr 4.2fr 1fr;
+  position: fixed;
+  z-index: 1;
+  transition: top 0.2s ease-in-out;
+  visibility: hidden;
 }
 .navBar {
   display: flex;

@@ -1,17 +1,40 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Header.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 
 function Header() {
   // const targetRef = useRef<HTMLDivElement>(null);
+  const [show, setShow] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', controlNavbar);
+
+      return () => {
+        window.removeEventListener('scroll', controlNavbar);
+      };
+    }
+  }, [lastScrollY]);
+
+  const controlNavbar = () => {
+    if (typeof window !== 'undefined') {
+      if (window.scrollY > lastScrollY) {
+        setShow(false);
+      } else {
+        setShow(true);
+      }
+
+      setLastScrollY(window.scrollY);
+    }
+  };
 
   return (
     <div>
-      <div id="navContainer" className={styles.navContainer}>
+      <div id="navContainer" className={show ? styles.navContainershow : styles.navContainerhidden}>
         <div>
           <Link href="/" className={styles.linkhome}>
             <Image alt="nothing" src="/mainlogo.jpg" width={116} height={36} />
