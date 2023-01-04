@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from 'axios';
 import { getCookie } from 'cookies-next';
-const defaulturl = 'http://localhost:8080';
+const defaulturl = 'http://34.97.28.149:80';
 
 export const temp = axios.create({
   baseURL: defaulturl,
