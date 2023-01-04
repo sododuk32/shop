@@ -5,8 +5,7 @@
  로지텍 웹페이지의 ui, 기능들을 보기만 한 다음 따라해보는 프로젝트입니다<br>
  https://www.logitech.com/ <br>
  
- 배포 주소 : https://shop-front-372501.dt.r.appspot.com<br>
- 현제 api와 db연결은 하지 않아 api요청이 필요한 기능들은 모조리 사용불가능합니다. <br>
+
  <br>
  프로젝트 현황 및 작업 우선순위:<br>
 1순위.  쿠키를 사용한 로그인 유지. 12/31 까지 <br>
