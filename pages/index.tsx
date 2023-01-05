@@ -3,14 +3,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type { NextPage } from 'next';
 import styles from './index.module.css';
-import Header from '../components/Header';
+import Header from '../components/commons/Headers/Header';
 import Image from 'next/image';
-import Drop from '../components/Drop';
-import GridPhoto from 'components/GridPhoto';
-import Carouselnomal from 'components/Carouselnomal';
-import CarouselGrid from 'components/CarouselGrid';
-import SetLanguage from 'components/SetLanguage';
-import { useCookies } from 'react-cookie';
+import GridPhoto from '../components/commons/GridPhoto';
+import Carouselnomal from '../components/commons/Carouselnomal';
+import CarouselGrid from '../components/commons/CarouselGrid';
+import SetLanguage from '../components/commons/Headers/SetLanguage';
 import { QueryClient, useQuery } from 'react-query';
 
 const Home: NextPage = () => {

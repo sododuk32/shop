@@ -7,15 +7,14 @@
 import React, { HtmlHTMLAttributes, InputHTMLAttributes } from 'react';
 import styles from './[...category].module.css';
 import { useState, useEffect, useMemo } from 'react';
-import Header from 'components/Header';
-import SetLanguage from 'components/SetLanguage';
+import Header from '../../components/commons/Headers/Header';
+import SetLanguage from '../../components/commons/Headers/SetLanguage';
 import Image from 'next/image';
 import Button from 'react-bootstrap/Button';
 import Collapse from 'react-bootstrap/Collapse';
-import ProductCard from 'components/ProductCard';
+import ProductCard from '../../components/productpage/ProductCard';
 import { useRouter } from 'next/router';
-import axios from 'axios';
-import ProductPagenation from '../../components/ProductPagenation';
+import ProductPagenation from '../../components/productpage/ProductPagenation';
 import { postProduct } from 'lib/ApiCall';
 function Product() {
   interface productInfo {

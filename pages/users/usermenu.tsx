@@ -4,11 +4,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import styles from './usermenu.module.css';
-import SetLanguage from 'components/SetLanguage';
-import Header from 'components/Header';
+import SetLanguage from 'components/commons/Headers/SetLanguage';
+import Header from '../../components/commons/Headers/Header';
 import Image from 'next/image';
-import logined from 'components/logined';
-import needLogin from 'components/needLogin';
+import logined from 'components/userpage/logined';
+import needLogin from 'components/userpage/needLogin';
 import { updater } from '../../lib/ApiCall';
 import Link from 'next/link';
 import { GetServerSidePropsContext, NextPageContext } from 'next';

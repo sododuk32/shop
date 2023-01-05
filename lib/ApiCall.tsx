@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { temp } from './temp';
+import { callAxios } from './callAxios';
 
-const serverurl = 'http://34.97.28.149:80';
+const serverurl = 'https://34.97.28.149:80';
 /**
  * 엑세스 jwt키 값을 헤더의 auth에 넣는 사용자 인증api
  *
@@ -22,7 +22,7 @@ const serverurl = 'http://34.97.28.149:80';
  */
 export function updater(getcookie: any) {
   console.log('updater실행');
-  return temp.get('/verify', {
+  return callAxios.get('/verify', {
     headers: {
       'Content-Type': `application/json`,
       withCredentials: true,
@@ -30,6 +30,16 @@ export function updater(getcookie: any) {
     },
   });
 }
+// const updater2 = async (getcookie: any) => {
+//   const res = await callAxios.get('/verify', {
+//     headers: {
+//       'Content-Type': `application/json`,
+//       withCredentials: true,
+//       Authorization: getcookie,
+//     },
+//   });
+//   return res;
+// };
 /**
  * 상품 게시판 페이지 불러오기
  *
@@ -45,7 +55,7 @@ export function updater(getcookie: any) {
  */
 export async function postProduct(category: string, currentPage: number, tags: string[]) {
   console.log('postProduct실행');
-  return temp.post(serverurl + '/productInfo/' + category + '/' + currentPage, { tags });
+  return callAxios.post(serverurl + '/productInfo/' + category + '/' + currentPage, { tags });
 }
 /**
  * 로그인을 위한 post통신
@@ -58,7 +68,7 @@ export async function postProduct(category: string, currentPage: number, tags: s
  */
 export async function postLogin(sendJson: string) {
   console.log('postLogin실행');
-  return temp.post(serverurl + '/login', sendJson, {
+  return callAxios.post(serverurl + '/login', sendJson, {
     headers: { 'Content-Type': `application/json` },
   });
 }
@@ -79,5 +89,5 @@ export async function postLogin(sendJson: string) {
  */
 export async function postInputCart(uid: string, pid: string | string[] | undefined, amount: number) {
   console.log('postLogin실행');
-  return temp.post(serverurl + '/putIncart/', { uid: uid, pid: pid, amout: amount });
+  return callAxios.post(serverurl + '/putIncart/', { uid: uid, pid: pid, amout: amount });
 }

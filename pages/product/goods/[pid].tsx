@@ -4,8 +4,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import styles from './[pid].module.css';
-import SetLanguage from 'components/SetLanguage';
-import Header from 'components/Header';
+import Header from '../../../components/commons/Headers/Header';
+import SetLanguage from '../../../components/commons/Headers/SetLanguage';
 import Image from 'next/image';
 import { Button, Collapse } from 'react-bootstrap';
 import { useState } from 'react';
