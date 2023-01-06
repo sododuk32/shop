@@ -8,11 +8,23 @@
 
  <br>
  프로젝트 현황 및 작업 우선순위:<br>
-1순위.  쿠키를 사용한 로그인 유지. 12/31 까지 <br>
-2순위. 프론트 페이지 추가 제작 및 next 13업데이트로 인한 리펙토링. , 클라이언트 전역 상태 관리를 위한 redux도입 2023-01-02 까지<br>
-3순위. gcp 배포[프론트페이지 업로드완료, api서버 업로드완료. node 서버 <-> db연결완료, api node서버가 모든 접근을 받지않는 문제 해결중 ] 2023-01-02 까지<br>
-4순위. 가능하다면, 서버상태관리를 위한 react-query 사용.<br> 
+1순위. 프론트 페이지 추가 제작 ,gcp nginex문제 해결 <br>
+2순위. 사용자 정보 상태관리 작업<br>
+3순위. 가능하다면, 서버상태관리를 위한 react-query 사용.<br> 
  
+ <br>완료목록<br>
+  1. 클라이언트 전역 상태 관리를 위한 redux도입 완료<br>
+  2. gcp 배포<br>
+    ㄴ  프론트 서버 배포완료. api사용 페이지들은 제대로 작동하지않음. 2차 배포로 약간의 수정 완료 추가될 기능 더 많음. <br>
+    ㄴ  sql서버 동작 확인 완료. 
+    ㄴ  https 동작 확인 완료. 
+    ㄴ  node server 80, etc port... ->8080 포트 포워딩을 위한 nginex 사용중 오류 발생. <br>
+    이 문제 해결시 api서버 사용가능. 해결중<br>
+    ㄴ  프론트 클라이언트 ,node서버 양쪽에 ssl 기능 도입 예정.<br>
+  3. next 13업데이트로 인한 next image 리펙토링.<br>
+  4. axios 모듈화 작업 완료.<br>
+  5. 폴더 구조 변경 작업 완료.<br>
+   
 </div>
 
 <div id="pannel">
@@ -67,4 +79,3 @@
 - <code>fetching</code> : axios로 api통신하는 api호출 함수를 모아둔 파일입니다.
 
   ![Footer](https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=footer)
-  // ![ts](https://img.shields.io/badge/ReactQuery-3.39.2-purple)
