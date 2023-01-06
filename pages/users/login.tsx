@@ -15,7 +15,7 @@ import { useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/router';
 import { QueryClient, useQuery } from 'react-query';
-import { postLogin, updater } from '../../lib/ApiCall';
+import { postLogin, updater } from '../../lib/fetches/ApiCall';
 function login() {
   interface infoes {
     usersid: string;

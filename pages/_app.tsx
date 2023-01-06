@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { CookiesProvider } from 'react-cookie';
 import { store } from '../store';
 import { Provider } from 'react-redux';
-import counterReducer from '../slices/counterSlice';
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <CookiesProvider>

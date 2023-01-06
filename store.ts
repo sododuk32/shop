@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 //global data app around whole application
-import counterReducer from './slices/counterSlice';
-
+import counterReducer from './lib/redux/reducers/counterSlice';
+import gettingUserinfo from 'lib/redux/reducers/getUserSlice';
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
+    userCart: gettingUserinfo,
   },
 });
 

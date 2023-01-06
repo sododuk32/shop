@@ -20,9 +20,9 @@ const serverurl = 'https://34.97.28.149:80';
  *    usersIdentity: STRING, 유저 아이디
  *
  */
-export function updater(getcookie: any) {
+export async function updater(getcookie: any) {
   console.log('updater실행');
-  return callAxios.get('/verify', {
+  return await callAxios.get('/verify', {
     headers: {
       'Content-Type': `application/json`,
       withCredentials: true,
@@ -30,16 +30,7 @@ export function updater(getcookie: any) {
     },
   });
 }
-// const updater2 = async (getcookie: any) => {
-//   const res = await callAxios.get('/verify', {
-//     headers: {
-//       'Content-Type': `application/json`,
-//       withCredentials: true,
-//       Authorization: getcookie,
-//     },
-//   });
-//   return res;
-// };
+
 /**
  * 상품 게시판 페이지 불러오기
  *

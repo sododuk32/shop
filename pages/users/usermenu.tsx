@@ -9,7 +9,7 @@ import Header from '../../components/commons/Headers/Header';
 import Image from 'next/image';
 import logined from 'components/userpage/logined';
 import needLogin from 'components/userpage/needLogin';
-import { updater } from '../../lib/ApiCall';
+import { updater } from '../../lib/fetches/ApiCall';
 import Link from 'next/link';
 import { GetServerSidePropsContext, NextPageContext } from 'next';
 import { useCookies } from 'react-cookie';

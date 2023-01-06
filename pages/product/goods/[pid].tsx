@@ -10,7 +10,7 @@ import Image from 'next/image';
 import { Button, Collapse } from 'react-bootstrap';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { postInputCart } from 'lib/ApiCall';
+import { postInputCart } from 'lib/fetches/ApiCall';
 function Goods(info: any) {
   const router = useRouter();
   const productid = router.query.pid;

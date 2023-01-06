@@ -15,7 +15,7 @@ import Collapse from 'react-bootstrap/Collapse';
 import ProductCard from '../../components/productpage/ProductCard';
 import { useRouter } from 'next/router';
 import ProductPagenation from '../../components/productpage/ProductPagenation';
-import { postProduct } from 'lib/ApiCall';
+import { postProduct } from 'lib/fetches/ApiCall';
 function Product() {
   interface productInfo {
     productId: number;
