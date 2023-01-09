@@ -23,7 +23,9 @@ function pagess() {
 
   function putItOn() {
     store.dispatch(add(product));
+    console.log(mycart);
   }
+
   //Argument of type '() => IterableIterator<productInfo>' is not assignable to parameter of type 'AnyAction'.
   //=>액션 타입 지정필요
   return (
