@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 //rootstate가 스토어 인덱스 같음.
 import { decrement, increment, selectValue } from '../lib/redux/reducers/counterSlice';
 //이건 스토어에서 참조할 state
-import { productInfo } from 'lib/interface';
+import { productInfo } from 'lib/redux/interface';
 import { cartTest } from 'lib/redux/reducers/getUserSlice';
 import { store } from 'store';
 import { add } from 'lib/redux/reducers/getUserSlice';

@@ -2,8 +2,7 @@
 /* eslint-disable no-unused-vars */
 import { createSlice } from '@reduxjs/toolkit';
 import type { RootState } from 'store';
-import { productInfo } from 'lib/interface';
-import { ADD_CART } from '../actions/index';
+import { productInfo } from 'lib/redux/interface';
 export interface ProductState {
   cart: productInfo[];
 }
@@ -14,7 +13,6 @@ export const userCart = createSlice({
   initialState,
   reducers: {
     add: (state, action) => {
-      // 수량 감소시 -number를 더하면됨
       const mystate: productInfo[] = state.cart;
       const tempa: productInfo = action.payload;
       const existProduct = state.cart.find((tempa) => tempa.productId); // 기존state
@@ -33,8 +31,7 @@ export const userCart = createSlice({
     },
     remove: (state, action) => {
       const mystate: productInfo[] = state.cart;
-      const tempa: productInfo = action.payload;
-      const existProduct = state.cart.find((tempa) => tempa.productId); // 기존state
+      const existProduct = state.cart.find((tempa) => tempa.productId);
       if (state.cart[0].productId === '') {
         state.cart = [{ productId: '', amount: '' }];
       } else {

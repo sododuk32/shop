@@ -65,11 +65,8 @@ function usermenu() {
       if (cookies.jwt === undefined || null) {
         return null;
       }
-      console.log(return1);
-      console.log('token' + cookies.jwt);
-      console.log('verify Boolean' + verifyed);
+
       const update = await updater(cookies.jwt);
-      console.log('update?' + update.data);
       setreturn({
         message: update.data.message,
         userid: update.data.userid,
@@ -92,8 +89,6 @@ function usermenu() {
             <Image className={styles.heroImg} src="/userMenuimg.png" priority alt="sd" width={1900} height={400} />
           </div>
           <div id="menubox">{verifyed ? needLogin() : logined(return1?.usersIdentity)}</div>
-          {/* 둘다 안보이게 한다음 getinitprops로 받아온값이 login이면 logined를 보이게 css변경 아니면 선택창 뜨게하기. 
-이렇게하면 next 서버의 dom과 클라이언트의dom은 다름없지만 단순 css만 변경되는것 처럼 보임.   */}
           <section className={styles.usersMenus}>
             <div className={styles.usercard}>
               <span className={styles.userssbtn}>

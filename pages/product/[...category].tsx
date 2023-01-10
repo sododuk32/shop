@@ -6,7 +6,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { HtmlHTMLAttributes, InputHTMLAttributes } from 'react';
 import styles from './[...category].module.css';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import Header from '../../components/commons/Headers/Header';
 import SetLanguage from '../../components/commons/Headers/SetLanguage';
 import Image from 'next/image';

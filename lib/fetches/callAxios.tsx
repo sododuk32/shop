@@ -3,7 +3,7 @@
 import axios from 'axios';
 import { getCookie } from 'cookies-next';
 const defaulturl = 'https://34.97.28.149:80';
-
+//localhost:8080
 export const callAxios = axios.create({
   baseURL: defaulturl,
   headers: {
