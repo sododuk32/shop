@@ -16,3 +16,5 @@ export const callAxios = axios.create({
 // 1. gcp 업로드 우선으로.
 // 1해결되면 2. 상태관리. next - cookie사용해서 , 모듈화 다시
 // 3. 이력서 더 내기. - 언제든지하기
+
+// 외부 api , => 문자전송, email 전송 auth 2.0, 지도 api 등등

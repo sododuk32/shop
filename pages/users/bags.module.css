@@ -1,0 +1,22 @@
+.header {
+  position: relative;
+}
+.bodyContainer {
+  width: 100%;
+  position: relative;
+  margin-top: 2vw;
+}
+.pannelContainer {
+  width: 60%;
+  display: flex;
+  margin: 0% auto;
+}
+.productPannel {
+  width: 80%;
+  background-color: violet;
+}
+
+.billPannel {
+  width: 20%;
+  background-color: black;
+}

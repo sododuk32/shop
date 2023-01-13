@@ -6,7 +6,7 @@ import { productInfo } from 'lib/redux/interface';
 export interface ProductState {
   cart: productInfo[];
 }
-const initialState: ProductState = { cart: [{ productId: '', amount: '' }] };
+const initialState: ProductState = { cart: [{ productId: '', amount: '', option: [] }] };
 
 export const userCart = createSlice({
   name: 'userCart',
@@ -31,13 +31,14 @@ export const userCart = createSlice({
     },
     remove: (state, action) => {
       const mystate: productInfo[] = state.cart;
-      const existProduct = state.cart.find((tempa) => tempa.productId);
+      const targeted: productInfo = action.payload;
+      const existProduct = state.cart.find((e) => e.productId === targeted.productId);
       if (state.cart[0].productId === '') {
-        state.cart = [{ productId: '', amount: '' }];
+        state.cart = [{ productId: '', amount: '', option: [] }];
       } else {
         if (existProduct != undefined) {
           //기존 state에 존재할 시
-          const foundNumber = state.cart.findIndex((e) => e.productId);
+          const foundNumber = state.cart.findIndex((e) => e.productId === targeted.productId);
 
           mystate.splice(foundNumber, 1);
           state.cart = mystate;
