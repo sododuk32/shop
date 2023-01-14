@@ -5,27 +5,69 @@ import type { RootState } from 'store';
 import { productInfo } from 'lib/redux/interface';
 export interface ProductState {
   cart: productInfo[];
+  totalPrice: number;
 }
-const initialState: ProductState = { cart: [{ productId: '', amount: '', option: [] }] };
+const initialState: ProductState = {
+  cart: [
+    {
+      productId: '',
+      amount: 0,
+      price: 0,
+      option: {
+        ProductColor: '',
+        ProductSize: '',
+        ProductWireless: '',
+        ProductHands: '',
+      },
+    },
+  ],
+  totalPrice: 0,
+};
 
 export const userCart = createSlice({
   name: 'userCart',
   initialState,
   reducers: {
     add: (state, action) => {
-      const mystate: productInfo[] = state.cart;
-      const tempa: productInfo = action.payload;
-      const existProduct = state.cart.find((tempa) => tempa.productId); // 기존state
+      let mystate: productInfo[] | null = state.cart; //기존의 장바구니
+      const targeted: productInfo = action.payload; // 새로 들어온 상품
+      let outPutArray: productInfo[]; // 결과로 내보낼 장바구니 상태
+      let outPut: productInfo; // 결과로 추가될 상품
+      const existProduct = state.cart.find((state) => targeted.productId === state.productId); // 기존state
       if (state.cart[0].productId === '') {
-        state.cart[0] = tempa;
+        state.cart[0] = targeted;
       } else {
         if (existProduct != undefined) {
-          const changedAmount = tempa.amount + existProduct.amount;
-          const foundNumber = state.cart.findIndex((e) => e.productId);
-          mystate[foundNumber].amount = changedAmount;
+          const foundNumber = state.cart.findIndex((state) => state.productId === targeted.productId);
+          if (state.cart[foundNumber].option === targeted.option) {
+            outPutArray = [
+              ...mystate,
+              {
+                productId: targeted.productId,
+                amount: targeted.amount,
+                option: targeted.option,
+                price: targeted.price,
+              },
+            ];
+            mystate = outPutArray;
+          } else {
+            const totalAmount: number = targeted.amount + mystate[foundNumber].amount;
+
+            outPut = {
+              productId: targeted.productId,
+              amount: totalAmount,
+              option: targeted.option,
+              price: targeted.price,
+            };
+            mystate.splice(foundNumber, 1, outPut);
+            if (totalAmount === 0) {
+              mystate = state.cart;
+            }
+          }
+
           state.cart = mystate;
         } else {
-          state.cart.push(tempa);
+          state.cart = [...mystate, targeted];
         }
       }
     },
@@ -34,24 +76,54 @@ export const userCart = createSlice({
       const targeted: productInfo = action.payload;
       const existProduct = state.cart.find((e) => e.productId === targeted.productId);
       if (state.cart[0].productId === '') {
-        state.cart = [{ productId: '', amount: '', option: [] }];
+        state.cart = [
+          {
+            productId: '',
+            amount: 0,
+            price: 0,
+
+            option: {
+              ProductColor: '',
+              ProductSize: '',
+              ProductWireless: '',
+              ProductHands: '',
+            },
+          },
+        ];
       } else {
         if (existProduct != undefined) {
-          //기존 state에 존재할 시
           const foundNumber = state.cart.findIndex((e) => e.productId === targeted.productId);
 
           mystate.splice(foundNumber, 1);
+          if (mystate.length === 0) {
+            mystate[0] = {
+              productId: '',
+              amount: 0,
+              price: 0,
+
+              option: {
+                ProductColor: '',
+                ProductSize: '',
+                ProductWireless: '',
+                ProductHands: '',
+              },
+            };
+          }
           state.cart = mystate;
         } else {
           state.cart = mystate;
         }
       }
     },
+    pricing: (state, action) => {
+      const myprice = action.payload;
+      state.totalPrice = myprice;
+    },
   },
 });
 // netflix 강의 참고하기
 export default userCart.reducer;
 
-export const { add } = userCart.actions;
+export const { add, remove } = userCart.actions;
 
 export const cartTest = (state: RootState) => state.userCart.cart;

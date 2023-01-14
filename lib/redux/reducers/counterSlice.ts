@@ -29,7 +29,7 @@ export const counterSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 
-export const selectValue = (state: RootState) => state.counter.value;
+export const selectValue = (state: RootState) => state.counterReducer.value;
 
 export default counterSlice.reducer;
 // reducer콜백을 줘야 이 파일의 함수동작들이 리듀서에 등록됨.

@@ -1,12 +1,24 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 //global data app around whole application
 import counterReducer from './lib/redux/reducers/counterSlice';
 import userCart from 'lib/redux/reducers/getUserSlice';
+import persistReducer from 'redux-persist/lib/persistReducer';
+import storage from 'redux-persist/lib/storage';
+
+const reducers = combineReducers({
+  counterReducer,
+  userCart,
+});
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['counterReducer', 'userCart'],
+};
+
+const persistedReducer = persistReducer(persistConfig, reducers);
+
 export const store = configureStore({
-  reducer: {
-    counter: counterReducer,
-    userCart: userCart,
-  },
+  reducer: persistedReducer,
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

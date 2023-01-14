@@ -8,9 +8,7 @@ import Image from 'next/image';
 import style from './Drop.module.css';
 import { useRef, useEffect } from 'react';
 function Dropbox() {
-  useEffect(() => {
-    console.log(visi.current);
-  });
+  useEffect(() => {});
 
   const visi = useRef<HTMLUListElement>(null);
   let toggle = false;
@@ -18,14 +16,10 @@ function Dropbox() {
     if (visi.current) {
       if (!toggle) {
         toggle = !toggle;
-        console.log(visi.current);
-        console.log(toggle);
 
         return (visi.current.style.visibility = 'visible');
       } else {
         toggle = !toggle;
-        console.log(visi.current);
-        console.log(toggle);
 
         return (visi.current.style.visibility = 'hidden');
       }

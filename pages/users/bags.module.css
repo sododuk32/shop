@@ -3,8 +3,7 @@
 }
 .bodyContainer {
   width: 100%;
-  position: relative;
-  margin-top: 2vw;
+  margin-top: 4.8vw;
 }
 .pannelContainer {
   width: 60%;
@@ -14,9 +13,15 @@
 .productPannel {
   width: 80%;
   background-color: violet;
+  height: 100%;
 }
 
 .billPannel {
   width: 20%;
-  background-color: black;
+  background-color: yellow;
+  height: 100%;
+}
+
+.buyingBtn {
+  margin-left: 3vw;
 }

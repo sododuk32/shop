@@ -1,0 +1,18 @@
+.cardOptions {
+  display: flex;
+  flex-direction: column;
+  font-size: small;
+  font-weight: bold;
+}
+.cards {
+  font-size: large;
+}
+
+.amount {
+  display: flex;
+}
+.amountOption {
+  width: 9%;
+  height: 40%;
+  margin-left: 0.5vw;
+}
