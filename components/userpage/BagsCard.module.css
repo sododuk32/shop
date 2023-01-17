@@ -16,3 +16,14 @@
   height: 40%;
   margin-left: 0.5vw;
 }
+.amountchng {
+  display: flex;
+  flex-direction: row;
+}
+.changeBtn {
+  width: 1.5vw;
+  height: 1.5vw;
+  margin-left: 0.3vw;
+
+  margin-right: 0.3vw;
+}
