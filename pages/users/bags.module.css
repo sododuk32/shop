@@ -1,6 +1,7 @@
 .header {
   position: relative;
 }
+
 .bodyContainer {
   width: 100%;
   margin-top: 4.8vw;
@@ -11,17 +12,23 @@
   margin: 0% auto;
 }
 .productPannel {
+  list-style: none;
   width: 80%;
-  background-color: violet;
   height: 100%;
+  border: solid 0.1vw gray;
 }
 
 .billPannel {
   width: 20%;
-  background-color: yellow;
   height: 100%;
+  border: solid 0.1vw gray;
+  display: flex;
+  flex-direction: column;
+  padding-left: 0.5vw;
 }
 
 .buyingBtn {
   margin-left: 3vw;
+  width: 5vw;
+  height: 1.5vw;
 }

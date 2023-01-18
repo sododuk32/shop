@@ -1,8 +1,16 @@
+.body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 .cardOptions {
   display: flex;
   flex-direction: column;
   font-size: small;
   font-weight: bold;
+  width: fit-content;
+  min-width: 3vw;
 }
 .cards {
   font-size: large;
@@ -10,15 +18,21 @@
 
 .amount {
   display: flex;
+  flex-direction: column;
 }
 .amountOption {
   width: 9%;
   height: 40%;
   margin-left: 0.5vw;
 }
+.pricing {
+  margin-top: 3vw;
+  font-size: 1vw;
+}
 .amountchng {
   display: flex;
   flex-direction: row;
+  font-size: 1vw;
 }
 .changeBtn {
   width: 1.5vw;
@@ -26,4 +40,8 @@
   margin-left: 0.3vw;
 
   margin-right: 0.3vw;
+}
+
+.photos {
+  position: relative;
 }

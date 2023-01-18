@@ -1,7 +1,6 @@
 .carouselBox {
   display: flex;
   font-size: large;
-  overflow: visible;
   position: relative;
 }
 
@@ -9,6 +8,7 @@
   position: absolute;
   width: 100vw;
   min-height: 100%;
+  overflow: hidden;
 }
 
 .prevBtn {
@@ -23,7 +23,7 @@
 .nextBtn {
   position: relative;
   z-index: 2;
-  left: 95vw;
+  right: 95vw;
   top: 20vw;
 }
 

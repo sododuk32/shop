@@ -49,7 +49,6 @@ function CarouselGrid() {
       }
     }
   };
-  console.log(slide);
   return (
     <div>
       <div className={styles.wholebox}>

@@ -44,14 +44,16 @@
 .bannerImgs {
   display: grid;
   grid-template-columns: 0.75fr 1fr;
-  height: 45rem;
-  top: 3.7rem;
-  left: -9rem;
+  height: 42vw;
+  top: 3.3vw;
+  left: -6vw;
 
   z-index: 1;
-  width: 100vw;
+  width: 110vw;
 }
-
+.bannerKeyboard {
+  padding-left: ;
+}
 .colorPannel {
   background-color: #836aa4;
 }

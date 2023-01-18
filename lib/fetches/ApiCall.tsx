@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { callAxios } from './callAxios';
 
-const serverurl = 'https://34.97.28.149:80';
+const serverurl = 'https://kwakdeayang.shop';
 /**
  * 엑세스 jwt키 값을 헤더의 auth에 넣는 사용자 인증api
  *

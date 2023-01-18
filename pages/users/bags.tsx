@@ -7,19 +7,28 @@ import BagsCard from 'components/userpage/BagsCard';
 import { productInfo } from 'lib/redux/interface';
 import { cartTest } from 'lib/redux/reducers/getUserSlice';
 import { useSelector } from 'react-redux';
-//      price = myBags.current.childNodes[0].lastChild.childNodes[3].childNodes[1];
+import { Button } from 'react-bootstrap';
+//  price = myBags.current.childNodes[0].lastChild.childNodes[3].childNodes[1];
 
 function bags() {
-  const mycart = useSelector(cartTest);
-  const [totalPrice, setprice] = useState(0);
-  // const [productsPrice, setProductprice] = useState<number[]>([]);
-
+  const stateCart = useSelector(cartTest);
+  const [myCart, setmyCart] = useState<productInfo[]>(stateCart);
+  let [totalPrice, setTotalprice] = useState<number>(0);
+  let temp: number;
   useEffect(() => {
-    let myBags = document.querySelectorAll('#valueOfprice');
-    let temPice = 0;
-    myBags.forEach((element) => (temPice += Number(element.innerHTML)));
-    setprice(temPice);
-  }, [totalPrice]);
+    temp = 0;
+    console.log('mounted');
+    console.log('totalprice:' + totalPrice);
+    console.log(myCart);
+
+    myCart.forEach((state) => {
+      temp = temp + state.price * state.amount;
+    });
+    setTotalprice(temp + 2500);
+  }, [totalPrice, myCart]);
+  console.log(myCart);
+
+  // useEffect(() => {}, [myCart]);
   return (
     <div>
       <header className={styles.header}>
@@ -28,16 +37,20 @@ function bags() {
       </header>
       <section className={styles.bodyContainer}>
         <div className={styles.pannelContainer}>
-          <div className={styles.productPannel}>
-            {mycart.map((card: productInfo) => (
+          <ul className={styles.productPannel}>
+            {myCart.map((card: productInfo) => (
               <li className={styles.CardBody} key={card.productId}>
-                {BagsCard(card)}
+                {BagsCard(card, myCart, setmyCart)}
               </li>
             ))}
-          </div>
+          </ul>
           <div className={styles.billPannel}>
+            <span>배송비:2500</span>
             <span>총 가격: {totalPrice}</span>
-            <button className={styles.buyingBtn}>구매하기</button>
+
+            <Button className={styles.buyingBtn} variant="primary" size="sm">
+              구매하기
+            </Button>
           </div>
         </div>
       </section>

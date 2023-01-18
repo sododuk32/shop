@@ -37,11 +37,11 @@
 
 .nextBtn {
   position: absolute;
-  width: 12rem;
-  height: 45rem;
-  opacity: 0.1;
-  top: -45rem;
-  left: 108rem;
+  width: 11vw;
+  height: 43vw;
+  opacity: 0.2;
+  top: -45vw;
+  left: 80vw;
 
   z-index: 2;
 }

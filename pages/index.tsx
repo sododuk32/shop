@@ -35,12 +35,12 @@ const Home: NextPage = () => {
                 </div>
               </div>
             </div>
-            <Image alt="indexKeybored" src="/keybored.jpg" width={800} height={730} />
+            <Image className={styles.bannerKeyboard} alt="indexKeybored" src="/keybored.jpg" width={1000} height={800} />
           </div>
         </div>
         <GridPhoto />
         <CarouselGrid />
-        <Carouselnomal />
+        {/* <Carouselnomal /> */}
       </section>
     </div>
   );
