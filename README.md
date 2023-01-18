@@ -26,7 +26,7 @@
   4. axios 모듈화 작업 완료.<br>
   5. 폴더 구조 변경 작업 완료.<br>
   6. gcp api서버 포트포워딩 ssl발급 완료 <br>
-   
+  7. 로컬스토리지 redux persist를 사용한 장바구니 기능 작성 완료 <br>
 </div>
 
 <div id="pannel">
