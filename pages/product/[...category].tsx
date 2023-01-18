@@ -17,14 +17,14 @@ import { useRouter } from 'next/router';
 import ProductPagenation from '../../components/productpage/ProductPagenation';
 import { postProduct } from 'lib/fetches/ApiCall';
 function Product() {
-  interface productInfo {
+  interface producttags {
     productId: number;
     productTag: string;
     productRank: number;
     productCategory: string;
   }
   interface controlPagenation {
-    card: productInfo[];
+    card: producttags[];
     totalP: number;
   }
   const router = useRouter();

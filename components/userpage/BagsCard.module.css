@@ -9,11 +9,11 @@
   flex-direction: column;
   font-size: small;
   font-weight: bold;
-  width: fit-content;
+  width: 5vw;
   min-width: 3vw;
 }
 .cards {
-  font-size: large;
+  font-size: 0.8vw;
 }
 
 .amount {
@@ -44,4 +44,8 @@
 
 .photos {
   position: relative;
+}
+
+.strings {
+  min-width: 9vw;
 }

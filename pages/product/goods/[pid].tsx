@@ -10,51 +10,72 @@ import Image from 'next/image';
 import { Button, Collapse } from 'react-bootstrap';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { postInputCart } from 'lib/fetches/ApiCall';
+import { useSelector, useDispatch } from 'react-redux';
+import { cartTest } from 'lib/redux/reducers/getUserSlice';
+import { store } from 'store';
+import { add, remove } from 'lib/redux/reducers/getUserSlice';
+import { productInfo } from 'lib/redux/interface';
+
 function Goods(info: any) {
   const router = useRouter();
-  const productid = router.query.pid;
+  const productnumber: any = router.query.pid;
+
   interface loginInfo {
     checkLogin: boolean;
     usersIdentity: string;
     yourId: string;
   }
 
-  const serverurl = 'http://localhost:8080';
   const verifyUser: loginInfo = info;
-
+  const dispatch = useDispatch();
+  const mycart = useSelector(cartTest);
   const [openpreciseInfo, setpreciseInfo] = useState(false);
   const [opensystemReq, setopensystemReq] = useState(false);
   const [openintegrement, setopenintegrement] = useState(false);
   const [opensupport, setopensupport] = useState(false);
-  const [thisPid, setThispid] = useState<number>(0);
-  const onChangeamount = (e: any) => {
+  const [aMOUNT, setAMOUNT] = useState<number>(0);
+  const onChangeAmount = (e: any) => {
     const tempPid = Number(e.target.value);
-    return setThispid(tempPid);
+    return setAMOUNT(tempPid);
   };
-  function putIncart(e: any) {
-    if (!verifyUser.checkLogin) {
-      console.log('로그인필요');
-      return alert('로그인이 필요합니다.');
-    }
-    const yourChoice = { uid: verifyUser.usersIdentity, pid: productid, amount: thisPid };
-    postInputCart(yourChoice.uid, yourChoice.pid, yourChoice.amount)
-      .then((res) => {
-        console.log(res);
-        if (res.data?.message === 'complete') {
-          return alert('상품을 담았습니다.');
-        } else throw Error;
-      })
-      .catch((Error) => {
-        alert('에러발생');
-        console.log(Error);
-        return null;
-      });
+  const pickproduct: productInfo = {
+    productId: productnumber,
+    amount: aMOUNT,
+    price: 10000,
+    option: {
+      ProductColor: 'yello',
+      ProductSize: 'S',
+      ProductWireless: 'WIRELESS',
+      ProductHands: 'left-hands',
+    },
+  };
+  function putinCart() {
+    store.dispatch(add(pickproduct));
   }
+  console.log(productnumber);
+  // function putIncart(e: any) {
+  //   if (!verifyUser.checkLogin) {
+  //     console.log('로그인필요');
+  //     return alert('로그인이 필요합니다.');
+  //   }
+  //   const yourChoice = { uid: verifyUser.usersIdentity, pid: productid, amount: aMOUNT };
+  //   postInputCart(yourChoice.uid, yourChoice.pid, yourChoice.amount)
+  //     .then((res) => {
+  //       console.log(res);
+  //       if (res.data?.message === 'complete') {
+  //         return alert('상품을 담았습니다.');
+  //       } else throw Error;
+  //     })
+  //     .catch((Error) => {
+  //       alert('에러발생');
+  //       console.log(Error);
+  //       return null;
+  //     });
+  // }
   return (
     <div>
       <section className={styles.goodsHeader}>
-        <div>{productid}</div>
+        <div>{productnumber}</div>
         <SetLanguage />
         <Header />
       </section>
@@ -127,19 +148,18 @@ function Goods(info: any) {
               </Collapse>
             </div>
             <div>
-              {/* 여기다 장바구니에 추가하는 함수 넣기. */}
               <Button
                 id="buyBtn"
+                onClick={putinCart}
                 className={`${styles.systemReq} ${'btn-light'}`}
-                onClick={putIncart}
                 aria-controls="example-collapse-text"
                 aria-expanded={opensupport}
               >
-                <span>{productid}번 상품 구매</span>
+                <span>{productnumber}번 상품 담기</span>
               </Button>
               <div id="amount">
-                <input id="amountText" onChange={onChangeamount} aria-label="0" type="text" />
-                <span>{thisPid}</span>
+                <input id="amountText" onChange={onChangeAmount} aria-label="0" type="text" />
+                <span>{aMOUNT}</span>
               </div>
             </div>
           </section>

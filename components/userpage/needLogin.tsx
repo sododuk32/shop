@@ -11,7 +11,7 @@ function needLogin() {
             <Link href="/users/login">
               <button className={styles.menuBtn1}>로그인</button>
             </Link>
-            <Link href="/users/userRegistrate">
+            <Link href="/404">
               <button className={styles.menuBtn2}>계정 만들기</button>
             </Link>
           </div>
