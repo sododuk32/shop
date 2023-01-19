@@ -55,7 +55,6 @@ function usermenu() {
   }
   useEffect(() => {
     if (cookies.jwt) {
-      console.log('result 실행');
       result();
     }
   }, [return1]);

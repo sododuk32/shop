@@ -3,9 +3,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './BagsCard.module.css';
 import { productInfo } from 'lib/redux/interface';
-import { cartTest } from 'lib/redux/reducers/getUserSlice';
-import { store } from 'store';
-import { useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import Image from 'next/image';
 // eslint-disable-next-line @typescript-eslint/ban-types

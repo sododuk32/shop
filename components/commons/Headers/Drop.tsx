@@ -6,10 +6,8 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import style from './Drop.module.css';
-import { useRef, useEffect } from 'react';
+import { useRef } from 'react';
 function Dropbox() {
-  useEffect(() => {});
-
   const visi = useRef<HTMLUListElement>(null);
   let toggle = false;
   function changeVisible() {

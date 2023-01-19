@@ -1,4 +1,4 @@
-import '../styles/globals.css';
+import './globals.css';
 import type { AppProps } from 'next/app';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { CookiesProvider } from 'react-cookie';
@@ -9,6 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const persistor = persistStore(store);
+
   return (
     <CookiesProvider>
       <Provider store={store}>
