@@ -14,6 +14,7 @@ function bags() {
   const stateCart = useSelector(changeCart);
   let [totalPrice, setTotalprice] = useState<number>(0);
   let temp: number;
+
   useEffect(() => {
     temp = 0;
 
@@ -24,14 +25,13 @@ function bags() {
   }, [totalPrice, stateCart]);
   console.log(stateCart);
 
-  // useEffect(() => {}, [myCart]);
   return (
     <div>
-      <header className={styles.header}>
+      <header id="pageHeader" className={styles.header}>
         <SetLanguage />
         <Header />{' '}
       </header>
-      <section className={styles.bodyContainer}>
+      <section id="pageBody" className={styles.bodyContainer}>
         <div className={styles.pannelContainer}>
           <ul className={styles.productPannel}>
             {stateCart.map((card: productInfo) => (
@@ -41,8 +41,29 @@ function bags() {
             ))}
           </ul>
           <div className={styles.billPannel}>
-            <span>배송비:2500</span>
-            <span>총 가격: {totalPrice}</span>
+            <span className={styles.billspan}>계산 요약 </span>
+            <ul className={styles.disCount}>
+              <li className={styles.disCountList}>
+                <div>배송비:</div>
+                <div>2500</div>
+              </li>
+              <li className={styles.disCountList}>
+                <div>배송비:</div>
+                <div>2500</div>
+              </li>
+              <li className={styles.disCountList}>
+                <div>배송비:</div>
+                <div>2500</div>
+              </li>
+              <li className={styles.disCountList}>
+                <div>배송비:</div>
+                <div>2500</div>
+              </li>
+            </ul>
+            {/* △later this part change arr.map */}
+            <div className={styles.chargedPrice}>
+              <span>총 가격: {totalPrice}</span>
+            </div>
 
             <Button className={styles.buyingBtn} variant="primary" size="sm">
               구매하기

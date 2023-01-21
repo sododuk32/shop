@@ -1,19 +1,15 @@
 .body {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .cardOptions {
   display: flex;
   flex-direction: column;
-  font-size: small;
+  font-size: 1vw;
   font-weight: bold;
   width: 5vw;
   min-width: 3vw;
-}
-.cards {
-  font-size: 0.8vw;
 }
 
 .amount {
@@ -32,20 +28,32 @@
 .amountchng {
   display: flex;
   flex-direction: row;
-  font-size: 1vw;
+  font-size: 1.5vw;
 }
+.pricing {
+  font-size: 2vw;
+}
+
 .changeBtn {
-  width: 1.5vw;
-  height: 1.5vw;
+  width: 3vw;
+  height: 3vw;
   margin-left: 0.3vw;
 
   margin-right: 0.3vw;
 }
 
 .photos {
+  display: block;
   position: relative;
+  width: 10vw;
+  height: 10vw;
 }
 
 .strings {
-  min-width: 9vw;
+  min-width: 50%;
 }
+/* @media (min-width: 766px) {
+  #pageBody {
+    background-color: rgb(216, 14, 14);
+  }
+} */

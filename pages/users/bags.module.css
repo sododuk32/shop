@@ -3,8 +3,7 @@
 }
 
 .bodyContainer {
-  width: 100%;
-  margin-top: 4.8vw;
+  margin-top: 5.8vw;
 }
 .pannelContainer {
   width: 60%;
@@ -16,19 +15,43 @@
   width: 80%;
   height: 100%;
   border: solid 0.1vw gray;
+  padding-left: 0.1;
+}
+
+.billspan {
+  margin: 2vw;
+  font-size: 2vw;
 }
 
 .billPannel {
-  width: 20%;
-  height: 100%;
+  width: 30%;
+  height: fit-content;
   border: solid 0.1vw gray;
   display: flex;
   flex-direction: column;
-  padding-left: 0.5vw;
+  padding-left: 0;
+  padding-bottom: 1vw;
 }
 
+.disCount {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  font-size: 1vw;
+  padding-left: 0.5vw;
+  width: 90%;
+}
+.disCount > li {
+  display: flex;
+  justify-content: space-between;
+}
+.chargedPrice {
+  padding-left: 0.5vw;
+  font-size: 1vw;
+}
 .buyingBtn {
-  margin-left: 3vw;
-  width: 5vw;
-  height: 1.5vw;
+  font-size: 0.8vw;
+  width: 90%;
+  height: fit-content;
+  margin: 0% auto;
 }

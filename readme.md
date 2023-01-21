@@ -8,23 +8,26 @@
 
  <br>
  프로젝트 현황 및 작업 우선순위:<br>
-1순위. 프론트 페이지 추가 제작 ,gcp nginex문제 해결 <br>
+1순위. 프론트 페이지 전반적인 css 수정 <br>
 2순위. 사용자 정보 상태관리 작업<br>
-3순위. 가능하다면, 서버상태관리를 위한 react-query 사용.<br> 
+
  
  <br>완료목록<br>
   1. 클라이언트 전역 상태 관리를 위한 redux도입 완료<br>
-  2. gcp 배포<br>
+  2. gcp 배포 <br>
     ㄴ  프론트 서버 배포완료. api사용 페이지들은 제대로 작동하지않음. 2차 배포로 약간의 수정 완료 추가될 기능 더 많음. <br>
     ㄴ  sql서버 동작 확인 완료. 
     ㄴ  https 동작 확인 완료. 
-    ㄴ  node server 80, etc port... ->8080 포트 포워딩을 위한 nginex 사용중 오류 발생. <br>
-    이 문제 해결시 api서버 사용가능. 해결중<br>
+    ㄴ  node server 80, etc port... ->443 ,3000포트 포워딩을 위한 nginex 사용중 오류 발생. <br>
+    이 문제 해결시 api서버 사용가능<br>
     ㄴ  프론트 클라이언트 ,node서버 양쪽에 ssl 기능 도입 예정.<br>
+    ㄴ 프론트 서버 빌드 오류 수정중 <br>
+    ㄴ 빌드 오류 수정완료
   3. next 13업데이트로 인한 next image 리펙토링.<br>
   4. axios 모듈화 작업 완료.<br>
   5. 폴더 구조 변경 작업 완료.<br>
-   
+  6. gcp api서버 포트포워딩 ssl발급 완료 <br>
+  7. 로컬스토리지 redux persist를 사용한 장바구니 기능 작성 완료 <br>
 </div>
 
 <div id="pannel">
@@ -54,28 +57,52 @@
 | 로지텍웹의 index                                                                                                | 원하는 물품 검색 기능                                                                                              |
 | grid기능을 사용해표현한 케러셀                                                                                  | api요청을 통한 컨텐츠의 동적 렌더링 , 받아온 api정보를 통한 페이지 네이션,제품                                     |
 
+
+
+ | 장바구니 페이지                                                                                                   | 로그인 기능                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| ![ezgif-3-02cf426318](https://user-images.githubusercontent.com/37325163/213492194-f6191b13-ce55-4beb-963d-d69a51726bb9.gif) | ![lgin](https://user-images.githubusercontent.com/37325163/213493585-f1321bd6-1ca5-4a32-bea3-e1e4e36036e0.gif)| |
+| redux 전역 상태관리를 통한 장바구니 기능                                        | jwt 발급 및 인증을 통한 로그인                                                                                                                                                             
+
+
+
+
  </div>
 <div>
  <h2>디렉토리 구조</h2>
 <div>  
  <div>
+  
+![Cap 2023-01-20 01-14-25-619](https://user-images.githubusercontent.com/37325163/213495123-0dccf3f6-810a-42e5-8b45-7675f7fc2dd3.png)
+- <code>components</code> : 페이지나 컴포넌트에 삽입할 컴포넌트가 담긴 폴더입니다.
+- <code>commons</code> : index페이지나 분류하기 힘든 컴포넌트를 모아둔 폴더입니다. 
+- <code>productpage</code> : 상품관련 컴포넌트를 모아둔 폴더입니다.
+- <code>userpage</code> : 유저 관련 페이지의 컴포넌트를 모아둔 폴더입니다
 
-![Cap 2022-12-12 22-36-49-323](https://user-images.githubusercontent.com/37325163/207058393-9ecd4b81-d068-4ea1-9955-d02b82a86b23.png)
-
+![Cap 2023-01-20 01-16-02-728](https://user-images.githubusercontent.com/37325163/213495051-d0c6a814-754d-48fd-9577-d716b8e36c07.png)
+  
 - <code> pages</code> : next js 라우터 기능을 사용하기 위해 사용합니다.
 
-- <code>index</code> : 카피코딩 프로젝트의 메인 페이지입니다.
+- <code>index</code> : 프로젝트의 메인 페이지입니다.
 - <code> pagess</code> : 여러 모듈을 먼저 시험해보는 개발 전용 페이지 입니다.
+  
 - <code>product 폴더</code>: 상품페이지와 상품상세 페이지를 동적 라우팅한 폴더입니다.
 - <code>goods 폴더</code>: 상품팡세 페이지를 동적라우팅 기능을 사용하기위해 만든 폴더입니다
 - <code>[...category]</code> : 쿼리스트링에서 처럼 입력받은category를 바탕으로 제품정보api통신으로 받아서 렌더링 해주는 다이나믹 라우팅 페이지 입니다.
 - <code>[pid]</code> : 쿼리스트링에서 제품번호를 받아 해당 제품 상세정보를api통신으로 받아 표현해주는 다이나믹 라우팅 페이지 입니다. 장바구니 추가 기능 또한 포함이 되어있습니다.
+  
 - <code>users</code>: 로그인 및 사용자 정보를 위한 페이지들이 모인 폴더입니다
 - <code>login</code> : login을 위해만든 페이지입니다. id pw를 서버로보내 확인하고 jwt를 발급받습니다
 - <code>usermenu</code> : 로그인 후 쿠키에 담긴 jwt를 사용해 유저의 정보를 인증하고 해당 유저의 정보를 받아서 표현해주는 페이지입니다.
-- <code>components</code> : 페이지나 컴포넌트에 삽입할 컴포넌트가 담긴 폴더입니다.
+ - <code>bags</code> : 장바구니에 넣은 상품의 전역 상태를 보여주는 페이지입니다
+
 - <code>404</code> : 잘못된 경로를 입력했을때 진입하게되는 페이지 입니다.
+- <code>fetches</code> : axios로 api통신하는 api호출 함수를 모아둔 파일입니다.
+- <code>redux</code> : redux의 action을 정의하거나, 개별 리듀서 및 리듀서의 타입을 정의해두는 폴더입니다. 
 
-- <code>fetching</code> : axios로 api통신하는 api호출 함수를 모아둔 파일입니다.
+  
 
+  
+  
+  
   ![Footer](https://capsule-render.vercel.app/api?type=waving&color=auto&height=200&section=footer)

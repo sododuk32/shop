@@ -24,7 +24,7 @@ function BagsCard(item: productInfo) {
     <div>
       <body className={styles.body}>
         <section className={styles.photos}>
-          <Image alt="cc" src="/gallary-2.jpg" width={150} height={150} />
+          <Image alt="cc" src="/gallary-2.jpg" fill />
         </section>
         <section className={styles.strings}>
           <div className={styles.cards}>상품명:{item.productId}</div>
