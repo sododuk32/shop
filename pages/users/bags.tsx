@@ -5,28 +5,24 @@ import Header from 'components/commons/Headers/Header';
 import SetLanguage from 'components/commons/Headers/SetLanguage';
 import BagsCard from 'components/userpage/BagsCard';
 import { productInfo } from 'lib/redux/interface';
-import { cartTest } from 'lib/redux/reducers/getUserSlice';
+import { changeCart } from 'lib/redux/reducers/getUserSlice';
 import { useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
 //  price = myBags.current.childNodes[0].lastChild.childNodes[3].childNodes[1];
 
 function bags() {
-  const stateCart = useSelector(cartTest);
-  const [myCart, setmyCart] = useState<productInfo[]>(stateCart);
+  const stateCart = useSelector(changeCart);
   let [totalPrice, setTotalprice] = useState<number>(0);
   let temp: number;
   useEffect(() => {
     temp = 0;
-    console.log('mounted');
-    console.log('totalprice:' + totalPrice);
-    console.log(myCart);
 
-    myCart.forEach((state) => {
+    stateCart.forEach((state) => {
       temp = temp + state.price * state.amount;
     });
     setTotalprice(temp + 2500);
-  }, [totalPrice, myCart]);
-  console.log(myCart);
+  }, [totalPrice, stateCart]);
+  console.log(stateCart);
 
   // useEffect(() => {}, [myCart]);
   return (
@@ -38,9 +34,9 @@ function bags() {
       <section className={styles.bodyContainer}>
         <div className={styles.pannelContainer}>
           <ul className={styles.productPannel}>
-            {myCart.map((card: productInfo) => (
+            {stateCart.map((card: productInfo) => (
               <li className={styles.CardBody} key={card.productId}>
-                {BagsCard(card, myCart, setmyCart)}
+                {BagsCard(card)}
               </li>
             ))}
           </ul>

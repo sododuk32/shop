@@ -6,15 +6,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { decrement, increment, selectValue } from '../lib/redux/reducers/counterSlice';
 //이건 스토어에서 참조할 state
 import { productInfo } from 'lib/redux/interface';
-import { cartTest } from 'lib/redux/reducers/getUserSlice';
+import { changeCart } from 'lib/redux/reducers/getUserSlice';
 import { store } from 'store';
 import { add, remove } from 'lib/redux/reducers/getUserSlice';
 function pagess() {
   const dispatch = useDispatch();
-  const count = useSelector(selectValue);
-  const mycart = useSelector(cartTest);
 
-  console.log('mounted');
+  const mycart = useSelector(changeCart);
+
+  const count = useSelector(selectValue);
 
   const product: productInfo = {
     productId: 'number3',

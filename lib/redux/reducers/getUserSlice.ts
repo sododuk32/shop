@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-vars */
 import { createSlice } from '@reduxjs/toolkit';
@@ -119,11 +120,24 @@ export const userCart = createSlice({
       const myprice = action.payload;
       state.totalPrice = myprice;
     },
+    changeAmount: (state, action) => {
+      const foundNumber = state.cart.findIndex((state) => state.productId === action.payload.productId);
+      const targeted = state.cart[foundNumber];
+      let mystate: productInfo[] | null = state.cart;
+      const outPut: productInfo = {
+        productId: targeted.productId,
+        amount: action.payload.amount,
+        price: targeted.price,
+        option: targeted.option,
+      };
+      mystate.splice(foundNumber, 1, outPut);
+      state.cart = mystate;
+    },
   },
 });
 // netflix 강의 참고하기
 export default userCart.reducer;
 
-export const { add, remove } = userCart.actions;
+export const { add, remove, changeAmount } = userCart.actions;
 
-export const cartTest = (state: RootState) => state.userCart.cart;
+export const changeCart = (state: RootState) => state.userCart.cart;

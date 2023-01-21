@@ -1,8 +1,10 @@
 import { productInfo } from 'lib/redux/interface';
 
-export const ADD_CART = (products: productInfo) => ({
-  type: 'ADD_CART',
+export const CHANGE_AMOUNT = (product: productInfo, amountNumer: number) => ({
   payload: {
-    products,
+    name: product.productId,
+    amount: amountNumer,
+    // this take minus or plus number
   },
+  type: 'CHANGE_AMOUNT',
 });
