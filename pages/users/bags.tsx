@@ -67,6 +67,7 @@ function bags() {
 
             <Button className={styles.buyingBtn} variant="primary" size="sm">
               구매하기
+              {/* 누르면 카트 상태 그대로 전송 */}
             </Button>
           </div>
         </div>

@@ -14,8 +14,10 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { useRouter } from 'next/router';
-import { QueryClient, useQuery } from 'react-query';
-import { postLogin, updater } from '../../lib/fetches/ApiCall';
+import { postLogin } from '../../lib/fetches/ApiCall';
+import { store } from 'store';
+import { getLogin } from 'lib/redux/reducers/isLoginSlice';
+import { logined } from 'lib/redux/interface';
 function login() {
   interface infoes {
     usersid: string;
@@ -23,17 +25,8 @@ function login() {
   }
   const [Email, setEmail] = useState('');
   const [userPassword, setPassword] = useState('');
-  const [jwtk, setjwtk] = useState('');
   const [cookies, setCookie] = useCookies(['jwt']);
   const router = useRouter();
-  const queryClient = new QueryClient();
-  // const { isError, data, refetch, error, isSuccess, status } = useQuery({
-  //   queryKey: ['userInfo'],
-  //   queryFn: updater,
-  //   retry: 1,
-  //   enabled: false,
-  //   cacheTime: 60 * 60 * 1000,
-  // });
 
   const onChangeId = (e: any) => {
     setEmail(e.target.value);
@@ -42,7 +35,7 @@ function login() {
     setPassword(e.target.value);
   };
   let mytoken = '';
-
+  let checkLogin: boolean;
   function sendingInfo() {
     let userInput: infoes = {
       usersid: Email,
@@ -56,17 +49,19 @@ function login() {
     const sendJson = JSON.stringify(userInput);
     postLogin(sendJson)
       .then((res) => {
-        console.log(res.data.message);
         if (res.data.message === 'true') {
           throw Error;
         }
         mytoken = res.data.jwtToken;
       })
       .then(() => {
-        console.log('토큰삽입 다음 콜백실행');
-        // refetch(); //useQuery 직접실행문
         setCookie('jwt', mytoken, { path: '/' });
-        // 로그인 성공시
+        checkLogin = true;
+        const Mydata: logined = {
+          logined: checkLogin,
+          Key: mytoken,
+        };
+        store.dispatch(getLogin(Mydata));
         return router.push('/users/usermenu');
       })
       .catch((error) => {

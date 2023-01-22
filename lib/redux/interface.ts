@@ -6,6 +6,11 @@ export type productInfo = {
   price: number;
 };
 
+export type logined = {
+  logined: boolean;
+  Key: string;
+};
+
 class defaultOption {
   public ProductColor!: string;
   public ProductSize!: string;

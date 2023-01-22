@@ -57,7 +57,7 @@ function usermenu() {
     if (cookies.jwt) {
       result();
     }
-  }, [return1]);
+  }, [return1, verifyed]);
 
   const result = async () => {
     if (verifyed) {

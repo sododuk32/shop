@@ -4,15 +4,16 @@ import counterReducer from './lib/redux/reducers/counterSlice';
 import userCart from 'lib/redux/reducers/getUserSlice';
 import persistReducer from 'redux-persist/lib/persistReducer';
 import storage from 'redux-persist/lib/storage';
-
+import isLogin from 'lib/redux/reducers/isLoginSlice';
 const reducers = combineReducers({
   counterReducer,
   userCart,
+  isLogin,
 });
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['counterReducer', 'userCart'],
+  whitelist: ['counterReducer', 'userCart', 'isLogin'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);

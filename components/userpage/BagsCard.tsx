@@ -7,7 +7,6 @@ import { productInfo } from 'lib/redux/interface';
 import { Button } from 'react-bootstrap';
 import Image from 'next/image';
 import { changeAmount, changeCart } from 'lib/redux/reducers/getUserSlice';
-import { store } from 'store';
 import { useDispatch, useSelector } from 'react-redux';
 function BagsCard(item: productInfo) {
   const cart: productInfo[] = useSelector(changeCart);
