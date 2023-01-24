@@ -100,14 +100,14 @@ function Product() {
       </header>
 
       <section id="pageBody" className={styles.pageBody}>
-        <div id="marginDiv" className={styles.marginDiv}>
+        <aside id="marginDiv" className={styles.marginDiv}>
           <Button className={`${styles.blockBtn} ${'btn-light'}`} onClick={() => setOpen(!open)} aria-controls="bodyMain" aria-expanded={open}>
             {open === false ? '필터 표시' : '필터 숨기기'}
           </Button>
-        </div>
+        </aside>
         <section id="bodyMain" className={styles.bodyMain}>
           <Collapse in={open} className={styles.sideCheckbox}>
-            <div id="sideCheckbox">
+            <aside id="sideCheckbox">
               <div id="colorcheck">
                 <div className={styles.labels}>
                   <label>색깔</label>
@@ -197,7 +197,7 @@ function Product() {
                   </div>
                 </Collapse>
               </div>
-            </div>
+            </aside>
           </Collapse>
           <div id="cardPannel" className={styles.cardPannel}>
             <div id="data-artibute-box" className={styles.databox}>

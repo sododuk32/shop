@@ -12,18 +12,14 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { store } from 'store';
 import { add, remove } from 'lib/redux/reducers/getUserSlice';
-import { productInfo } from 'lib/redux/interface';
+import { logined, productInfo } from 'lib/redux/interface';
+import { userStat } from 'lib/redux/reducers/isLoginSlice';
+import { useSelector } from 'react-redux';
 
 function Goods(info: any) {
   const router = useRouter();
   const productnumber: any = router.query.pid;
-
-  interface loginInfo {
-    checkLogin: boolean;
-    usersIdentity: string;
-    yourId: string;
-  }
-
+  const users: logined = useSelector(userStat);
   const [openpreciseInfo, setpreciseInfo] = useState(false);
   const [opensystemReq, setopensystemReq] = useState(false);
   const [openintegrement, setopenintegrement] = useState(false);
@@ -45,32 +41,17 @@ function Goods(info: any) {
     },
   };
   function putinCart() {
-    store.dispatch(add(pickproduct));
+    if (!users.logined) {
+      alert('로그인이 필요합니다.');
+      return router.push('/users/login');
+    } else {
+      return store.dispatch(add(pickproduct));
+    }
   }
-  console.log(productnumber);
-  // function putIncart(e: any) {
-  //   if (!verifyUser.checkLogin) {
-  //     console.log('로그인필요');
-  //     return alert('로그인이 필요합니다.');
-  //   }
-  //   const yourChoice = { uid: verifyUser.usersIdentity, pid: productid, amount: aMOUNT };
-  //   postInputCart(yourChoice.uid, yourChoice.pid, yourChoice.amount)
-  //     .then((res) => {
-  //       console.log(res);
-  //       if (res.data?.message === 'complete') {
-  //         return alert('상품을 담았습니다.');
-  //       } else throw Error;
-  //     })
-  //     .catch((Error) => {
-  //       alert('에러발생');
-  //       console.log(Error);
-  //       return null;
-  //     });
-  // }
+
   return (
     <div>
       <section className={styles.goodsHeader}>
-        <div>{productnumber}</div>
         <SetLanguage />
         <Header />
       </section>
