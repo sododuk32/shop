@@ -57,10 +57,13 @@ function login() {
       .then(() => {
         setCookie('jwt', mytoken, { path: '/' });
         checkLogin = true;
+        console.log(mytoken);
+
         const Mydata: logined = {
           logined: checkLogin,
           Key: mytoken,
         };
+        console.log(mytoken);
         store.dispatch(getLogin(Mydata));
         return router.push('/users/usermenu');
       })

@@ -22,7 +22,7 @@ export const isLogin = createSlice({
   initialState,
   reducers: {
     getLogin: (state, action) => {
-      state.userStatatus.Key = action.payload.key;
+      state.userStatatus.Key = action.payload.Key;
       state.userStatatus.logined = action.payload.logined;
       // 등록
     },

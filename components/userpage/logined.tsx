@@ -6,16 +6,23 @@ import React, { useRef } from 'react';
 import Link from 'next/link';
 import styles from './logined.module.css';
 import { useRouter } from 'next/router';
-import { QueryClient } from 'react-query';
-import needLogin from './needLogin';
 import { removeCookies } from 'cookies-next';
+import { logined } from 'lib/redux/interface';
+import { userStat } from 'lib/redux/reducers/isLoginSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { getLogin } from 'lib/redux/reducers/isLoginSlice';
 function logined(user: string) {
+  const updateStat: logined = {
+    logined: false,
+    Key: '',
+  };
+  const dispatch = useDispatch();
   const router = useRouter();
   function logout(e: any) {
     console.log('로그아웃');
     removeCookies('jwt');
-    // queryClient.removeQueries({ queryKey: ['userInfo'] });
 
+    dispatch(getLogin(updateStat));
     return router.push('/users/login');
   }
 

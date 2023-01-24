@@ -44,16 +44,16 @@ function bags() {
             <span className={styles.billspan}>계산 요약 </span>
             <ul className={styles.disCount}>
               <li className={styles.disCountList}>
-                <div>배송비:</div>
-                <div>2500</div>
+                <div>할인:</div>
+                <div>0</div>
               </li>
               <li className={styles.disCountList}>
-                <div>배송비:</div>
-                <div>2500</div>
+                <div>뭐시기비용:</div>
+                <div>0</div>
               </li>
               <li className={styles.disCountList}>
-                <div>배송비:</div>
-                <div>2500</div>
+                <div>추가예정:</div>
+                <div>0</div>
               </li>
               <li className={styles.disCountList}>
                 <div>배송비:</div>

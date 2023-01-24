@@ -10,8 +10,6 @@ import Image from 'next/image';
 import { Button, Collapse } from 'react-bootstrap';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { useSelector, useDispatch } from 'react-redux';
-import { cartTest } from 'lib/redux/reducers/getUserSlice';
 import { store } from 'store';
 import { add, remove } from 'lib/redux/reducers/getUserSlice';
 import { productInfo } from 'lib/redux/interface';
@@ -26,9 +24,6 @@ function Goods(info: any) {
     yourId: string;
   }
 
-  const verifyUser: loginInfo = info;
-  const dispatch = useDispatch();
-  const mycart = useSelector(cartTest);
   const [openpreciseInfo, setpreciseInfo] = useState(false);
   const [opensystemReq, setopensystemReq] = useState(false);
   const [openintegrement, setopenintegrement] = useState(false);

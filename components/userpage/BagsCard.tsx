@@ -11,8 +11,6 @@ import { useDispatch, useSelector } from 'react-redux';
 function BagsCard(item: productInfo) {
   const cart: productInfo[] = useSelector(changeCart);
 
-  const foundNumber: number = cart.findIndex((state) => state.productId === item.productId);
-
   const myprice = useRef<HTMLSpanElement>(null);
   const plusAmount = { ...item, amount: item.amount + 1 };
   const minusAmount = { ...item, amount: item.amount - 1 };
