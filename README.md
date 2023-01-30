@@ -5,7 +5,7 @@
  로지텍 웹페이지의 ui, 기능들을 보기만 한 다음 따라해보는 프로젝트입니다<br>
  https://www.logitech.com/ <br>
  배포 된 페이지 : https://shop-front-372501.dt.r.appspot.com/<br>
-
+ 페이지 로그인시 ID : TOM / PW QWER2@ , JACK / QWER1!
  <br>
  프로젝트 현황 및 작업 우선순위:<br>
 1순위. 프론트 페이지 전반적인 css 수정 <br>
