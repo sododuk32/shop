@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { productInfo } from 'lib/redux/interface';
 import { callAxios } from './callAxios';
 
 const serverurl = 'https://kwakdeayang.shop';
@@ -78,7 +79,8 @@ export async function postLogin(sendJson: string) {
  *
  * api미작성
  */
-export async function postInputCart(uid: string, pid: string | string[] | undefined, amount: number) {
+export async function putIncart(oids: number, carts: productInfo[]) {
   console.log('postLogin실행');
-  return callAxios.post(serverurl + '/putIncart/', { uid: uid, pid: pid, amout: amount });
+  const sendCart: string = JSON.stringify(carts);
+  return callAxios.post(serverurl + '/putIncart/', { oid: oids, cart: sendCart });
 }
