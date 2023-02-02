@@ -6,7 +6,7 @@ import { decrement, increment, selectValue } from '../lib/redux/reducers/counter
 import { productInfo } from 'lib/redux/interface';
 import { changeCart } from 'lib/redux/reducers/getUserSlice';
 import { store } from 'store';
-import { add, remove } from 'lib/redux/reducers/getUserSlice';
+import { add, remove, removeAll } from 'lib/redux/reducers/getUserSlice';
 import ReviewComments from 'components/userpage/WriteReviewCom';
 function pagess() {
   const dispatch = useDispatch();
@@ -73,7 +73,9 @@ function pagess() {
   //=>액션 타입 지정필요
   const myRef = useRef(null);
   const [stars, setStars] = useState(0);
-
+  function asdf() {
+    store.dispatch(removeAll());
+  }
   return (
     <div>
       <div>
@@ -87,7 +89,7 @@ function pagess() {
         <button onClick={deletingCart}>첫번째를 지워줌</button> */}
 
         <ReviewComments />
-
+        {/* <button onClick={() => asdf()}>장바구니 제거 </button> */}
         {/* <div data-ex="최상위 노드에용" ref={myRef}>
           <div onClick={() => console.log('2번!!!')}>
             2번

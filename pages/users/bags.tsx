@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prefer-const */
 import React, { useEffect, useState } from 'react';
 import styles from './bags.module.css';
@@ -5,15 +6,37 @@ import Header from 'components/commons/Headers/Header';
 import SetLanguage from 'components/commons/Headers/SetLanguage';
 import BagsCard from 'components/userpage/BagsCard';
 import { productInfo } from 'lib/redux/interface';
-import { changeCart } from 'lib/redux/reducers/getUserSlice';
-import { useSelector } from 'react-redux';
+import { removeAll, changeCart } from 'lib/redux/reducers/getUserSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
-//  price = myBags.current.childNodes[0].lastChild.childNodes[3].childNodes[1];
+import { putIncart, updater, getOderinfo, updater2 } from 'lib/fetches/ApiCall';
+import { useCookies } from 'react-cookie';
+import { useRouter } from 'next/router';
+import { store } from 'store';
 
 function bags() {
   const stateCart = useSelector(changeCart);
   let [totalPrice, setTotalprice] = useState<number>(0);
+  console.log(stateCart);
+  const dispatch = useDispatch();
+  const [cookies] = useCookies(['jwt']);
+  const router = useRouter();
+
   let temp: number;
+  const buying = async () => {
+    let myoid = 0;
+    let myuid = '';
+    const json = JSON.stringify(stateCart);
+    const json2 = JSON.parse(json);
+
+    console.log(json);
+    myoid = await getOderinfo();
+    myuid = await updater2(cookies.jwt);
+
+    await putIncart(myoid, myuid, json2, totalPrice);
+    store.dispatch(removeAll()); // 상태값 안 없어짐.
+    return router.push('/users/oders');
+  };
 
   useEffect(() => {
     temp = 0;
@@ -34,11 +57,13 @@ function bags() {
       <section id="pageBody" className={styles.bodyContainer}>
         <div className={styles.pannelContainer}>
           <ul className={styles.productPannel}>
-            {stateCart.map((card: productInfo) => (
-              <li className={styles.CardBody} key={card.productId}>
-                {BagsCard(card)}
-              </li>
-            ))}
+            {stateCart[0] != null || undefined
+              ? stateCart.map((card: productInfo) => (
+                  <li className={styles.CardBody} key={card.productId}>
+                    {BagsCard(card)}
+                  </li>
+                ))
+              : null}
           </ul>
           <div className={styles.billPannel}>
             <span className={styles.billspan}>계산 요약 </span>
@@ -65,9 +90,12 @@ function bags() {
               <span>총 가격: {totalPrice}</span>
             </div>
 
-            <Button className={styles.buyingBtn} variant="primary" size="sm">
-              구매하기
-            </Button>
+            <div className={styles.buyingBtn}>
+              <Button onClick={() => buying()} variant="primary" size="sm">
+                구매하기
+              </Button>
+              {/* 원래는 서버에서 처리해야함*/}
+            </div>
           </div>
         </div>
       </section>

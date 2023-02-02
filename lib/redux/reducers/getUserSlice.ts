@@ -6,7 +6,6 @@ import type { RootState } from 'store';
 import { productInfo } from 'lib/redux/interface';
 export interface ProductState {
   cart: productInfo[];
-  totalPrice: number;
 }
 const initialState: ProductState = {
   cart: [
@@ -22,7 +21,6 @@ const initialState: ProductState = {
       },
     },
   ],
-  totalPrice: 0,
 };
 
 export const userCart = createSlice({
@@ -116,10 +114,7 @@ export const userCart = createSlice({
         }
       }
     },
-    pricing: (state, action) => {
-      const myprice = action.payload;
-      state.totalPrice = myprice;
-    },
+
     changeAmount: (state, action) => {
       const foundNumber = state.cart.findIndex((state) => state.productId === action.payload.productId);
       const targeted = state.cart[foundNumber];
@@ -133,11 +128,14 @@ export const userCart = createSlice({
       mystate.splice(foundNumber, 1, outPut);
       state.cart = mystate;
     },
+    removeAll: (state) => {
+      state.cart = initialState.cart;
+    },
   },
 });
 // netflix 강의 참고하기
 export default userCart.reducer;
 
-export const { add, remove, changeAmount } = userCart.actions;
+export const { add, remove, changeAmount, removeAll } = userCart.actions;
 
 export const changeCart = (state: RootState) => state.userCart.cart;

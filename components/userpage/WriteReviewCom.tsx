@@ -24,6 +24,8 @@ function WriteReviewCom() {
       </div>
       <input type="text" name="" id="reviewText" />
       <div>키워드 옵션</div>
+      {/*
+      //오늘 여기 css 완성하면됨.  */}
     </div>
   );
 }

@@ -11,7 +11,6 @@ import logined from 'components/userpage/logined';
 import needLogin from 'components/userpage/needLogin';
 import { updater } from '../../lib/fetches/ApiCall';
 import Link from 'next/link';
-import { GetServerSidePropsContext, NextPageContext } from 'next';
 import { useCookies } from 'react-cookie';
 // export async function getStaticProps() {
 //   const queryClient = new QueryClient();

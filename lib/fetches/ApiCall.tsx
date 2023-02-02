@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { productInfo } from 'lib/redux/interface';
 import { callAxios } from './callAxios';
-
-const serverurl = 'https://kwakdeayang.shop';
+//https://kwakdeayang.shop
+const serverurl = 'http://localhost:3000';
 /**
  * 엑세스 jwt키 값을 헤더의 auth에 넣는 사용자 인증api
  *
@@ -79,8 +78,26 @@ export async function postLogin(sendJson: string) {
  *
  * api미작성
  */
-export async function putIncart(oids: number, carts: productInfo[]) {
+export const putIncart = async (oids: number, uids: string, carts: string, price: number) => {
   console.log('postLogin실행');
   const sendCart: string = JSON.stringify(carts);
-  return callAxios.post(serverurl + '/putIncart/', { oid: oids, cart: sendCart });
-}
+  return callAxios.post(serverurl + '/putIncart', { oid: oids, uids, cart: sendCart, totalPrice: price });
+};
+
+export const getOderinfo = async () => {
+  const response = await callAxios.get(serverurl + '/getOderinfo');
+  const oderid = response.data.yourOid;
+  return oderid;
+};
+
+export const updater2 = async (getcookie: any) => {
+  const response = await callAxios.get('/verify', {
+    headers: {
+      'Content-Type': `application/json`,
+      withCredentials: true,
+      Authorization: getcookie,
+    },
+  });
+  const userId: string = response.data.userid;
+  return userId;
+};
