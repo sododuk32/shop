@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import GiveStar from './GiveStar';
 // import styled from 'styled-components';
 
 function WriteReviewCom() {
-  const [stars, setStars] = useState(0);
-
   return (
     <div>
       <section id="headers">
@@ -19,13 +17,13 @@ function WriteReviewCom() {
         </span>
       </section>
       <div id="stars">
-        {GiveStar(setStars)}
-        {stars}
+        <GiveStar />
       </div>
       <input type="text" name="" id="reviewText" />
-      <div>키워드 옵션</div>
+      <div>키워드 옵션 선택 창 </div>
       {/*
       //오늘 여기 css 완성하면됨.  */}
+      <div>등록</div>
     </div>
   );
 }

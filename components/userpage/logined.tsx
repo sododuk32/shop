@@ -15,6 +15,8 @@ function logined(user: string) {
   const updateStat: logined = {
     logined: false,
     Key: '',
+    uid: '',
+    username: '',
   };
   const dispatch = useDispatch();
   const router = useRouter();

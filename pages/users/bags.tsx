@@ -9,33 +9,37 @@ import { productInfo } from 'lib/redux/interface';
 import { removeAll, changeCart } from 'lib/redux/reducers/getUserSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
-import { putIncart, updater, getOderinfo, updater2 } from 'lib/fetches/ApiCall';
-import { useCookies } from 'react-cookie';
+import { putIncart, updater, updater2 } from 'lib/fetches/ApiCall';
 import { useRouter } from 'next/router';
 import { store } from 'store';
+import { userStat } from 'lib/redux/reducers/isLoginSlice';
 
 function bags() {
   const stateCart = useSelector(changeCart);
-  let [totalPrice, setTotalprice] = useState<number>(0);
-  console.log(stateCart);
-  const dispatch = useDispatch();
-  const [cookies] = useCookies(['jwt']);
-  const router = useRouter();
+  const stateUser = useSelector(userStat);
 
+  let [totalPrice, setTotalprice] = useState<number>(0);
+  const dispatch = useDispatch();
+  const router = useRouter();
   let temp: number;
+  if (stateUser.logined === false) {
+    console.log('no uid');
+    return router.push('/users/usermenu');
+  }
   const buying = async () => {
-    let myoid = 0;
     let myuid = '';
     const json = JSON.stringify(stateCart);
     const json2 = JSON.parse(json);
 
     console.log(json);
-    myoid = await getOderinfo();
-    myuid = await updater2(cookies.jwt);
+    // if (stateUser.uid === undefined || '') {
+    //   myuid = 'notLogin';
+    // }
+    myuid = stateUser.uid;
 
-    await putIncart(myoid, myuid, json2, totalPrice);
-    store.dispatch(removeAll()); // 상태값 안 없어짐.
-    return router.push('/users/oders');
+    putIncart(myuid, json2, totalPrice);
+    store.dispatch(removeAll());
+    return router.push('/usersmenu');
   };
 
   useEffect(() => {
@@ -52,7 +56,7 @@ function bags() {
     <div>
       <header id="pageHeader" className={styles.header}>
         <SetLanguage />
-        <Header />{' '}
+        <Header />
       </header>
       <section id="pageBody" className={styles.bodyContainer}>
         <div className={styles.pannelContainer}>
@@ -94,7 +98,6 @@ function bags() {
               <Button onClick={() => buying()} variant="primary" size="sm">
                 구매하기
               </Button>
-              {/* 원래는 서버에서 처리해야함*/}
             </div>
           </div>
         </div>

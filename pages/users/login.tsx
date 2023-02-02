@@ -36,7 +36,9 @@ function login() {
   };
   let mytoken = '';
   let checkLogin: boolean;
-  function sendingInfo() {
+  let myuid = '';
+  let username = '';
+  const sendingInfo = async () => {
     let userInput: infoes = {
       usersid: Email,
       userspw: userPassword,
@@ -47,23 +49,26 @@ function login() {
       return null;
     }
     const sendJson = JSON.stringify(userInput);
-    postLogin(sendJson)
+    await postLogin(sendJson)
       .then((res) => {
         if (res.data.message === 'true') {
           throw Error;
         }
         mytoken = res.data.jwtToken;
+        myuid = res.data.uid;
+        username = res.data.username;
       })
       .then(() => {
         setCookie('jwt', mytoken, { path: '/' });
         checkLogin = true;
-        console.log(mytoken);
 
         const Mydata: logined = {
           logined: checkLogin,
           Key: mytoken,
+          uid: myuid,
+          username: username,
         };
-        console.log(mytoken);
+        console.log(Mydata);
         store.dispatch(getLogin(Mydata));
         return router.push('/users/usermenu');
       })
@@ -71,7 +76,7 @@ function login() {
         alert('아이디 비밀번호 중 하나가 틀렸습니다');
         return null;
       });
-  }
+  };
 
   return (
     <div>

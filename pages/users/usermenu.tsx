@@ -12,67 +12,22 @@ import needLogin from 'components/userpage/needLogin';
 import { updater } from '../../lib/fetches/ApiCall';
 import Link from 'next/link';
 import { useCookies } from 'react-cookie';
-// export async function getStaticProps() {
-//   const queryClient = new QueryClient();
+import { useSelector } from 'react-redux';
+import { userStat } from 'lib/redux/reducers/isLoginSlice';
 
-//   await queryClient.prefetchQuery(['userInfo'], updater);
-
-//   return {
-//     props: {
-//       dehydratedState: dehydrate(queryClient),
-//     },
-//   };
-// }
-// export async function getServerSideProps(context: GetServerSidePropsContext) {
-//   let mykey: string;
-//   let user: any;
-//   let result: any;
-//   if (typeof context.req.cookies.jwt === 'string') {
-//     mykey = context.req.cookies.jwt;
-//     user = updater(mykey);
-//     console.log(user.userid);
-//   }
-//   if (!user) return { props: { user: 'nodata' } };
-
-//   return {
-//     props: (result = {
-//       message: user.message,
-//       userid: user.userid,
-//       usersIdentity: user.usersIdentity,
-//     }),
-//   };
-// }
 //https://coding-heesong.tistory.com/69
 function usermenu() {
   const [return1, setreturn] = useState<signedInfo>({ message: '', userid: '', usersIdentity: '' });
   const [cookies] = useCookies(['jwt']);
   const [verifyed, setverify] = useState<boolean>(true);
+  const stateUser = useSelector(userStat);
+  const myuid = stateUser.uid;
+
   interface signedInfo {
     message: string;
     userid: string;
     usersIdentity: string;
   }
-  useEffect(() => {
-    if (cookies.jwt) {
-      result();
-    }
-  }, [return1, verifyed]);
-
-  const result = async () => {
-    if (verifyed) {
-      if (cookies.jwt === undefined || null) {
-        return null;
-      }
-
-      const update = await updater(cookies.jwt);
-      setreturn({
-        message: update.data.message,
-        userid: update.data.userid,
-        usersIdentity: update.data.usersIdentity,
-      });
-      return setverify(false);
-    }
-  };
 
   return (
     <div>
@@ -86,7 +41,7 @@ function usermenu() {
           <div id="pannelImg">
             <Image className={styles.heroImg} src="/userMenuimg.png" priority alt="sd" width={1900} height={400} />
           </div>
-          <div id="menubox">{verifyed ? needLogin() : logined(return1?.usersIdentity)}</div>
+          <div id="menubox">{stateUser.logined === false ? needLogin() : logined(stateUser.username)}</div>
           <section className={styles.usersMenus}>
             <div className={styles.usercard}>
               <span className={styles.userssbtn}>

@@ -16,6 +16,8 @@ import ProductCard from '../../components/productpage/ProductCard';
 import { useRouter } from 'next/router';
 import ProductPagenation from '../../components/productpage/ProductPagenation';
 import { postProduct } from 'lib/fetches/ApiCall';
+import { Suspense } from 'react';
+import Spinner from 'react-bootstrap/Spinner';
 function Product() {
   interface producttags {
     productId: number;
@@ -210,6 +212,7 @@ function Product() {
                   ))}
               </ul>
             </div>
+
             <div className={styles.pageNation}>{ProductPagenation(cardInfoes.totalP, currentPage, category, setcurrentPage)}</div>
           </div>
         </section>

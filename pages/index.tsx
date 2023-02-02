@@ -10,6 +10,8 @@ import Carouselnomal from '../components/commons/Carouselnomal';
 import CarouselGrid from '../components/commons/CarouselGrid';
 import SetLanguage from '../components/commons/Headers/SetLanguage';
 import { QueryClient, useQuery } from 'react-query';
+import { Suspense } from 'react';
+import Spinner from 'react-bootstrap/Spinner';
 
 const Home: NextPage = () => {
   const queryClient = new QueryClient();
@@ -38,7 +40,9 @@ const Home: NextPage = () => {
             <Image className={styles.bannerKeyboard} alt="indexKeybored" src="/keybored.jpg" width={1000} height={800} />
           </div>
         </div>
-        <GridPhoto />
+        <Suspense fallback={<Spinner animation="border" variant="light" />}>
+          <GridPhoto />
+        </Suspense>
         <CarouselGrid />
         {/* <Carouselnomal /> */}
       </section>

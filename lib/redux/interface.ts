@@ -9,6 +9,8 @@ export type productInfo = {
 export type logined = {
   logined: boolean;
   Key: string;
+  uid: string;
+  username: string;
 };
 
 class defaultOption {

@@ -7,6 +7,8 @@ export interface logined {
   userStatatus: {
     logined: boolean;
     Key: string;
+    uid: string;
+    username: string;
   };
 }
 
@@ -14,6 +16,8 @@ const initialState: logined = {
   userStatatus: {
     logined: false,
     Key: '',
+    uid: '',
+    username: '',
   },
 };
 
@@ -24,21 +28,21 @@ export const isLogin = createSlice({
     getLogin: (state, action) => {
       state.userStatatus.Key = action.payload.Key;
       state.userStatatus.logined = action.payload.logined;
-      // 등록
+      state.userStatatus.uid = action.payload.uid;
+      state.userStatatus.username = action.payload.username;
     },
     LogOut: (state, action) => {
-      // 초기값으로 반환
-    },
-    Check: (state, action) => {
-      // 로그인 되었나 체크
+      state.userStatatus.Key = action.payload.Key;
+      state.userStatatus.logined = action.payload.logined;
+      state.userStatatus.uid = action.payload.uid;
+      state.userStatatus.username = action.payload.username;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { getLogin, LogOut, Check } = isLogin.actions;
+export const { getLogin, LogOut } = isLogin.actions;
 
 export const userStat = (state: RootState) => state.isLogin.userStatatus;
 
 export default isLogin.reducer;
-// reducer콜백을 줘야 이 파일의 함수동작들이 리듀서에 등록됨.

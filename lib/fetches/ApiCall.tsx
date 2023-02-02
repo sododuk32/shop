@@ -76,20 +76,21 @@ export async function postLogin(sendJson: string) {
  *
  * 반환값:
  *
- * api미작성
+ *
  */
-export const putIncart = async (oids: number, uids: string, carts: string, price: number) => {
+export const putIncart = async (uids: string, carts: string, price: number) => {
   console.log('postLogin실행');
   const sendCart: string = JSON.stringify(carts);
-  return callAxios.post(serverurl + '/putIncart', { oid: oids, uids, cart: sendCart, totalPrice: price });
+  return callAxios.post(serverurl + '/putIncart', { uid: uids, cart: sendCart, totalPrice: price });
 };
-
-export const getOderinfo = async () => {
-  const response = await callAxios.get(serverurl + '/getOderinfo');
-  const oderid = response.data.yourOid;
-  return oderid;
-};
-
+/**
+ * uid를 얻기위한 api통신
+ *
+ * 입력값: jwt토큰
+ * 반환값: uid
+ *
+ *
+ */
 export const updater2 = async (getcookie: any) => {
   const response = await callAxios.get('/verify', {
     headers: {
