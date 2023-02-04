@@ -15,8 +15,8 @@ import { add, remove } from 'lib/redux/reducers/getUserSlice';
 import { logined, productInfo } from 'lib/redux/interface';
 import { userStat } from 'lib/redux/reducers/isLoginSlice';
 import { useSelector } from 'react-redux';
-
-function Goods(info: any) {
+import WriteReviewCom from 'components/userpage/WriteReviewCom';
+function Goods() {
   const router = useRouter();
   const productnumber: any = router.query.pid;
   const users: logined = useSelector(userStat);
@@ -25,10 +25,12 @@ function Goods(info: any) {
   const [openintegrement, setopenintegrement] = useState(false);
   const [opensupport, setopensupport] = useState(false);
   const [aMOUNT, setAMOUNT] = useState<number>(0);
+
   const onChangeAmount = (e: any) => {
     const tempPid = Number(e.target.value);
     return setAMOUNT(tempPid);
   };
+
   const pickproduct: productInfo = {
     productId: productnumber,
     amount: aMOUNT,
@@ -45,6 +47,7 @@ function Goods(info: any) {
       alert('로그인이 필요합니다.');
       return router.push('/users/login');
     } else {
+      console.log(pickproduct);
       return store.dispatch(add(pickproduct));
     }
   }
@@ -140,6 +143,7 @@ function Goods(info: any) {
             </div>
           </section>
         </div>
+        <div className="comments">{WriteReviewCom(productnumber, users)}</div>
       </section>
     </div>
   );

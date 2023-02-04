@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { Comments } from 'lib/redux/interface';
 import { callAxios } from './callAxios';
 //https://kwakdeayang.shop
 const serverurl = 'http://localhost:3000';
@@ -101,4 +102,19 @@ export const updater2 = async (getcookie: any) => {
   });
   const userId: string = response.data.userid;
   return userId;
+};
+
+export const getOderinfo = async (uids: string) => {
+  return callAxios.post(serverurl + '/getOderinfo', { uid: uids });
+};
+
+export const inputComment = async (commentObj: Comments) => {
+  return callAxios.post(serverurl + '/inputComment', {
+    name: commentObj.nameInput,
+    pid: commentObj.pids,
+    uid: commentObj.uids,
+    star: commentObj.star,
+    comment: commentObj.comment,
+    line: commentObj.line,
+  });
 };

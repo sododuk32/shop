@@ -26,20 +26,17 @@ function bags() {
     console.log('no uid');
     return router.push('/users/usermenu');
   }
-  const buying = async () => {
+  const buying = () => {
     let myuid = '';
+    // const temp = { ...stateCart };
     const json = JSON.stringify(stateCart);
-    const json2 = JSON.parse(json);
 
     console.log(json);
-    // if (stateUser.uid === undefined || '') {
-    //   myuid = 'notLogin';
-    // }
     myuid = stateUser.uid;
 
-    putIncart(myuid, json2, totalPrice);
+    putIncart(myuid, json, totalPrice);
     store.dispatch(removeAll());
-    return router.push('/usersmenu');
+    return router.push('/');
   };
 
   useEffect(() => {
@@ -50,7 +47,6 @@ function bags() {
     });
     setTotalprice(temp + 2500);
   }, [totalPrice, stateCart]);
-  console.log(stateCart);
 
   return (
     <div>

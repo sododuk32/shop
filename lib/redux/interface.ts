@@ -6,11 +6,29 @@ export type productInfo = {
   price: number;
 };
 
+export type orderInfo = {
+  oid: string;
+  orderSday: string;
+  daytoEnd: string;
+  orderConditon: string;
+  uid: number;
+  product: productInfo;
+};
+
 export type logined = {
   logined: boolean;
   Key: string;
   uid: string;
   username: string;
+};
+
+export type Comments = {
+  nameInput: string | undefined;
+  pids: string;
+  uids: string;
+  star: number;
+  comment: string | undefined;
+  line: string;
 };
 
 class defaultOption {

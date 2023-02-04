@@ -14,9 +14,6 @@ import { Suspense } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 
 const Home: NextPage = () => {
-  const queryClient = new QueryClient();
-  const data = queryClient.getQueryData('userInfo');
-
   return (
     <div>
       <header>
