@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Header from 'components/commons/Headers/Header';
@@ -7,8 +8,8 @@ import styled from 'styled-components';
 import { getOderinfo } from 'lib/fetches/ApiCall';
 import { useSelector } from 'react-redux';
 import { userStat } from 'lib/redux/reducers/isLoginSlice';
-import { orderInfo, productInfo } from 'lib/redux/interface';
-
+import { oidDay, orderProduct, productInfo } from 'lib/redux/interface';
+import ShowOrder from 'components/userpage/ShowOrder';
 const Orderbody = styled.body`
   .bodyContainer {
     margin-top: 5.8vw;
@@ -83,21 +84,46 @@ const Orderbody = styled.body`
 function orders() {
   const stat = useSelector(userStat);
   const uid = stat.uid;
-  const [order, setorder] = useState<orderInfo[]>([]);
+  const [order, setorder] = useState<orderProduct[][]>([[]]);
+  const [oidy, setoidy] = useState<oidDay[]>([]);
 
   useEffect(() => {
     startFetching(uid);
-    console.log(order);
   }, []);
 
   function startFetching(uid: string) {
-    let myorder: orderInfo[];
+    let myorder: orderProduct[] = [{ amount: '', daytoEnd: '', oid: '', orderCondition: '', orderSday: '', price: 0, productId: '', uid: '' }];
+    try {
+      getOderinfo(uid).then((res) => {
+        myorder = res.data.yourData;
+        let sortedOrder: orderProduct[][] = [];
+        let oidArray: oidDay[] = [];
+        let temp2 = myorder[0].oid;
+        let present = 0; //시작지점
+        let start = 0; //자르는 기준
+        myorder.map((props: orderProduct) => {
+          if (temp2 === props.oid) {
+            if (myorder.length === myorder.indexOf(props) + 1) {
+              sortedOrder.push(myorder.slice(present, myorder.indexOf(props) + 1));
+              oidArray.push({ oid: props.oid, daytoEnd: props.daytoEnd, orderSday: props.orderSday, orderCondition: props.orderCondition });
+            }
+          }
+          if (temp2 != props.oid) {
+            temp2 = props?.oid;
+            present = myorder.indexOf(props);
+            sortedOrder.push(myorder.slice(start, present));
+            start = present;
+            oidArray.push({ oid: props.oid, daytoEnd: props.daytoEnd, orderSday: props.orderSday, orderCondition: props.orderCondition });
+          }
+        });
 
-    getOderinfo(uid).then((res) => {
-      myorder = res.data.yourOrder;
-
-      setorder(myorder);
-    });
+        setorder(sortedOrder);
+        setoidy(oidArray);
+        //api 콜백 끝
+      });
+    } catch (error) {
+      return alert(error);
+    }
   }
   return (
     <div>
@@ -122,16 +148,14 @@ function orders() {
             </ul>
           </div>
         </section>
-        {/* <div>{order.length > 0 ? order[0].daytoEnd : null}</div> */}
       </Orderbody>
+      {order[0].length != 0 && order[0] != undefined && oidy.length != 0 && oidy[0] != undefined ? ShowOrder(order, oidy) : null}
     </div>
   );
 }
 
 export default orders;
-// 사용자 uid , && 상태가 ready or shipping 인것들만 찾아서 가져오기.
 
-// -> 한번의 쿼리로 가능하고, 그대로 view로 보여주면됨.
 // -> 상품이 1개 이상일 경우 첫번째 상품.... 그외 1로 보여주고
 
 // -> 클릭 시 숨겨진 창에서 모든 상품 표기.

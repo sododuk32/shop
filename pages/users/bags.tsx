@@ -27,8 +27,11 @@ function bags() {
     return router.push('/users/usermenu');
   }
   const buying = () => {
+    if (stateCart[0].productId.length <= 1 || stateCart[0] === undefined) {
+      alert('장바구니가 비었네요 사러 가 볼까용?');
+      return router.push('/');
+    }
     let myuid = '';
-    // const temp = { ...stateCart };
     const json = JSON.stringify(stateCart);
 
     console.log(json);
@@ -41,11 +44,12 @@ function bags() {
 
   useEffect(() => {
     temp = 0;
-
-    stateCart.forEach((state) => {
-      temp = temp + state.price * state.amount;
-    });
-    setTotalprice(temp + 2500);
+    if (stateCart[0] != undefined) {
+      stateCart.forEach((state) => {
+        temp = temp + state.price * state.amount;
+      });
+      setTotalprice(temp + 2500);
+    }
   }, [totalPrice, stateCart]);
 
   return (
@@ -57,13 +61,13 @@ function bags() {
       <section id="pageBody" className={styles.bodyContainer}>
         <div className={styles.pannelContainer}>
           <ul className={styles.productPannel}>
-            {stateCart[0] != null || undefined
+            {stateCart[0].productId.length >= 1 && stateCart[0] != undefined
               ? stateCart.map((card: productInfo) => (
                   <li className={styles.CardBody} key={card.productId}>
                     {BagsCard(card)}
                   </li>
                 ))
-              : null}
+              : '상품을 담아주세요'}
           </ul>
           <div className={styles.billPannel}>
             <span className={styles.billspan}>계산 요약 </span>
