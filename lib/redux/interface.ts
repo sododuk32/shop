@@ -57,4 +57,5 @@ export interface oidDay {
   orderCondition: string;
   daytoEnd: string;
   orderSday: string;
+  totalPrice: number;
 }

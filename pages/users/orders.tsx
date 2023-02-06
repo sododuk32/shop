@@ -23,61 +23,12 @@ const Orderbody = styled.body`
   }
   .pannelContainer {
     width: 60%;
-    height: 10vw;
     display: flex;
     flex-direction: row;
     margin: 0% auto;
   }
-  .orderPannel {
-    list-style: none;
-    width: 95%;
-    height: fit-content;
-    border: solid 0.1vw gray;
-    padding-left: 0.1;
-    padding-top: 0.5vw;
-  }
-  .infoPannel {
-    width: 95%;
-    border: solid 0.1vw red;
-    padding-left: 0.1;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    hight: fit-content;
-  }
-  .productPannel {
-    list-style: none;
-    width: 70%;
-    border: solid 0.1vw gray;
-    padding-left: 0.1;
-    font-size: 1vw;
-  }
-  .pricePannel {
-    list-style: none;
-    width: 25%;
-    border: solid 0.1vw gray;
-    padding-left: 0.5vw;
-    font-size: 0.9vw;
-  }
-  .totalPannel {
-    margin: 0% auto;
-    border: solid 0.1vw blue;
-    margin-top: 3vw;
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-  }
-  .listPannel {
-    display: flex;
-    flex-direction: column;
-    margin-top: 0% auto;
-    margin-left: 0% auto;
-    margin-right: 0% auto;
-    margin-bottom: 1vw;
-  }
-  .totalspan {
-    margin-left: 2vw;
-    margin-right: 2vw;
+  .pannelContainer > section {
+    width: 100%;
   }
 `;
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -101,11 +52,20 @@ function orders() {
         let temp2 = myorder[0].oid;
         let present = 0; //시작지점
         let start = 0; //자르는 기준
+        let price = 0;
         myorder.map((props: orderProduct) => {
+          price += Number(props.amount) * Number(props.price);
           if (temp2 === props.oid) {
             if (myorder.length === myorder.indexOf(props) + 1) {
               sortedOrder.push(myorder.slice(present, myorder.indexOf(props) + 1));
-              oidArray.push({ oid: props.oid, daytoEnd: props.daytoEnd, orderSday: props.orderSday, orderCondition: props.orderCondition });
+              oidArray.push({
+                oid: props.oid,
+                daytoEnd: props.daytoEnd,
+                orderSday: props.orderSday,
+                orderCondition: props.orderCondition,
+                totalPrice: Number(props.amount) * Number(props.price),
+              });
+              price = 0;
             }
           }
           if (temp2 != props.oid) {
@@ -113,7 +73,14 @@ function orders() {
             present = myorder.indexOf(props);
             sortedOrder.push(myorder.slice(start, present));
             start = present;
-            oidArray.push({ oid: props.oid, daytoEnd: props.daytoEnd, orderSday: props.orderSday, orderCondition: props.orderCondition });
+            oidArray.push({
+              oid: props.oid,
+              daytoEnd: props.daytoEnd,
+              orderSday: props.orderSday,
+              orderCondition: props.orderCondition,
+              totalPrice: price,
+            });
+            price = 0;
           }
         });
 
@@ -134,22 +101,10 @@ function orders() {
       <Orderbody>
         <section className="bodyContainer">
           <div className="pannelContainer">
-            <ul className="orderPannel">
-              <li className="listPannel">
-                <div className="infoPannel">
-                  <div className="productPannel"></div>
-                  <div className="pricePannel"></div>
-                </div>
-                <div className="totalPannel">
-                  <span className="totalspan"></span>
-                  <span className="totalspan"> </span>
-                </div>
-              </li>
-            </ul>
+            {order[0].length != 0 && order[0] != undefined && oidy.length != 0 && oidy[0] != undefined ? ShowOrder(order, oidy) : null}
           </div>
         </section>
       </Orderbody>
-      {order[0].length != 0 && order[0] != undefined && oidy.length != 0 && oidy[0] != undefined ? ShowOrder(order, oidy) : null}
     </div>
   );
 }
