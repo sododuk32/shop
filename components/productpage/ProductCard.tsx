@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { Suspense } from 'react';
 import Card from 'react-bootstrap/Card';
 import Image from 'next/image';
 import styles from './ProductCard.module.css';
 import Link from 'next/link';
+import ReactLoading from 'react-loading';
+
 interface productInfo {
   productId: number;
   productTag: string;
@@ -17,7 +19,18 @@ function ProductCard(info: productInfo) {
   return (
     <Card className={styles.pcard}>
       <Link href={'/product' + '/goods/' + info.productId}>
-        <Image src="/gallary-1.jpg" width={250} height={250} alt="a" />
+        <div className={styles.img}>
+          <Image
+            src="/gallary-1.jpg"
+            fill
+            sizes="(max-width: 768px) 10vw,
+              (min-width: 1200px) 30vw,
+              30vw,(max-height: 768px) 20vw,
+              (min-height: 1200px) 30vw,
+              30vw"
+            alt="a"
+          />
+        </div>
         <Card.Body>
           <Card.Title>{info.productId}</Card.Title>
           <Card.Text>{info.productCategory}</Card.Text>

@@ -68,15 +68,48 @@ function Carouselnomal() {
     <div>
       <div className={styles.carouselBox}>
         <div id="box1" className={styles.carouselContainer}>
-          <Image alt="nothing" width={1900} height={760} quality={100} className={styles.carouselImg1} src={'/pcrplastic.jpg'} />
+          <Image
+            alt="nothing"
+            fill
+            sizes="(max-width: 768px) 0.3vw,
+              (max-width: 1200px) 0.2vw,
+              0.1vw,(max-height: 768px) 0.3vw,
+              (max-height: 1200px) 0.2vw,
+              0.1vw"
+            quality={100}
+            className={styles.carouselImg1}
+            src={'/pcrplastic.jpg'}
+          />
           <span className={styles.carouselSpan}>친환경 소재</span>
         </div>
         <div id="box2" className={styles.carouselContainer}>
-          <Image alt="nothing" width={1900} height={760} quality={100} className={styles.carouselImg2} src={'/sircuit.jpg'}></Image>
+          <Image
+            alt="nothing"
+            fill
+            sizes="(max-width: 768px) 0.3vw,
+              (max-width: 1200px) 0.2vw,
+              0.1vw,(max-height: 768px) 0.3vw,
+              (max-height: 1200px) 0.2vw,
+              0.1vw"
+            quality={100}
+            className={styles.carouselImg2}
+            src={'/sircuit.jpg'}
+          ></Image>
           <span className={styles.carouselSpan}>첨단 기술</span>
         </div>
         <div id="box3" className={styles.carouselContainer}>
-          <Image alt="nothing" width={1900} height={760} quality={100} className={styles.carouselImg3} src={'/logicares.jpg'} />
+          <Image
+            alt="nothing"
+            fill
+            sizes="(max-width: 768px) 0.3vw,
+              (max-width: 1200px) 0.2vw,
+              0.1vw,(max-height: 768px) 0.3vw,
+              (max-height: 1200px) 0.2vw,
+              0.1vw"
+            quality={100}
+            className={styles.carouselImg3}
+            src={'/logicares.jpg'}
+          />
           <span className={styles.carouselSpan}>타인을 돕는 의료 사업</span>
         </div>
         <button className={styles.nextBtn} onClick={nextbtn}>

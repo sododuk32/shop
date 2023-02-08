@@ -10,6 +10,9 @@ import { useSelector } from 'react-redux';
 import { userStat } from 'lib/redux/reducers/isLoginSlice';
 import { oidDay, orderProduct, productInfo } from 'lib/redux/interface';
 import ShowOrder from 'components/userpage/ShowOrder';
+import generator from 'components/commons/generator';
+import { Button } from 'react-bootstrap';
+
 const Orderbody = styled.body`
   .bodyContainer {
     margin-top: 5.8vw;
@@ -20,6 +23,28 @@ const Orderbody = styled.body`
 
   .bodyContainer {
     margin-top: 5.8vw;
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+  @-webkit-keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
   .pannelContainer {
     width: 60%;
@@ -31,17 +56,77 @@ const Orderbody = styled.body`
     width: 100%;
   }
 `;
+const ListBody = styled.section`
+  .OrderInformation {
+    border: 1px solid gray;
+  }
+  .oids {
+    display: flex;
+    height: 6vw;
+    justify-content: space-between;
+  }
+  .oid {
+    font-weight: bold;
+    font-size: 0.7vw;
+  }
+  .orderSummery {
+    display: flex;
+    flex-direction: column;
+    padding-right: 1vw;
+    font-size: 0.8vw;
+  }
+  .orderImage {
+    width: 6vw;
+    height: 6vw;
+    position: relative;
+  }
+  .productList {
+    list-style: none;
+    border: 1px solid red;
+    -webkit-transition: all 1s ease-in-out;
+    height: fit-contents;
+    margin-top: 0.5vw;
+  }
+  .products {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .showBtn {
+    margin: 0% auto;
+    overflow: hidden!;
+    display: block;
+  }
+  .producsTap {
+    display: flex;
+    justify-content: space-between;
+  }
+  .summry2 {
+    margin-right: 10vw;
+  }
+`;
+type setStateFunction = (a: React.MouseEvent<HTMLElement>) => void;
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function orders() {
   const stat = useSelector(userStat);
   const uid = stat.uid;
   const [order, setorder] = useState<orderProduct[][]>([[]]);
-  const [oidy, setoidy] = useState<oidDay[]>([]);
-
+  const [oidy, setoidy] = useState<oidDay[]>([
+    {
+      oid: 'nodata',
+      orderCondition: '',
+      daytoEnd: '',
+      orderSday: '',
+      totalPrice: 0,
+    },
+  ]);
+  const [btnKey, setBtnKey] = useState('');
+  const myInput = { orderList: order, dayNumber: oidy, btnKey: btnKey, eventFunction: showing };
   useEffect(() => {
     startFetching(uid);
   }, []);
-
+  console.log(order);
   function startFetching(uid: string) {
     let myorder: orderProduct[] = [{ amount: '', daytoEnd: '', oid: '', orderCondition: '', orderSday: '', price: 0, productId: '', uid: '' }];
     try {
@@ -56,8 +141,8 @@ function orders() {
         myorder.map((props: orderProduct) => {
           price += Number(props.amount) * Number(props.price);
           if (temp2 === props.oid) {
-            if (myorder.length === myorder.indexOf(props) + 1) {
-              sortedOrder.push(myorder.slice(present, myorder.indexOf(props) + 1));
+            if (myorder.length === myorder.indexOf(props)) {
+              sortedOrder.push(myorder.slice(present, myorder.indexOf(props)));
               oidArray.push({
                 oid: props.oid,
                 daytoEnd: props.daytoEnd,
@@ -92,6 +177,11 @@ function orders() {
       return alert(error);
     }
   }
+  function showing(e: React.MouseEvent<HTMLElement>) {
+    console.log(e.currentTarget.id);
+    return setBtnKey(e.currentTarget.id);
+  }
+
   return (
     <div>
       <header id="pageHeader">
@@ -101,18 +191,13 @@ function orders() {
       <Orderbody>
         <section className="bodyContainer">
           <div className="pannelContainer">
-            {order[0].length != 0 && order[0] != undefined && oidy.length != 0 && oidy[0] != undefined ? ShowOrder(order, oidy) : null}
+            {order[0].length != 0 && oidy[0].oid != 'nodata' && order[0] != undefined && oidy.length > 0 && oidy[0] != undefined ? (
+              <ShowOrder {...myInput} />
+            ) : null}
           </div>
         </section>
       </Orderbody>
     </div>
   );
 }
-
 export default orders;
-
-// -> 상품이 1개 이상일 경우 첫번째 상품.... 그외 1로 보여주고
-
-// -> 클릭 시 숨겨진 창에서 모든 상품 표기.
-
-// 알림창 이쁜거 하나 찾아서 띄울수 있게 하기.

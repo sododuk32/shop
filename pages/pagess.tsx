@@ -79,6 +79,7 @@ function pagess() {
   return (
     <div>
       <div>
+        컴포넌트 테스트 페이지
         {/* <h1>The value of count is {count}</h1>
         <button onClick={() => dispatch(increment())}>increment</button>
         <button onClick={() => dispatch(decrement())}>decrement</button>
@@ -87,8 +88,7 @@ function pagess() {
         <button onClick={putItOn3}>2번째랑 같지만 옵션이 다른 넣기</button>
         <button onClick={fixamount}>1번의 다른옵션</button>
         <button onClick={deletingCart}>첫번째를 지워줌</button> */}
-
-        <ReviewComments />
+        {/* <ReviewComments /> */}
         {/* <button onClick={() => asdf()}>장바구니 제거 </button> */}
         {/* <div data-ex="최상위 노드에용" ref={myRef}>
           <div onClick={() => console.log('2번!!!')}>

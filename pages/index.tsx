@@ -9,7 +9,6 @@ import GridPhoto from '../components/commons/GridPhoto';
 import Carouselnomal from '../components/commons/Carouselnomal';
 import CarouselGrid from '../components/commons/CarouselGrid';
 import SetLanguage from '../components/commons/Headers/SetLanguage';
-import { QueryClient, useQuery } from 'react-query';
 import { Suspense } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 
@@ -34,7 +33,20 @@ const Home: NextPage = () => {
                 </div>
               </div>
             </div>
-            <Image className={styles.bannerKeyboard} alt="indexKeybored" src="/keybored.jpg" width={1000} height={800} />
+            <div className={styles.bannerKeyboard}>
+              <Image
+                className={styles.bannerKeyboard}
+                alt="indexKeybored"
+                src="/keybored.jpg"
+                fill
+                quality={100}
+                sizes="(min-width: 768px) 100vw,
+              (min-width: 1200px) 100vw,
+              100vw,(min-height: 768px) 10vw,
+              (min-height: 1200px) 100vw,
+              100vw"
+              />
+            </div>
           </div>
         </div>
         <Suspense fallback={<Spinner animation="border" variant="light" />}>

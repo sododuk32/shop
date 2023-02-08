@@ -43,12 +43,18 @@ function Header() {
         <div>
           <div id="navBar" className={styles.navBar}>
             <Link href="/product/mouse">
-              <button>제품</button>
+              <button>마우스</button>
             </Link>
 
-            <button>스토리</button>
-            <button>비즈니스</button>
-            <button>지원</button>
+            <Link href="/product/mike">
+              <button>마이크</button>
+            </Link>
+            <Link href="/product/keyboard">
+              <button>키보드</button>
+            </Link>
+            <Link href="/users/bags">
+              <button>장바구니</button>
+            </Link>
           </div>
         </div>
 

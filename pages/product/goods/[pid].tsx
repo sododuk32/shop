@@ -143,7 +143,7 @@ function Goods() {
             </div>
           </section>
         </div>
-        <div className="comments">{WriteReviewCom(productnumber, users)}</div>
+        {WriteReviewCom(productnumber, users)}
       </section>
     </div>
   );

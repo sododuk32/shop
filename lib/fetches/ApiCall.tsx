@@ -2,7 +2,8 @@
 import { Comments } from 'lib/redux/interface';
 import { callAxios } from './callAxios';
 //https://kwakdeayang.shop
-const serverurl = 'http://localhost:3000';
+//localhost:3000
+const serverurl = 'https://kwakdeayang.shop';
 /**
  * 엑세스 jwt키 값을 헤더의 auth에 넣는 사용자 인증api
  *

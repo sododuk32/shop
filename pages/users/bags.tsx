@@ -27,7 +27,7 @@ function bags() {
     return router.push('/users/usermenu');
   }
   const buying = () => {
-    if (stateCart[0].productId.length <= 1 || stateCart[0] === undefined) {
+    if (stateCart[0].productId.length <= 0 || stateCart[0] === undefined) {
       alert('장바구니가 비었네요 사러 가 볼까용?');
       return router.push('/');
     }
@@ -38,7 +38,7 @@ function bags() {
     myuid = stateUser.uid;
 
     putIncart(myuid, json, totalPrice);
-    store.dispatch(removeAll());
+    // store.dispatch(removeAll());
     return router.push('/');
   };
 
@@ -47,8 +47,8 @@ function bags() {
     if (stateCart[0] != undefined) {
       stateCart.forEach((state) => {
         temp = temp + state.price * state.amount;
+        // setTotalprice(temp + 2500);
       });
-      setTotalprice(temp + 2500);
     }
   }, [totalPrice, stateCart]);
 

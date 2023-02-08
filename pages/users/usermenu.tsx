@@ -41,7 +41,9 @@ function usermenu() {
           <div id="pannelImg">
             <Image className={styles.heroImg} src="/userMenuimg.png" priority alt="sd" width={1900} height={400} />
           </div>
-          <div id="menubox">{stateUser.logined === false ? needLogin() : logined(stateUser.username)}</div>
+          <div id="menubox">
+            {stateUser.username != undefined && stateUser.logined != null && stateUser.logined != true ? needLogin() : logined(stateUser.username)}
+          </div>
           <section className={styles.usersMenus}>
             <div className={styles.usercard}>
               <span className={styles.userssbtn}>
