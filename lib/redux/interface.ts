@@ -23,12 +23,13 @@ export type logined = {
 };
 
 export type Comments = {
-  nameInput: string | undefined;
+  userName: string | undefined;
   pids: string;
   uids: string;
-  star: number;
+  rating: number;
   comment: string | undefined;
   line: string;
+  togle: boolean;
 };
 
 class defaultOption {

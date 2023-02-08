@@ -46,6 +46,7 @@ function Product() {
   useEffect(() => {
     console.log('렌더링됨');
     console.log(tags);
+
     if (router.isReady) {
       category = router.asPath.substring(9);
       startFetching(category);

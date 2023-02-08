@@ -3,7 +3,7 @@ import { Comments } from 'lib/redux/interface';
 import { callAxios } from './callAxios';
 //https://kwakdeayang.shop
 //localhost:3000
-const serverurl = 'https://kwakdeayang.shop';
+const serverurl = 'http://localhost:3000';
 /**
  * 엑세스 jwt키 값을 헤더의 auth에 넣는 사용자 인증api
  *
@@ -111,11 +111,12 @@ export const getOderinfo = async (uids: string) => {
 
 export const inputComment = async (commentObj: Comments) => {
   return callAxios.post(serverurl + '/inputComment', {
-    name: commentObj.nameInput,
+    userName: commentObj.userName,
     pid: commentObj.pids,
     uid: commentObj.uids,
-    star: commentObj.star,
+    rating: commentObj.rating,
     comment: commentObj.comment,
     line: commentObj.line,
+    togle: commentObj.togle,
   });
 };

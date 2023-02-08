@@ -13,31 +13,29 @@ import { inputComment } from 'lib/fetches/ApiCall';
 // import styled from 'styled-components';
 
 function WriteReviewCom(takepid: string, islogined: logined) {
-  const [stars, setstar] = useState<number>(0);
+  const [rating, setstar] = useState<number>(0);
   const [select, setselect] = useState<string>('');
   const [comment, setcomment] = useState<string>('');
+  const [newComment, setnewComment] = useState<boolean>(true);
+
   const nameInput = useRef<HTMLDivElement>(null);
-  let commentObject: Comments = {
-    nameInput: nameInput.current?.innerHTML,
+  const commentObject: Comments = {
+    userName: islogined.username,
     pids: takepid,
     uids: islogined.uid,
-    star: stars,
+    rating: rating,
     comment: comment,
     line: select,
+    togle: newComment,
   };
 
-  function takeSelect(e: React.ChangeEvent<HTMLSelectElement>) {
-    setselect(e.target.value);
-  }
-  const onChangeCom = (e: any) => {
-    setcomment(e.target.value);
-  };
   function sendComment(Comment: Comments) {
-    if (commentObject.nameInput === undefined || commentObject.comment === undefined) {
-      alert('댓글을 잘 입력해주세요!');
+    if (Comment.rating === 0 || Comment.comment?.length === 0 || Comment.pids.length === 0) {
+      alert('댓글과 별을 잘 입력해주세요!');
       return console.log(commentObject);
     } else {
-      inputComment(commentObject);
+      console.log(Comment.comment);
+      inputComment(commentObject).then((res) => setnewComment(res.data.togle));
       return null;
     }
   }
@@ -50,9 +48,9 @@ function WriteReviewCom(takepid: string, islogined: logined) {
         <div ref={nameInput}>{islogined.username}</div>
       </section>
       <div id="stars">{GiveStar(setstar)}</div>
-      <input type="text" onChange={onChangeCom} name="" id="reviewText" />
+      <input type="text" onChange={(e) => setcomment(e.target.value)} name="" id="reviewText" />
       <div>
-        <Form.Select size="sm" onChange={(e) => takeSelect(e)}>
+        <Form.Select size="sm" onChange={(e) => setselect(e.target.value)}>
           <option>디자인이 이뻐요 </option>
           <option value="그립이 좋아요">그립이 좋아요</option>
           <option value="상품이 맘에 안들어요">상품이 맘에 안들어요</option>
