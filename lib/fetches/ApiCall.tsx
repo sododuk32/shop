@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Comments } from 'lib/redux/interface';
 import { callAxios, defaulturl } from './callAxios';
-//https://kwakdeayang.shop
-//localhost:3000
-// const defaulturl = 'http://localhost:3000';
+
 /**
  * 엑세스 jwt키 값을 헤더의 auth에 넣는 사용자 인증api
  *
