@@ -2,9 +2,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from 'axios';
 import { getCookie } from 'cookies-next';
-const defaulturl = 'http://localhost:3000';
-//localhost:3000
-//const defaulturl = 'https://kwakdeayang.shop';
 
 export const callAxios = axios.create({
   baseURL: defaulturl,
