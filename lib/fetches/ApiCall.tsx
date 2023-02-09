@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Comments } from 'lib/redux/interface';
-import { callAxios } from './callAxios';
+import { callAxios, defaulturl } from './callAxios';
 //https://kwakdeayang.shop
 //localhost:3000
-const serverurl = 'http://localhost:3000';
+// const defaulturl = 'http://localhost:3000';
 /**
  * 엑세스 jwt키 값을 헤더의 auth에 넣는 사용자 인증api
  *
@@ -48,7 +48,7 @@ export async function updater(getcookie: any) {
  */
 export async function postProduct(category: string, currentPage: number, tags: string[]) {
   console.log('postProduct실행');
-  return callAxios.post(serverurl + '/productInfo/' + category + '/' + currentPage, { tags });
+  return callAxios.post(defaulturl + '/productInfo/' + category + '/' + currentPage, { tags });
 }
 /**
  * 로그인을 위한 post통신
@@ -61,7 +61,7 @@ export async function postProduct(category: string, currentPage: number, tags: s
  */
 export async function postLogin(sendJson: string) {
   console.log('postLogin실행');
-  return callAxios.post(serverurl + '/login', sendJson, {
+  return callAxios.post(defaulturl + '/login', sendJson, {
     headers: { 'Content-Type': `application/json` },
   });
 }
@@ -83,7 +83,7 @@ export async function postLogin(sendJson: string) {
 export const putIncart = async (uids: string, carts: string, price: number) => {
   console.log('postLogin실행');
   const sendCart: string = JSON.stringify(carts);
-  return callAxios.post(serverurl + '/putIncart', { uid: uids, cart: sendCart, totalPrice: price });
+  return callAxios.post(defaulturl + '/putIncart', { uid: uids, cart: sendCart, totalPrice: price });
 };
 /**
  * uid를 얻기위한 api통신
@@ -106,11 +106,11 @@ export const updater2 = async (getcookie: any) => {
 };
 
 export const getOderinfo = async (uids: string) => {
-  return callAxios.post(serverurl + '/getOderinfo', { uid: uids });
+  return callAxios.post(defaulturl + '/getOderinfo', { uid: uids });
 };
 
 export const inputComment = async (commentObj: Comments) => {
-  return callAxios.post(serverurl + '/inputComment', {
+  return callAxios.post(defaulturl + '/inputComment', {
     userName: commentObj.userName,
     pid: commentObj.pids,
     uid: commentObj.uids,
