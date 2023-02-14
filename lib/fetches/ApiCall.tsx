@@ -118,3 +118,10 @@ export const inputComment = async (commentObj: Comments) => {
     togle: commentObj.togle,
   });
 };
+interface mymy {
+  from: { currency: string };
+  to: { currency: string };
+}
+export const convertionApi = async (contry: mymy) => {
+  return callAxios.get(defaulturl + `/convert/${contry.from.currency}/${contry.to.currency}`);
+};

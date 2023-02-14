@@ -11,13 +11,15 @@ import CarouselGrid from '../components/commons/CarouselGrid';
 import SetLanguage from '../components/commons/Headers/SetLanguage';
 import { Suspense } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
-
+// https://nextjs.org/docs/api-reference/next/script
 const Home: NextPage = () => {
   return (
     <div>
       <header>
         <SetLanguage />
         <Header />
+        <script src="https://apis.google.com/js/platform.js" async defer />
+        <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com" />
       </header>
       <section>
         <div id="banners">

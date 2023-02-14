@@ -6,17 +6,26 @@ import { store } from '../store';
 import { Provider } from 'react-redux';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
+import { GApiProvider } from 'react-gapi-auth2';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const persistor = persistStore(store);
+  const myClientConfig = {
+    client_id: '423405105562-neiiacpkiop2nodv79mf394emp5d1fsr.apps.googleusercontent.com',
+    cookie_policy: 'single_host_origin',
+    fetch_basic_profile: true,
+    ux_mode: 'popup',
+  };
 
   return (
     <CookiesProvider>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <Component {...pageProps} />;
-        </PersistGate>
-      </Provider>
+      <GApiProvider clientConfig={myClientConfig}>
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <Component {...pageProps} />;
+          </PersistGate>
+        </Provider>
+      </GApiProvider>
     </CookiesProvider>
   );
 }

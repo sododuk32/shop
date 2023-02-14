@@ -8,9 +8,23 @@ import styles from './logined.module.css';
 import { useRouter } from 'next/router';
 import { removeCookies } from 'cookies-next';
 import { logined } from 'lib/redux/interface';
-import { userStat } from 'lib/redux/reducers/isLoginSlice';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getLogin } from 'lib/redux/reducers/isLoginSlice';
+import styled from 'styled-components';
+
+const Btn = styled.button`
+  border-radius: 10px;
+  background-color: black;
+  border-color: none;
+  color: white;
+`;
+const H22 = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 2vw;
+`;
+
 function logined(user: string) {
   const updateStat: logined = {
     logined: false,
@@ -31,12 +45,16 @@ function logined(user: string) {
   return (
     <div>
       <section id="yesspanPannel" className={styles.menuspanNoid}>
-        <h2>{`안녕하세요,${user}님`}</h2>
+        <H22>
+          <h2>{`안녕하세요`}</h2>
+          <h2>{`${user}님`}</h2>
+        </H22>
+
         <div className={styles.yesbtns}>
           <Link href="/">
             <span>프로필 편집</span>
           </Link>
-          <button onClick={logout}>로그아웃</button>
+          <Btn onClick={logout}>로그아웃</Btn>
         </div>
       </section>
     </div>

@@ -426,6 +426,30 @@
   dependencies:
     "@types/node" "*"
 
+"@types/gapi.auth2@^0.0.57":
+  "integrity" "sha512-2nYF2OZlEqWvF5rLk0nrQlAkk51Abe9zLHvA85NZqpIauYT/TluDNsPWkncI969BR/Ts5mdKrXgiWE/f4N6mMQ=="
+  "resolved" "https://registry.npmjs.org/@types/gapi.auth2/-/gapi.auth2-0.0.57.tgz"
+  "version" "0.0.57"
+  dependencies:
+    "@types/gapi" "*"
+
+"@types/gapi.auth2@0.0.54":
+  "integrity" "sha512-4HEphaKsGndb9+tnd2PBBmxloaij04iYXVsjgHpFxqbPFt5Le6pasoh5g5BEtwp/YEm9xDbzssp44BYR2/7RcQ=="
+  "resolved" "https://registry.npmjs.org/@types/gapi.auth2/-/gapi.auth2-0.0.54.tgz"
+  "version" "0.0.54"
+  dependencies:
+    "@types/gapi" "*"
+
+"@types/gapi@*", "@types/gapi@^0.0.44":
+  "integrity" "sha512-hsgJMfZ/pMwI15UlAYHMNwj8DRoigo1odhbPwEXdp19ZQwQAXbcRrpzaDsfc+9XM6RtGpvl4Ja7uW8A+KPCa7w=="
+  "resolved" "https://registry.npmjs.org/@types/gapi/-/gapi-0.0.44.tgz"
+  "version" "0.0.44"
+
+"@types/gapi@0.0.39":
+  "integrity" "sha512-R1TZeZbvvbIC60DBJMhuOEivQHzOQtzl3uMDOOENTYQTSSDB6oEMpJo8HVPOTWivdUTbyEcB5qQOVr/JCKRlCQ=="
+  "resolved" "https://registry.npmjs.org/@types/gapi/-/gapi-0.0.39.tgz"
+  "version" "0.0.39"
+
 "@types/hoist-non-react-statics@*", "@types/hoist-non-react-statics@^3.0.1", "@types/hoist-non-react-statics@^3.3.0", "@types/hoist-non-react-statics@^3.3.1":
   "integrity" "sha512-iMIqiko6ooLrTh1joXodJK5X9xeEALT1kM5G3ZLhD3hszxBdIEd5C75U834D9mLcINgD4OyZf5uQXjkuYydWvA=="
   "resolved" "https://registry.npmjs.org/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz"
@@ -465,6 +489,13 @@
   "version" "18.0.10"
   dependencies:
     "@types/react" "*"
+
+"@types/react-icons@^3.0.0":
+  "integrity" "sha512-Vefs6LkLqF61vfV7AiAqls+vpR94q67gunhMueDznG+msAkrYgRxl7gYjNem/kZ+as2l2mNChmF1jRZzzQQtMg=="
+  "resolved" "https://registry.npmjs.org/@types/react-icons/-/react-icons-3.0.0.tgz"
+  "version" "3.0.0"
+  dependencies:
+    "react-icons" "*"
 
 "@types/react-redux@^7.1.25":
   "integrity" "sha512-bAGh4e+w5D8dajd6InASVIyCo4pZLJ66oLb80F9OBLO1gKESbZcRCJpTT6uLXX+HAB57zw1WTdwJdAsewuTweg=="
@@ -3072,7 +3103,15 @@
   dependencies:
     "prop-types" "^15.5.8"
 
-"react-icons@^4.7.1":
+"react-gapi-auth2@^1.0.4":
+  "integrity" "sha512-iUDqEpmLxJ8yrPHkPx68XE4/I6S91CG5BC2VM2OEW0G2vyPM+jBchMhlFo3q+E6+A24i0PPiK3UEDReTPZv0DA=="
+  "resolved" "https://registry.npmjs.org/react-gapi-auth2/-/react-gapi-auth2-1.0.4.tgz"
+  "version" "1.0.4"
+  dependencies:
+    "@types/gapi" "0.0.39"
+    "@types/gapi.auth2" "0.0.54"
+
+"react-icons@*", "react-icons@^4.7.1":
   "integrity" "sha512-yHd3oKGMgm7zxo3EA7H2n7vxSoiGmHk5t6Ou4bXsfcgWyhfDKMpyKfhHR6Bjnn63c+YXBLBPUql9H4wPJM6sXw=="
   "resolved" "https://registry.npmjs.org/react-icons/-/react-icons-4.7.1.tgz"
   "version" "4.7.1"

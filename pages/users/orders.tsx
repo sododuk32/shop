@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Header from 'components/commons/Headers/Header';
 import SetLanguage from 'components/commons/Headers/SetLanguage';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import styled from 'styled-components';
 import { getOderinfo } from 'lib/fetches/ApiCall';
 import { useSelector } from 'react-redux';
@@ -110,7 +110,7 @@ type setStateFunction = (a: React.MouseEvent<HTMLElement>) => void;
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 function orders() {
   const stat = useSelector(userStat);
-  const uid = stat.uid;
+  const uid: string = stat.uid;
   const [order, setorder] = useState<orderProduct[][]>([[]]);
   const [oidy, setoidy] = useState<oidDay[]>([
     {
@@ -121,62 +121,68 @@ function orders() {
       totalPrice: 0,
     },
   ]);
+
   const [btnKey, setBtnKey] = useState('');
   const myInput = { orderList: order, dayNumber: oidy, btnKey: btnKey, eventFunction: showing };
   useEffect(() => {
-    startFetching(uid);
+    memoizedValue(uid);
   }, []);
   console.log(order);
-  function startFetching(uid: string) {
-    let myorder: orderProduct[] = [{ amount: '', daytoEnd: '', oid: '', orderCondition: '', orderSday: '', price: 0, productId: '', uid: '' }];
-    try {
-      getOderinfo(uid).then((res) => {
-        myorder = res.data.yourData;
-        let sortedOrder: orderProduct[][] = [];
-        let oidArray: oidDay[] = [];
-        let temp2 = myorder[0].oid;
-        let present = 0; //시작지점
-        let start = 0; //자르는 기준
-        let price = 0;
-        myorder.map((props: orderProduct) => {
-          price += Number(props.amount) * Number(props.price);
-          if (temp2 === props.oid) {
-            if (myorder.length === myorder.indexOf(props)) {
-              sortedOrder.push(myorder.slice(present, myorder.indexOf(props)));
+
+  const memoizedValue = useMemo(
+    () => (uid: string) => {
+      let myorder: orderProduct[] = [{ amount: '', daytoEnd: '', oid: '', orderCondition: '', orderSday: '', price: 0, productId: '', uid: '' }];
+      try {
+        getOderinfo(uid).then((res) => {
+          myorder = res.data.yourData;
+          let sortedOrder: orderProduct[][] = [];
+          let oidArray: oidDay[] = [];
+          let temp2 = myorder[0].oid;
+          let present = 0; //시작지점
+          let start = 0; //자르는 기준
+          let price = 0;
+          myorder.map((props: orderProduct) => {
+            price += Number(props.amount) * Number(props.price);
+            if (temp2 === props.oid) {
+              if (myorder.length === myorder.indexOf(props)) {
+                sortedOrder.push(myorder.slice(present, myorder.indexOf(props)));
+                oidArray.push({
+                  oid: props.oid,
+                  daytoEnd: props.daytoEnd,
+                  orderSday: props.orderSday,
+                  orderCondition: props.orderCondition,
+                  totalPrice: Number(props.amount) * Number(props.price),
+                });
+                price = 0;
+              }
+            }
+            console.log('계산!');
+            if (temp2 != props.oid) {
+              temp2 = props?.oid;
+              present = myorder.indexOf(props);
+              sortedOrder.push(myorder.slice(start, present));
+              start = present;
               oidArray.push({
                 oid: props.oid,
                 daytoEnd: props.daytoEnd,
                 orderSday: props.orderSday,
                 orderCondition: props.orderCondition,
-                totalPrice: Number(props.amount) * Number(props.price),
+                totalPrice: price,
               });
               price = 0;
             }
-          }
-          if (temp2 != props.oid) {
-            temp2 = props?.oid;
-            present = myorder.indexOf(props);
-            sortedOrder.push(myorder.slice(start, present));
-            start = present;
-            oidArray.push({
-              oid: props.oid,
-              daytoEnd: props.daytoEnd,
-              orderSday: props.orderSday,
-              orderCondition: props.orderCondition,
-              totalPrice: price,
-            });
-            price = 0;
-          }
+          });
+          setorder(sortedOrder);
+          setoidy(oidArray);
+          return { sortedOrder, oidArray };
         });
+      } catch (error) {
+        return alert(error);
+      }
+    },
+    [order, oidy],
+  );
 
-        setorder(sortedOrder);
-        setoidy(oidArray);
-        //api 콜백 끝
-      });
-    } catch (error) {
-      return alert(error);
-    }
-  }
   function showing(e: React.MouseEvent<HTMLElement>) {
     console.log(e.currentTarget.id);
     return setBtnKey(e.currentTarget.id);

@@ -19,6 +19,8 @@ function bags() {
   const stateUser = useSelector(userStat);
 
   let [totalPrice, setTotalprice] = useState<number>(0);
+  let [remove, setremove] = useState<boolean>(false);
+
   const dispatch = useDispatch();
   const router = useRouter();
   let temp: number;
@@ -38,7 +40,7 @@ function bags() {
     myuid = stateUser.uid;
 
     putIncart(myuid, json, totalPrice);
-    // store.dispatch(removeAll());
+    setremove(true);
     return router.push('/');
   };
 
@@ -47,9 +49,13 @@ function bags() {
     if (stateCart[0] != undefined) {
       stateCart.forEach((state) => {
         temp = temp + state.price * state.amount;
-        // setTotalprice(temp + 2500);
       });
     }
+    console.log(!'a');
+    if (remove) {
+      store.dispatch(removeAll());
+    }
+    setTotalprice(temp + 2500);
   }, [totalPrice, stateCart]);
 
   return (
