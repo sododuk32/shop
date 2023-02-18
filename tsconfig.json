@@ -22,6 +22,6 @@
     "experimentalDecorators": true,
     "preserveConstEnums": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.cjs", "./node_modules/redux-persist/types"],
+  "include": ["next-env.d.ts", "/*.d.ts", "**/*.ts", "**/*.tsx", "**/*.cjs", "./node_modules/redux-persist/types", "pages/pagess.js"],
   "exclude": ["node_modules"]
 }

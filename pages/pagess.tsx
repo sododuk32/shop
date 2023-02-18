@@ -5,24 +5,49 @@ import { useSelector, useDispatch } from 'react-redux';
 import { productInfo } from 'lib/redux/interface';
 import { changeCart } from 'lib/redux/reducers/getUserSlice';
 import { store } from 'store';
+import Link from 'next/link';
+import qs from 'qs';
+import { signIn, signOut, useSession } from 'next-auth/react';
 
 function pagess() {
-  function handlCallbackResponse(res) {
-    console.log('encoded jwt id token:' + res.credential);
-  }
-  // useEffect(() => {
-  //   google.accounts.id.initialize({
-  //     clinet_id: '423405105562-vrmtaoo0seqckj7pn4btflvk82dubk55.apps.googleusercontent.com',
-  //     callback: handlCallbackResponse,
-  //   });
-  //   google.accounts.id.renderButton(document.getElementById('signInDiv')), { theme: 'outline', size: 'large' };
-  // }, []);
+  const AUTHORIZE_URI = 'https://accounts.google.com/o/oauth2/v2/auth';
+  const queryStr = qs.stringify({
+    client_id: process.env.REACT_APP_GOOGLE_ID,
+    redirect_uri: 'localhost:3000/pagess',
+    response_type: 'token',
+    scope: 'https://www.googleapis.com/auth/contacts.readonly',
+  });
+  const { data, status } = useSession();
 
+  const loginUrl = AUTHORIZE_URI + '?' + queryStr;
+  // let access_token: unknown;
+  // if (typeof window !== undefined) {
+  //   access_token = window.location.hash && qs.parse(window.location.hash.substr(1));
+  // }
+  if (loginUrl.length > 10) {
+    console.log(loginUrl);
+  }
+  console.log(data);
   return (
     <div>
-      {' '}
-      <script src="https://apis.google.com/js/platform.js" async defer />
-      <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com" />
+      <main className="main">
+        <p>status: {status}</p>
+        <p>{data?.user?.name}</p>
+        {data?.user ? (
+          <button type="button" onClick={() => signOut()}>
+            Google Logout
+          </button>
+        ) : (
+          <button type="button" onClick={() => signIn('google')}>
+            Google Login
+          </button>
+        )}
+      </main>
+      <Link href={loginUrl}>
+        <button>이동</button>
+      </Link>
+      {/* <script src="https://apis.google.com/js/platform.js" async defer />
+      <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com" /> */}
     </div>
   );
 }

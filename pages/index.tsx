@@ -11,6 +11,7 @@ import CarouselGrid from '../components/commons/CarouselGrid';
 import SetLanguage from '../components/commons/Headers/SetLanguage';
 import { Suspense } from 'react';
 import Spinner from 'react-bootstrap/Spinner';
+
 // https://nextjs.org/docs/api-reference/next/script
 const Home: NextPage = () => {
   return (
