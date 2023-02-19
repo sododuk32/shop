@@ -31,6 +31,17 @@ export type Comments = {
   line: string;
   togle: boolean;
 };
+export type reviewJson = {
+  pids: number;
+  uids: number;
+  comment: string | undefined;
+  line: string;
+  rating: number;
+  depth: number;
+  place: number;
+  timeTowrite: string;
+  userName: string | undefined;
+};
 
 class defaultOption {
   public ProductColor!: string;

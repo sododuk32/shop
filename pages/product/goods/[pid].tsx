@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './[pid].module.css';
 import Header from '../../../components/commons/Headers/Header';
 import SetLanguage from '../../../components/commons/Headers/SetLanguage';
@@ -12,11 +12,28 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { store } from 'store';
 import { add, remove } from 'lib/redux/reducers/getUserSlice';
-import { logined, productInfo } from 'lib/redux/interface';
+import { logined, productInfo, reviewJson } from 'lib/redux/interface';
 import { userStat } from 'lib/redux/reducers/isLoginSlice';
 import { useSelector } from 'react-redux';
 import WriteReviewCom from 'components/userpage/WriteReviewCom';
-function Goods() {
+import { callReview } from 'lib/fetches/ApiCall';
+
+function Goods(context: any) {
+  const [Cdata, setdata] = useState<reviewJson[]>();
+  let thisId: string | number | undefined;
+
+  useEffect(() => {
+    const query: string | number = context.params?.id;
+    if (router.isReady) {
+      thisId = router.asPath.substring(15);
+      startFetching(thisId);
+    }
+  });
+  const startFetching = async (query: string | number) => {
+    await callReview(query).then((res) => {
+      setdata(res.data);
+    });
+  };
   const router = useRouter();
   const productnumber: any = router.query.pid;
   const users: logined = useSelector(userStat);

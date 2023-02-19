@@ -125,3 +125,7 @@ interface mymy {
 export const convertionApi = async (contry: mymy) => {
   return callAxios.get(defaulturl + `/convert/${contry.from.currency}/${contry.to.currency}`);
 };
+
+export const callReview = async (params: string | number) => {
+  return callAxios.get(`http://localhost:3000/product/review/${params}`);
+};
