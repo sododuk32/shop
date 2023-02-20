@@ -2,6 +2,7 @@
   width: 100%;
   color: black;
   margin-bottom: 3vw;
+  /* 이게 전체 박스임 */
 }
 .imgsection {
   display: grid;

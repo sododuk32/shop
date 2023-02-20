@@ -1,6 +1,7 @@
 .headers {
   position: relative;
 }
+
 .catchPh {
   position: absolute;
   z-index: 2;

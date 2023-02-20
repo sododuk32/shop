@@ -27,6 +27,23 @@
   display: block;
   width: 28rem;
 }
+.gridbox1,
+.gridbox2,
+.gridbox3 {
+  display: grid;
+  margin-left: 3rem;
+  grid-template-areas:
+    'a a b'
+    'a a b'
+    'c d b';
+  grid-auto-columns: 1fr 1fr;
+  grid-auto-rows: 1fr 1fr;
+  height: 100%;
+  width: 70rem;
+  transition: transform 0.5s;
+  scroll-behavior: smooth;
+  overflow: hidden;
+}
 
 .prevBtn {
   position: absolute;
@@ -36,7 +53,6 @@
   top: -45rem;
   left: 30rem;
   z-index: 2;
-  /* visibility: hidden; */
 }
 
 .nextBtn {
@@ -54,22 +70,6 @@
 }
 .prevBtn:hover {
   opacity: 0.5;
-}
-.gridbox1,
-.gridbox2,
-.gridbox3 {
-  display: grid;
-  margin-left: 3rem;
-  grid-template-areas:
-    'a a b'
-    'a a b'
-    'c d b';
-  grid-auto-columns: 1fr 1fr;
-  grid-auto-rows: 1fr 1fr;
-  height: 100%;
-  width: 70rem;
-  transition: transform 0.5s;
-  scroll-behavior: smooth;
 }
 
 .keyboardwhite {
@@ -104,6 +104,15 @@
   }
 }
 
-.gridbox > div:hover {
-  transition: transform 0.5s;
+.gridbox1 > div:hover {
+  transform: scale(1.3);
+  transition: 0.2s;
+}
+.gridbox2 > div:hover {
+  transform: scale(1.3);
+  transition: 0.2s;
+}
+.gridbox3 > div:hover {
+  transform: scale(1.3);
+  transition: 0.2s;
 }

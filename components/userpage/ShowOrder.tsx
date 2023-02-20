@@ -29,6 +29,15 @@ const ListBody = styled.section`
     width: 6vw;
     height: 6vw;
     position: relative;
+    transform: scale(1);
+    transition: 0.2s;
+  }
+  .orderImage2 {
+    width: 6vw;
+    height: 6vw;
+    position: relative;
+    transform: scale(2);
+    transition: 0.2s;
   }
   .productList {
     list-style: none;
@@ -146,7 +155,15 @@ function ShowOrder({ orderList, dayNumber, btnKey, eventFunction }: myprops) {
                   ? second.map((obj) => (
                       <ul key={generator()} className="productUl">
                         <li className="listImg">
-                          <Image className="orderImage" src="/gallary-1.jpg" alt="a" width={80} height={80} />
+                          <Image
+                            className="orderImage"
+                            onMouseEnter={(e) => (e.currentTarget.className = 'orderImage2')}
+                            onMouseLeave={(e) => (e.currentTarget.className = 'orderImage')}
+                            src="/gallary-1.jpg"
+                            alt="a"
+                            width={80}
+                            height={80}
+                          />
                         </li>
                         <li className="listInfo">
                           <li>제품명:{obj.productId}</li>
