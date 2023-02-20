@@ -55,7 +55,6 @@ const Drop = styled.div`
       width: 10vw;
       height: 3vw;
       padding-top: 0.5vw;
-      margin-bottom: 3vw;
     }
 
     .linkUl {
