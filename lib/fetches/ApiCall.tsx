@@ -110,7 +110,7 @@ export const getOderinfo = async (uids: string) => {
 export const inputComment = async (commentObj: Comments) => {
   return callAxios.post(defaulturl + '/inputComment', {
     userName: commentObj.userName,
-    pid: commentObj.pids,
+    pid: commentObj.pid,
     uid: commentObj.uids,
     rating: commentObj.rating,
     comment: commentObj.comment,
@@ -127,5 +127,5 @@ export const convertionApi = async (contry: mymy) => {
 };
 
 export const callReview = async (params: string | number) => {
-  return callAxios.get(`http://localhost:3000/product/review/${params}`);
+  return callAxios.get(defaulturl + `/product/review/${params}`);
 };

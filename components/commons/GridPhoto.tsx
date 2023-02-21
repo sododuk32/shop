@@ -40,7 +40,8 @@ const GridPh = styled.div`
   @media only screen and (max-width: 800px) {
     text-decoration-line: none;
     .card {
-      margin: 0% auto;
+      align-items: center;
+      margin-top: 3vw;
     }
     .nextimg {
       animation: fadein 0.4s;
@@ -100,9 +101,9 @@ function GridPhoto() {
             <Image alt="gridp3" src={'/gridp3.jpg'} width={386} height={386} />
           </div>
           <Link className="h22" href="/1">
-            <div>
+            <article>
               <h2>새로운 OPTIONS+ 기능</h2>
-            </div>
+            </article>
           </Link>
           <p className="ptas">Logi Options+로 로지텍 마우스와 키보드를 원하는대로 커스터마이징해보세요.</p>
           <Link className="h22" href="/2">

@@ -17,24 +17,28 @@ import { userStat } from 'lib/redux/reducers/isLoginSlice';
 import { useSelector } from 'react-redux';
 import WriteReviewCom from 'components/userpage/WriteReviewCom';
 import { callReview } from 'lib/fetches/ApiCall';
-
+import ReviewCom from 'components/userpage/ReviewCom';
 function Goods(context: any) {
-  const [Cdata, setdata] = useState<reviewJson[]>();
+  const [Cdata, setdata] = useState<reviewJson[]>([]);
   let thisId: string | number | undefined;
+  const router = useRouter();
 
+  const qss = router.asPath.substring(15);
+  console.log(qss);
   useEffect(() => {
     const query: string | number = context.params?.id;
     if (router.isReady) {
       thisId = router.asPath.substring(15);
-      startFetching(thisId);
+      startFetching(qss);
     }
-  });
+  }, []);
   const startFetching = async (query: string | number) => {
+    console.log(productnumber);
     await callReview(query).then((res) => {
-      setdata(res.data);
+      if (res.data === 'nodata' || res.data === undefined) return null;
+      else setdata(res.data);
     });
   };
-  const router = useRouter();
   const productnumber: any = router.query.pid;
   const users: logined = useSelector(userStat);
   const [openpreciseInfo, setpreciseInfo] = useState(false);
@@ -162,6 +166,7 @@ function Goods(context: any) {
         </div>
         {WriteReviewCom(productnumber, users)}
       </section>
+      <article>{Cdata.length > 1 ? Cdata?.map((e) => <ReviewCom key={e.place} {...e} />) : null}</article>
     </div>
   );
 }

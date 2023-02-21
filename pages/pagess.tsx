@@ -8,7 +8,13 @@ import { store } from 'store';
 import Link from 'next/link';
 import qs from 'qs';
 import { signIn, signOut, useSession } from 'next-auth/react';
+import styled from 'styled-components';
 
+const My = styled.div`
+  overflow-x: auto;
+  width: 500vw;
+  height: 20vh;
+`;
 function pagess() {
   const AUTHORIZE_URI = 'https://accounts.google.com/o/oauth2/v2/auth';
   const queryStr = qs.stringify({
@@ -46,8 +52,11 @@ function pagess() {
       <Link href={loginUrl}>
         <button>이동</button>
       </Link>
-      {/* <script src="https://apis.google.com/js/platform.js" async defer />
-      <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com" /> */}
+      <My>
+        asdfsdfsadfsadfsdadddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdadddddddddasdfsdfsadfsadfsdaddddddddd
+      </My>
+      <script src="https://apis.google.com/js/platform.js" async defer />
+      <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com" />
     </div>
   );
 }

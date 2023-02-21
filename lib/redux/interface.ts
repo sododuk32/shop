@@ -24,7 +24,7 @@ export type logined = {
 
 export type Comments = {
   userName: string | undefined;
-  pids: string;
+  pid: string;
   uids: string;
   rating: number;
   comment: string | undefined;
@@ -32,7 +32,7 @@ export type Comments = {
   togle: boolean;
 };
 export type reviewJson = {
-  pids: number;
+  pid: number;
   uids: number;
   comment: string | undefined;
   line: string;

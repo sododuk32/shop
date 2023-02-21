@@ -10,6 +10,7 @@
   background: transparent;
   scroll-behavior: smooth;
   transition: transform 0.5s;
+  translate: x;
 }
 .btnBox {
   position: absolute;

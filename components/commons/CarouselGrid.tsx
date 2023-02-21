@@ -125,108 +125,94 @@ const Carosuel = styled.main`
     }
   }
   @media only screen and (max-width: 800px) {
-    width: 90vw;
-    height: 46rem;
+    
     .gridsContainer {
-      width: 90vw;
-      height: 45rem;
-      overflow-x: hidden;
-      background: transparent;
-      scroll-behavior: smooth;
+  
+
+      width:fit-contents;
+      height:fit-contents;
+
       transition: transform 0.5s;
+      overflow-x: scroll;
+
     }
-    .btnBox {
-      position: absolute;
-    }
+  
 
     .boxs {
-      width: 580rem;
-      height: 45rem;
+      width:320vw;
+      height:60vw;
       display: flex;
-      transition: transform 0.5s;
-    }
+      flex-direction:row;
+      overflow-x: scroll;
 
-    .boxs::before {
-      content: '';
-      display: block;
-      width: 28rem;
-    }
+    
+    } 
+
     .gridbox1,
     .gridbox2,
     .gridbox3 {
       display: grid;
-      margin-left: 3rem;
       grid-template-areas:
-        'a a b'
-        'a a b'
-        'c d b';
-      grid-auto-columns: 1fr 1fr;
-      grid-auto-rows: 1fr 1fr;
-      height: 100%;
-      width: 70rem;
-      transition: transform 0.5s;
-      scroll-behavior: smooth;
-      overflow: hidden;
+        'a a'
+        'a a'
+        'c c'
+        'c c';
+      grid-auto-columns: 1fr;
+      grid-auto-rows: 1fr;
+      width:100vw;
+      overflow-x: scroll;
+
     }
 
     .prevBtn {
-      position: absolute;
-      width: 12rem;
-      height: 45rem;
-      opacity: 0.1;
-      top: -45rem;
-      left: 30rem;
-      z-index: 2;
+      visibility: hidden;
     }
 
     .nextBtn {
-      position: absolute;
-      width: 11vw;
-      height: 40vw;
-      opacity: 0.2;
-      top: -40vw;
-      left: 80vw;
-      z-index: 2;
+      visibility: hidden;
     }
 
-    .nextBtn:hover {
-      opacity: 0.5;
-    }
-    .prevBtn:hover {
-      opacity: 0.5;
-    }
-
+   .gridtext{
+    position:relative;
+    z-index:10;
+   }
+   .nextimg
+   {
+    position:relative;
+   }
     .keyboardwhite {
       grid-area: a;
       position: relative;
-      width: 100%;
-      height: 100%;
+  
+      width: 90vw;
+      height: 30vw;
     }
 
     .headset {
+      visibility: hidden;
+
       grid-area: b;
       position: relative;
-      width: 100%;
+      width: 30%;
       height: 100%;
     }
     .laptop {
+
       grid-area: c;
       position: relative;
-      width: 100%;
-      height: 100%;
+      display:flex;
+      flex-direction:column;
+      width: 100vw;
+      height: 30vw;
     }
-
     .webcam {
+      visibility: hidden;
       grid-area: d;
       position: relative;
       width: 100%;
       height: 100%;
     }
-    @media (max-width: 1024px) {
-      .gridbox {
-        grid-template-columns: unset;
-      }
-    }
+
 
     .gridbox1 > div:hover {
       transform: scale(1.3);
@@ -290,47 +276,44 @@ function CarouselGrid() {
         <article id="boxs" ref={slidePhoto} className="boxs">
           <div id="slide1" data-slide-index="1" aria-hidden="true" className="gridbox1">
             <div className="keyboardwhite">
-              <Image src={'/keyboardwhite.jpg'} alt="1" fill />
-              <span>1</span>
+              <Image className="nextimg" src={'/keyboardwhite.jpg'} alt="1" fill />
             </div>
             <div className="headset">
-              <Image src={'/headset.jpg'} alt="1" fill />
+              <Image className="nextimg" src={'/headset.jpg'} alt="1" fill />
             </div>
             <div className="laptop">
-              <Image src={'/laptop.jpg'} alt="1" fill />
+              <Image className="nextimg" src={'/laptop.jpg'} alt="1" fill />
             </div>
             <div className="webcam">
-              <Image src={'/webcam.jpg'} alt="1" fill />
+              <Image className="nextimg" src={'/webcam.jpg'} alt="1" fill />
             </div>
           </div>
           <div id="slide2" data-slide-index="2" aria-hidden="true" className="gridbox2">
             <div className="keyboardwhite">
-              <Image src={'/keyboardwhite.jpg'} alt="1" fill />
-              <span>2</span>
+              <Image className="nextimg" src={'/keyboardwhite.jpg'} alt="1" fill />
             </div>
             <div className="headset">
-              <Image src={'/headset.jpg'} alt="1" fill />
+              <Image className="nextimg" src={'/headset.jpg'} alt="1" fill />
             </div>
             <div className="laptop">
-              <Image src={'/laptop.jpg'} alt="1" fill />
+              <Image className="nextimg" src={'/laptop.jpg'} alt="1" fill />
             </div>
             <div className="webcam">
-              <Image src={'/webcam.jpg'} alt="1" fill />
+              <Image className="nextimg" src={'/webcam.jpg'} alt="1" fill />
             </div>
           </div>
           <div id="slide3" data-slide-index="3" aria-hidden="true" className="gridbox3">
             <div className="keyboardwhite">
-              <Image src={'/keyboardwhite.jpg'} alt="1" fill />
-              <span>3</span>
+              <Image className="nextimg" src={'/keyboardwhite.jpg'} alt="1" fill />
             </div>
             <div className="headset">
-              <Image src={'/headset.jpg'} alt="1" fill />
+              <Image className="nextimg" src={'/headset.jpg'} alt="1" fill />
             </div>
             <div className="laptop">
-              <Image src={'/laptop.jpg'} alt="1" fill />
+              <Image className="nextimg" src={'/laptop.jpg'} alt="1" fill />
             </div>
             <div className="webcam">
-              <Image src={'/webcam.jpg'} alt="1" fill />
+              <Image className="nextimg" src={'/webcam.jpg'} alt="1" fill />
             </div>
           </div>
         </article>

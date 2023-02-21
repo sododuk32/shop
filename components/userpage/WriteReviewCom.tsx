@@ -21,20 +21,19 @@ function WriteReviewCom(takepid: string, islogined: logined) {
   const nameInput = useRef<HTMLDivElement>(null);
   const commentObject: Comments = {
     userName: islogined.username,
-    pids: takepid,
+    pid: takepid,
     uids: islogined.uid,
     rating: rating,
     comment: comment,
     line: select,
     togle: newComment,
   };
+  console.log(commentObject);
 
   function sendComment(Comment: Comments) {
-    if (Comment.rating === 0 || Comment.comment?.length === 0 || Comment.pids.length === 0) {
-      alert('댓글과 별을 잘 입력해주세요!');
-      return console.log(commentObject);
+    if (Comment.rating === 0 || Comment.comment?.length === 0 || Comment.pid.length === 0) {
+      return alert('댓글과 별을 잘 입력해주세요!');
     } else {
-      console.log(Comment.comment);
       inputComment(commentObject).then((res) => setnewComment(res.data.togle));
       return null;
     }

@@ -16,7 +16,7 @@ import ProductCard from '../../components/productpage/ProductCard';
 import { useRouter } from 'next/router';
 import ProductPagenation from '../../components/productpage/ProductPagenation';
 import { postProduct } from 'lib/fetches/ApiCall';
-
+import ReviewCom from 'components/userpage/ReviewCom';
 function Product() {
   interface producttags {
     productId: number;
