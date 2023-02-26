@@ -127,15 +127,15 @@ const Carosuel = styled.main`
   @media only screen and (max-width: 800px) {
     
     .gridsContainer {
-  
-
       width:fit-contents;
       height:fit-contents;
-
       transition: transform 0.5s;
       overflow-x: scroll;
 
     }
+    .gridsContainer::-webkit-scrollbar {
+      display: none; /* 크롬, 사파리, 오페라, 엣지 */
+  }
   
 
     .boxs {
@@ -226,6 +226,7 @@ const Carosuel = styled.main`
       transform: scale(1.3);
       transition: 0.2s;
     }
+    
   }
   }
 `;

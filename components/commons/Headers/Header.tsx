@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable prettier/prettier */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './Header.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -15,6 +16,10 @@ const Nav = styled.div`
     {
       width:4vw;
       height:4vw;
+    }
+    #searchbtn2
+    {
+      display:none;
     }
     .navContainershow {
       background-color: #ffffff;
@@ -34,10 +39,8 @@ const Nav = styled.div`
     .navContainerhidden {
       background-color: #ffffff;
       background-color: rgba(255, 255, 255, 0);
-      display: grid;
-      align-items: center;
+     
       margin-left: 20vw;
-      grid-template-columns: 1fr 4.2fr 1fr;
       position: fixed;
       z-index: 1;
       transition: top 0.2s ease-in-out;
@@ -46,7 +49,7 @@ const Nav = styled.div`
     .navBar {
       display: flex;
       justify-content: center;
-
+      display:none;
       z-index: 3;
       width: 33vw;
       -webkit-animation-name: flash;
@@ -106,6 +109,7 @@ const Nav = styled.div`
       animation-duration: 1s;
       -webkit-animation-fill-mode: both;
       animation-fill-mode: both;
+      outline: none
     }
     @-webkit-keyframes flash {
       0%,
@@ -136,6 +140,7 @@ const Nav = styled.div`
       font-weight: bold;
       font-size: 1vw;
       margin-right: 1vw;
+      outline: none
     }
 
     .imgdiv {
@@ -154,11 +159,12 @@ const Nav = styled.div`
     {
       width: 70px;
       height: 30px;
+      padding-bottom:1vh;
     }
 
     .linkhome {
       position:relative;
-      display:block;
+      display:none;
       width: 70px;
       height: 30px;
       -webkit-animation-name: fadeIn;
@@ -184,8 +190,50 @@ const Nav = styled.div`
         opacity: 1;
       }
     }
+    .navbar_mobile
+    {
+      width:100%;
+      display:flex;
+      flex-direction:row;
+      justify-content:space-between;  
+      position: fixed;
+      z-index: 20;
+      transition: top 0.2s ease-in-out;
+      visibility: visible;
+      top:0;
+      background-color:white;
+      align-items: flex-end;
+    }
+    .no_mobile
+    {
+      display:none;
+
+    }
+    .navbar-btn {
+    position: relative;
+     width:9vw;
+     height:9vw;
+     border-color:white;
+     border-radius:1vw;
+    }
+    .linklogo
+    {
+    }
+    .searchBtn
+    {
+      margin-top:3vw;
+      border-color:white;
+      background-color:white;
+
+    }
   }
   @media only screen and (min-width: 801px) {
+  
+    .navbar_mobile
+    {
+      display: none;
+
+    }
     .navContainershow {
       width: 60vw;
       background-color: #ffffff;
@@ -216,7 +264,6 @@ const Nav = styled.div`
     .navBar {
       display: flex;
       justify-content: center;
-
       z-index: 3;
       width: 33vw;
       -webkit-animation-name: flash;
@@ -261,11 +308,14 @@ const Nav = styled.div`
       align-items: center;
       min-width: 3vw;
       font-weight: bold;
-      font-size: 0.9vw;
+      font-size: 20px;
       background-color: rgba(0, 0, 0, 0);
       border: none;
-    }
 
+    }
+    a{      
+      text-decoration-line: none;
+    }
     .toolBar {
       display: flex;
       align-items: center;
@@ -351,16 +401,30 @@ const Nav = styled.div`
 `;
 function Header() {
   const [show, setShow] = useState(true);
+  const [nshow, setnShow] = useState(true);
+
+  const [open, isopen] = useState(false);
+  const navCon = useRef<HTMLElement | null>(null);
+  const toolbar = useRef<HTMLElement | null>(null);
+
   const [lastScrollY, setLastScrollY] = useState(0);
   useEffect(() => {
     if (typeof window !== 'undefined') {
       window.addEventListener('scroll', controlNavbar);
-
+      if (open && navCon != null && window.innerWidth < 801) {
+        navCon.current!.style.display = 'block';
+        toolbar.current!.style.display = 'block';
+        console.log('sadfsdaf');
+      }
+      if (!open && navCon != null && window.innerWidth < 801) {
+        navCon.current!.style.display = 'none';
+        toolbar.current!.style.display = 'none';
+      }
       return () => {
         window.removeEventListener('scroll', controlNavbar);
       };
     }
-  }, [lastScrollY]);
+  }, [lastScrollY, open]);
 
   const controlNavbar = () => {
     if (typeof window !== 'undefined') {
@@ -369,20 +433,42 @@ function Header() {
       } else {
         setShow(true);
       }
-
+      if (window.scrollY > lastScrollY && window.innerWidth < 801) {
+        setnShow(false);
+      } else {
+        setnShow(true);
+      }
       setLastScrollY(window.scrollY);
     }
   };
+  function navBtn() {
+    isopen(!open);
+    return console.log(open);
+  }
   const iconstyle = { backgroundColor: 'F6F6F6' };
   return (
     <Nav>
+      <div className={nshow && window.innerWidth < 801 ? 'navbar_mobile' : 'no_mobile'}>
+        <button className="navbar-btn" onClick={navBtn}>
+          <Image src={'/hamburger-menu.svg'} alt="hambug" fill />
+        </button>
+        <Link href="/" className="linklogo">
+          <Image alt="nothing" className="imgs" src="/mainlogo.jpg" width={130} height={36} />
+        </Link>
+        <Link href="/users/usermenu">
+          <button className="searchBtn">
+            <IoIosSearch className="icons" size={30} style={iconstyle} />
+          </button>
+        </Link>
+      </div>
+
       <main id="navContainer" className={show ? 'navContainershow' : 'navContainerhidden'}>
         <article>
           <Link href="/" className="linkhome">
             <Image alt="nothing" className="imgs" src="/mainlogo.jpg" width={116} height={36} />
           </Link>
         </article>
-        <article id="navBar" className="navBar">
+        <article id="navBar" ref={navCon} className="navBar">
           <Link href="/product/mouse">
             <button>마우스</button>
           </Link>
@@ -398,9 +484,9 @@ function Header() {
           </Link>
         </article>
         {/* F6F6F6 */}
-        <article id="toolBar" className="toolBar">
+        <article id="toolBar" ref={toolbar} className="toolBar">
           <button className="headerbtn">
-            <IoIosSearch className="icons" size={30} style={iconstyle} />
+            <IoIosSearch id="searchbtn2" className="icons" size={30} style={iconstyle} />
           </button>
           <Link href="/users/usermenu">
             <button className="headerbtn">

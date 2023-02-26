@@ -31,6 +31,7 @@ const Main = styled.main`
       animation-name: fadeInRight;
       -webkit-animation-duration: 1s;
       animation-duration: 1s;
+      width: 100%;
     }
     @-webkit-keyframes fadeInRight {
       0% {
@@ -99,7 +100,7 @@ const Main = styled.main`
       width: 10vw;
       height: 3.75vw;
       display: inline-block;
-
+      border: none;
       font-weight: bold;
       font-size: 0.95vw;
       z-index: 10;
@@ -111,9 +112,8 @@ const Main = styled.main`
       align-items: center;
       width: 12vw;
       height: 3.75vw;
-      display: block;
       margin-top: 0.7vw;
-
+      border: none;
       font-weight: bold;
       font-size: 0.95vw;
       z-index: 10;
@@ -138,15 +138,14 @@ const Main = styled.main`
       position: relative;
     }
     .colorPannel {
-      background-color: #836aa4;
-      z-index: 1;
+      z-index: 3;
       width: 100%;
       height: 40vh;
     }
     .bannerKeyboard {
-      position: relative;
+      position: absolute;
       width: 100%;
-      height: 40vh;
+      height: 38vh;
       animation: fadein 0.4s;
       -moz-animation: fadein 0.4s; /* Firefox */
       -webkit-animation: fadein 0.4s; /* Safari and Chrome */
@@ -177,7 +176,7 @@ const Main = styled.main`
     .panneldiv1 {
       font-size: 4.5vw;
       font-weight: 900;
-      color: white;
+      color: black;
       margin-left: 7vw;
     }
     .panneldiv2 {
@@ -190,7 +189,7 @@ const Main = styled.main`
     .panneldivsmall {
       font-size: 1vw;
       font-weight: 400;
-      color: white;
+      color: black;
       margin-left: -3vw;
     }
 
