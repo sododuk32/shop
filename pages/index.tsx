@@ -109,6 +109,7 @@ const Main = styled.main`
     }
     .underBtn {
       display: flex;
+      justify-content: center;
       align-items: center;
       width: 12vw;
       height: 3.75vw;
@@ -117,7 +118,6 @@ const Main = styled.main`
       font-weight: bold;
       font-size: 0.95vw;
       z-index: 10;
-      text-align: center;
       margin-left: 2vw;
     }
     .underBtn:hover {

@@ -10,20 +10,19 @@ import { IoMdPerson, IoIosSearch } from 'react-icons/io';
 import styled from 'styled-components';
 const Nav = styled.div`
   @media only screen and (max-width: 800px) {
-    width:100%;
-    height:10vw;
-    .icons
-    {
-      width:4vw;
-      height:4vw;
+    width: 100%;
+    height: 10vw;
+    .icons {
+      width: 4vw;
+      height: 4vw;
     }
-    #searchbtn2
-    {
-      display:none;
+    #searchbtn2 {
+      display: none;
+    }
+    #navContainer {
+      background-color: #836aa4;
     }
     .navContainershow {
-      background-color: #ffffff;
-      background-color: rgba(255, 255, 255, 0);
       align-items: center;
       position: fixed;
       z-index: 10;
@@ -31,15 +30,15 @@ const Nav = styled.div`
       visibility: visible;
       opacity: 10;
       display: flex;
-      flex:direction:row;
-      justify-contents:space-around;
-      margin-top:5vw;
-      margin-left:10vw;
+      flex-direction: column;
+      justify-contents: space-around;
+      margin-top: 4.2vw;
+      width: 100%;
     }
     .navContainerhidden {
       background-color: #ffffff;
       background-color: rgba(255, 255, 255, 0);
-     
+
       margin-left: 20vw;
       position: fixed;
       z-index: 1;
@@ -47,47 +46,16 @@ const Nav = styled.div`
       visibility: hidden;
     }
     .navBar {
-      display: flex;
+      flex-direction:column;
       justify-content: center;
-      display:none;
+      align-items: center;
+      display: none;
       z-index: 3;
       width: 33vw;
-      -webkit-animation-name: flash;
-      animation-name: flash;
-      -webkit-animation-duration: 1s;
-      animation-duration: 1s;
-      -webkit-animation-fill-mode: both;
-      animation-fill-mode: both;
+    
     }
-    @-webkit-keyframes flash {
-      0%,
-      50%,
-      100% {
-        opacity: 1;
-      }
+    
 
-      25%,
-      75% {
-        opacity: 0;
-      }
-    }
-
-    @keyframes flash {
-      0%,
-      50%,
-      100% {
-        opacity: 1;
-      }
-
-      25%,
-      75% {
-        opacity: 0;
-      }
-    }
-    .navBar > button {
-      padding-left: 1vw;
-      font-weight: bold;
-    }
     .navBar button {
       height: 4vw;
       display: flex;
@@ -100,16 +68,51 @@ const Nav = styled.div`
     }
 
     .toolBar {
+      display: none;
+    }
+    .toolBar2
+    {
+      display:none;
+    }
+    .mobileToolbar2 {
+      display: flex;
+      flex-direction: column;
+      text-decoration: underline;
+      align-items: center
+      width: 100%;
+    }
+    .mobiletoolbar2 button: {
+      width: 100%;
+      height: 4vw;
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      -webkit-animation-name: flash;
-      animation-name: flash;
-      -webkit-animation-duration: 1s;
-      animation-duration: 1s;
-      -webkit-animation-fill-mode: both;
-      animation-fill-mode: both;
-      outline: none
+      min-width: 3vw;
+      font-weight: bold;
+      font-size: 3px;
+      background-color: rgba(0, 0, 0, 0);
+      border: none;
+    }
+    .mobilebtn: {
+      width: 100%;
+      height: 4vw;
+      display: flex;
+      align-items: center;
+      min-width: 3vw;
+      font-weight: bold;
+      font-size: 3px;
+      background-color: rgba(0, 0, 0, 0);
+      border: none;
+    }
+    .myinfo {
+      width: 100%;
+      height: 4vw;
+      display: flex;
+      align-items: center;
+      min-width: 3vw;
+      font-weight: bold;
+      font-size: 3px;
+      background-color: rgba(0, 0, 0, 0);
+      border: none;
     }
     @-webkit-keyframes flash {
       0%,
@@ -140,7 +143,7 @@ const Nav = styled.div`
       font-weight: bold;
       font-size: 1vw;
       margin-right: 1vw;
-      outline: none
+      outline: none;
     }
 
     .imgdiv {
@@ -155,16 +158,15 @@ const Nav = styled.div`
       border: none;
       outline: none;
     }
-    .imgs
-    {
+    .imgs {
       width: 70px;
       height: 30px;
-      padding-bottom:1vh;
+      padding-bottom: 1vh;
     }
 
     .linkhome {
-      position:relative;
-      display:none;
+      position: relative;
+      display: none;
       width: 70px;
       height: 30px;
       -webkit-animation-name: fadeIn;
@@ -190,49 +192,44 @@ const Nav = styled.div`
         opacity: 1;
       }
     }
-    .navbar_mobile
-    {
-      width:100%;
-      display:flex;
-      flex-direction:row;
-      justify-content:space-between;  
+    .navbar_mobile {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
       position: fixed;
       z-index: 20;
       transition: top 0.2s ease-in-out;
       visibility: visible;
-      top:0;
-      background-color:white;
+      top: 0;
+      background-color: white;
       align-items: flex-end;
+      display: in-line;
     }
-    .no_mobile
-    {
-      display:none;
-
+    .no_mobile {
+      display: none;
     }
     .navbar-btn {
-    position: relative;
-     width:9vw;
-     height:9vw;
-     border-color:white;
-     border-radius:1vw;
+      position: relative;
+      width: 9vw;
+      height: 9vw;
+      border-color: white;
+      border-radius: 1vw;
     }
-    .linklogo
-    {
+    .linklogo {
     }
-    .searchBtn
-    {
-      margin-top:3vw;
-      border-color:white;
-      background-color:white;
-
+    .searchBtn {
+      margin-top: 3vw;
+      border-color: white;
+      background-color: white;
     }
   }
   @media only screen and (min-width: 801px) {
-  
-    .navbar_mobile
-    {
+    .navbar_mobile {
       display: none;
-
+    }
+    .toolBar2 {
+      display: none;
     }
     .navContainershow {
       width: 60vw;
@@ -308,12 +305,11 @@ const Nav = styled.div`
       align-items: center;
       min-width: 3vw;
       font-weight: bold;
-      font-size: 20px;
+      font-size: 1.4vw;
       background-color: rgba(0, 0, 0, 0);
       border: none;
-
     }
-    a{      
+    a {
       text-decoration-line: none;
     }
     .toolBar {
@@ -406,20 +402,23 @@ function Header() {
   const [open, isopen] = useState(false);
   const navCon = useRef<HTMLElement | null>(null);
   const toolbar = useRef<HTMLElement | null>(null);
+  const toolbar2 = useRef<HTMLElement | null>(null);
 
   const [lastScrollY, setLastScrollY] = useState(0);
   useEffect(() => {
     if (typeof window !== 'undefined') {
       window.addEventListener('scroll', controlNavbar);
       if (open && navCon != null && window.innerWidth < 801) {
-        navCon.current!.style.display = 'block';
-        toolbar.current!.style.display = 'block';
-        console.log('sadfsdaf');
+        navCon.current!.style.display = 'flex';
+        console.log('var is block');
       }
       if (!open && navCon != null && window.innerWidth < 801) {
         navCon.current!.style.display = 'none';
         toolbar.current!.style.display = 'none';
+        console.log('var is none');
+        console.log(toolbar.current!.style.display);
       }
+      console.log(open);
       return () => {
         window.removeEventListener('scroll', controlNavbar);
       };
@@ -427,6 +426,7 @@ function Header() {
   }, [lastScrollY, open]);
 
   const controlNavbar = () => {
+    console.log(window.scrollY);
     if (typeof window !== 'undefined') {
       if (window.scrollY > lastScrollY) {
         setShow(false);
@@ -434,21 +434,24 @@ function Header() {
         setShow(true);
       }
       if (window.scrollY > lastScrollY && window.innerWidth < 801) {
+        console.log('scroll is going up');
+        console.log('this is nshow' + nshow);
         setnShow(false);
       } else {
+        console.log('scroll is going down');
+        console.log('this is nshow' + nshow);
         setnShow(true);
       }
       setLastScrollY(window.scrollY);
     }
   };
   function navBtn() {
-    isopen(!open);
-    return console.log(open);
+    return isopen(!open);
   }
   const iconstyle = { backgroundColor: 'F6F6F6' };
   return (
     <Nav>
-      <div className={nshow && window.innerWidth < 801 ? 'navbar_mobile' : 'no_mobile'}>
+      <div className={!nshow && window.innerWidth < 801 ? 'no_mobile' : 'navbar_mobile'}>
         <button className="navbar-btn" onClick={navBtn}>
           <Image src={'/hamburger-menu.svg'} alt="hambug" fill />
         </button>
@@ -484,19 +487,25 @@ function Header() {
           </Link>
         </article>
         {/* F6F6F6 */}
-        <article id="toolBar" ref={toolbar} className="toolBar">
-          <button className="headerbtn">
-            <IoIosSearch id="searchbtn2" className="icons" size={30} style={iconstyle} />
+        <article id="toolBar" ref={toolbar} className={window.innerWidth > 801 ? 'toolBar' : 'mobileToolbar'}>
+          <button id="searchbtn2" className="headerbtn">
+            <IoIosSearch className="icons" size={30} style={iconstyle} />
           </button>
           <Link href="/users/usermenu">
             <button className="headerbtn">
-              <IoMdPerson className="icons" size={30} style={iconstyle} />
+              <IoMdPerson id="personbtn2" className="icons" size={30} style={iconstyle}>
+                내 정보
+              </IoMdPerson>
             </button>
+          </Link>
+        </article>
+        <article ref={toolbar2} className={open && window.innerWidth < 801 ? 'mobileToolbar2' : 'toolBar2'}>
+          <Link className="mobileBtn" href="/users/usermenu">
+            <button className="myinfo">내 정보</button>
           </Link>
         </article>
       </main>
     </Nav>
   );
 }
-
 export default Header;
