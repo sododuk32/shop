@@ -45,3 +45,4 @@ lib/fetches/callAxios.tsx
 components/Exchange.tsx
 .env
 env.d.ts
+*.lock
